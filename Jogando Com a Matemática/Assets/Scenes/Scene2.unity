@@ -16501,6 +16501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost
       objectReference: {fileID: 0}
+    - target: {fileID: 4669877704676628142, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
+      propertyPath: knockBackTime
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
