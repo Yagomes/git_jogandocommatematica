@@ -16510,20 +16510,40 @@ PrefabInstance:
       value: Ghost
       objectReference: {fileID: 0}
     - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
-      propertyPath: burstCount
+      propertyPath: stagger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
+      propertyPath: restTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
+      propertyPath: oscillate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
+      propertyPath: burstCount
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
       propertyPath: angleSpread
-      value: 0
+      value: 165
       objectReference: {fileID: 0}
     - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
       propertyPath: bulletMoveSpeed
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
-      propertyPath: projectilesPerBurst
+      propertyPath: startingDistance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
+      propertyPath: timeBetweenBursts
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
+      propertyPath: projectilesPerBurst
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
