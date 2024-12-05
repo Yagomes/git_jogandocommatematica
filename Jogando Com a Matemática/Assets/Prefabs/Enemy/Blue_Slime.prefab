@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 4647319348392417560}
   - component: {fileID: -3394119564540209036}
   - component: {fileID: 3959733532405842602}
+  - component: {fileID: -8530143276929909988}
   m_Layer: 0
   m_Name: Blue_Slime
   m_TagString: Untagged
@@ -247,3 +248,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteFlashMaterial: {fileID: 2100000, guid: e3b9d745f0d660d4c9b1ba559fc7f088, type: 2}
   restoreDefaultMatTime: 0.2
+--- !u!114 &-8530143276929909988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8048728352420701157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028a070a5724a894e870d4623684de5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldCoin: {fileID: 6881442445718418571, guid: 22ef02f8b10edcf42aec44b208fb0b1e, type: 3}
+  healthGlobe: {fileID: 6881442445718418571, guid: 490b2f2ffc4dd1f448de7302dc7e2936, type: 3}
+  staminaGlobe: {fileID: 6881442445718418571, guid: 706819cbbb911764b97b651a5859e7d8, type: 3}
