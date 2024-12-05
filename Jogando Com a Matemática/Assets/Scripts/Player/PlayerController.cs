@@ -172,13 +172,13 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Dash()//sombra do player
     {
-        if (!isDashing)
+        if (!isDashing && Stamina.Instance.CurrentStamina > 0)
         {
+            Stamina.Instance.UseStamina();
             isDashing = true;
             MoveSpeed *= dashSpeed;
             myTrailRenderer.emitting = true;
             StartCoroutine(EndDashRoutine());
-
         }
     }
 
