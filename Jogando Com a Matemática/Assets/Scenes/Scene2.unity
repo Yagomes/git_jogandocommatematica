@@ -3232,6 +3232,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4191528150247917848, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9045,7 +9049,7 @@ PrefabInstance:
       objectReference: {fileID: 1769688290}
     - target: {fileID: 5987744833883823695, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
       propertyPath: m_ChildCameras.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390029445359159901, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15922,6 +15926,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4191528150247917848, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16459,11 +16467,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3955025670792562487, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6691022
+      value: 1.59
       objectReference: {fileID: 0}
     - target: {fileID: 3955025670792562487, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2549522
+      value: 0.91
       objectReference: {fileID: 0}
     - target: {fileID: 3955025670792562487, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16501,9 +16509,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost
       objectReference: {fileID: 0}
-    - target: {fileID: 4669877704676628142, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
-      propertyPath: knockBackTime
-      value: 0.2
+    - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
+      propertyPath: burstCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
+      propertyPath: angleSpread
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
+      propertyPath: bulletMoveSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230345964827820716, guid: 9fd9f8d86c6b8fc4096f4b2ecd086f32, type: 3}
+      propertyPath: projectilesPerBurst
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
