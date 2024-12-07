@@ -7924,6 +7924,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2260966115815196725, guid: f18e620635f7e304d8a38f5f9e75749e, type: 3}
   m_PrefabInstance: {fileID: 1733832944}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &763806000 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5634706151698708760, guid: 30f8ac5b6864702419d5e4596b28f501, type: 3}
+  m_PrefabInstance: {fileID: 3852689938313698444}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &763806011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763806000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e664a78666f7f4dbc9d8a0e88e9aa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullStaminaImage: {fileID: 21300000, guid: 28557cb89290e084fa58668f20a6ea4c, type: 3}
+  emptyStaminaImage: {fileID: 21300000, guid: 2c1b20f61e8544749bdec29c7be9d3de, type: 3}
+  timeBetweenStaminaRefresh: 3
 --- !u!1 &872420906
 GameObject:
   m_ObjectHideFlags: 0
@@ -25425,10 +25445,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Girl
       objectReference: {fileID: 0}
+    - target: {fileID: 5634706151698708760, guid: 30f8ac5b6864702419d5e4596b28f501, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5634706151698708760, guid: 30f8ac5b6864702419d5e4596b28f501, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 763806011}
   m_SourcePrefab: {fileID: 100100000, guid: 30f8ac5b6864702419d5e4596b28f501, type: 3}
 --- !u!4 &3903220993190297672
 Transform:
@@ -25458,6 +25485,10 @@ PrefabInstance:
     - target: {fileID: 280323501841662002, guid: f56c27d077f4c1f4ebb7583a9e6c487e, type: 3}
       propertyPath: m_Name
       value: Player_Boy
+      objectReference: {fileID: 0}
+    - target: {fileID: 280323501841662002, guid: f56c27d077f4c1f4ebb7583a9e6c487e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5577881531380281874, guid: f56c27d077f4c1f4ebb7583a9e6c487e, type: 3}
       propertyPath: m_LocalPosition.x

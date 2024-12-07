@@ -44,7 +44,10 @@ public class PlayerController : Singleton<PlayerController>
     private void Start()
     {
         PlayerControls.Combat.Dash.performed += _ => Dash();//sombra
+
         startingMoveSpeed = MoveSpeed;//sombra
+
+        ActiveInventory.Instance.EquipStartingWeapon();
     }
 
     protected override void Awake() {
@@ -61,6 +64,11 @@ public class PlayerController : Singleton<PlayerController>
     {
         // Ativa o controle do jogo.
         PlayerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        PlayerControls.Disable();
     }
 
     private void Update()//A cada framessegundos essa função é chamada no jogo.
@@ -99,7 +107,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Move()
     {
-        if (knockback.GettingKnockedBack) { return; }
+        if (knockback.GettingKnockedBack || PlayerHealth.Instance.isDead) { return; }
         Rb.MovePosition(Rb.position + Movement * (MoveSpeed * Time.fixedDeltaTime)); // Faz o player andar.
     }
 
