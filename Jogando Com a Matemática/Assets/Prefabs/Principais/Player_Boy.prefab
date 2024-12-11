@@ -257,6 +257,9 @@ MonoBehaviour:
   maxHealth: 3
   knockBackThrustAmount: 10
   damageRecoveryTime: 1
+  currentHealth: 0
+  atu: 0
+  activeWeapon: {fileID: 0}
 --- !u!114 &1454073374864271735
 MonoBehaviour:
   m_ObjectHideFlags: 0

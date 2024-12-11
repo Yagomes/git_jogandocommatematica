@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
@@ -9,11 +8,14 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
+            // Verifica se a instância já foi criada
             if (instance == null)
             {
+                // Tenta encontrar uma instância existente na cena
                 instance = FindObjectOfType<T>();
                 if (instance == null)
                 {
+                    // Se não houver nenhuma instância, loga um erro
                     Debug.LogError($"No instance of {typeof(T)} found in the scene.");
                 }
             }
@@ -23,18 +25,17 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void Awake()
     {
+        // Se já existir uma instância e não for o objeto atual, destrua a nova instância
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this as T; // Conversão segura usando 'as'
-        }
-
-        if (!gameObject.transform.parent)
-        {   
-            DontDestroyOnLoad (gameObject);
+            // Caso contrário, atribui a instância do objeto atual
+            instance = this as T;
+            // Faz o objeto persistir entre cenas
+            DontDestroyOnLoad(gameObject);
         }
     }
 }

@@ -2,19 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiveWeapon : Singleton<ActiveWeapon>
+public class ActiveWeapon : MonoBehaviour
 {
+    public static ActiveWeapon Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);  // Garante que apenas uma instância do ActiveWeapon exista
+        }
+        else
+        {
+            Instance = this;  // Atribui a instância única
+            DontDestroyOnLoad(gameObject);  // Se necessário, preserve entre as cenas
+        }
+        
+        playerControls = new PlayerControls();
+    }
+
+
     //[SerializeField] private MonoBehaviour currentActiveWeapon;
     public MonoBehaviour CurrentActiveWeapon { get; private set; }
     private PlayerControls playerControls;
     private float timeBetweenAttacks;
     private bool attackButtonDown, isAttacking = false;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        playerControls = new PlayerControls();
-    }
 
     private void OnEnable()
     {
