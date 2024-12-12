@@ -17,10 +17,10 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private Knockback knockback;
     private Flash flash;
     public bool atu; // Flag para indicar quando restaurar a saúde
-    public ActiveWeapon activeWeapon;  // Referência no script
+   
 
     const string HEALTH_SLIDER_TEXT = "Health Slider";
-    const string TOWN_TEXT = "Menu";  // Troque "Scene1" pelo nome da sua cena inicial
+    //const string TOWN_TEXT = "Menu";  // Troque "Scene1" pelo nome da sua cena inicial
     readonly int DEATH_HASH = Animator.StringToHash("Death");
 
     protected override void Awake()
@@ -118,9 +118,19 @@ public class PlayerHealth : Singleton<PlayerHealth>
     {
        
         yield return new WaitForSeconds(2f);  // Espera um tempo para animação de morte
+
+        string topicoEscolhido = PlayerPrefs.GetString("TopicoEscolhido", "");
+
         Destroy(gameObject);
-        SceneManager.LoadScene(TOWN_TEXT);  // Retorna à cena do menu (troque "TOWN_TEXT" pelo nome da sua cena de menu)
-         
+
+        if(topicoEscolhido == "soma")
+        {
+           SceneManager.LoadScene("Tela_Nivel_S");
+        }
+        if (topicoEscolhido == "mult")
+        {
+            SceneManager.LoadScene("Tela_Nivel_M");
+        }
     }
 
     private IEnumerator DamageRecoveryRoutine()

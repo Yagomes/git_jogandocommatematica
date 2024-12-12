@@ -6,12 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: b6b00555b1607b24196e24bc13a76bab
+    path: Assets/Scenes/Tela Login/Login.unity
+    guid: d71fd8210715bcf40b248665efb45bf4
   - enabled: 1
-    path: Assets/Scenes/Scene1.unity
+    path: Assets/Scenes/Tela Operacao/Operacao.unity
+    guid: 72ea9a03298b98646803932a3fe6b392
+  - enabled: 1
+    path: Assets/Scenes/Tela Nivel/Tela_Nivel_S.unity
+    guid: f78c00e0ca511044bba1772580dd329c
+  - enabled: 1
+    path: Assets/Scenes/Tela Nivel/Tela_Nivel_M.unity
+    guid: ddd4ea99dd84f814e8541f8a0622b4db
+  - enabled: 1
+    path: Assets/Scenes/Jogar/Scene1_S_F.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Scene2.unity
+    path: Assets/Scenes/Jogar/Scene1_M_F.unity
+    guid: fe13a5d8d94dbad4e9c8e720dba0764a
+  - enabled: 1
+    path: Assets/Scenes/Jogar/Scene2_S_F.unity
     guid: 1b84d5b8edba32741bae14537e847004
+  - enabled: 1
+    path: Assets/Scenes/Jogar/Scene2_M_F.unity
+    guid: 70f75ed60bd60264dbf4640d33cc37b7
   m_configObjects: {}
