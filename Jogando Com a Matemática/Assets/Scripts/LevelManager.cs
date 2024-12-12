@@ -82,7 +82,7 @@ public class LevelManager : MonoBehaviour //Controla cada nivel. E pega o Min e 
         int intervalo = (maxValor - minValor) / 3;
         PlayerPrefs.SetInt("NivelMin", minValor + intervalo + 1);
         PlayerPrefs.SetInt("NivelMax", minValor + 2 * intervalo);
-
+        
         // Reseta o nome da transição ao iniciar um novo jogo
         SceneManagement.Instance.SetTransitionName("");
 
