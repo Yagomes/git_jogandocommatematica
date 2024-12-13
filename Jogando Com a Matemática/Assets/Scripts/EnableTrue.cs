@@ -42,7 +42,7 @@ public class EnableTrue : MonoBehaviour
                 }
 
             }
-            else if (obj.name == "IsMult")
+             if (obj.name == "IsMult")
             {
 
                 foreach (GameObject obj_of in allObjects)

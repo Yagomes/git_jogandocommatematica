@@ -124,10 +124,34 @@ public class LevelManager : MonoBehaviour //Controla cada nivel. E pega o Min e 
             //playerSpriteRenderer.enabled = true;
             cena = $"Scene1_S_{dificuldade}";
 
+
+            GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+            foreach (GameObject obj in allObjects)
+            {
+                // Verifica se o nome é "Active Inventory"
+                if (obj.name == "tela_s")
+                {
+                    obj.SetActive(true);
+                }
+            }
         }
         else if (topicoEscolhido.ToLower() == "multiplicacao" || topicoEscolhido.ToLower() == "mult")
         {
-          //  playerSpriteRenderer.enabled = true;
+
+
+            GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+            foreach (GameObject obj in allObjects)
+            {
+                // Verifica se o nome é "Active Inventory"
+                if (obj.name == "tela_m")
+                {
+                    obj.SetActive(true);
+                }
+            } 
+
+            //  playerSpriteRenderer.enabled = true;
             cena = $"Scene1_M_{dificuldade}";
 
         }

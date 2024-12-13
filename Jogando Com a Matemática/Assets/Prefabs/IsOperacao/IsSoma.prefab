@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8299981403043812829}
   - component: {fileID: 2248285642780388881}
+  - component: {fileID: 2833233293318240110}
   m_Layer: 0
   m_Name: IsSoma
   m_TagString: Untagged
@@ -45,3 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 5460532950516088769, guid: a23aa2f94afa6e14a80ae4a2fe7d71ff, type: 3}
+--- !u!114 &2833233293318240110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6118960901714331144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f92b7ed2fb39e4e9c68563b3cd3ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -6,78 +6,180 @@ using TMPro;
 
 public class ScriptBau : MonoBehaviour
 {
-    public GameObject carta;  // A carta que será mostrada
-    public Button[] chaveButtons; // Array contendo os botões das chaves
-    public TMP_Text perguntaText;  // Texto para exibir a pergunta (operação matemática)
-    private SpriteRenderer spriteRenderer;
-    public Sprite spriteAberto;
-    [SerializeField] public GameObject[] ferramentasDisponiveis; // Lista de ferramentas possíveis
-    [SerializeField] private Animator bauAnimator;
-    private int resultadoUniversal;
+    public string chestID; // Identificador único para o baú
+
     private bool cartaAberta = false;
     private bool bauBloqueado = false;
+    private int resultadoUniversal;
+
+    [SerializeField] private Animator bauAnimator;
 
     // Define o LayerMask para o baú
     [SerializeField] private LayerMask chestLayer;
 
+    // Prefabs para recriação, caso necessário
+    [SerializeField] private GameObject cartaPrefab;
+    [SerializeField] private GameObject chaveButtonPrefab;
+
+    // Referências dinâmicas para objetos no DontDestroyOnLoad
+    private GameObject carta;
+    private Button[] chaveButtons;
+    private TMP_Text perguntaText;
+    private TMP_Text expressaoText; // Para o texto da expressão matemática
+
+    [SerializeField] public GameObject[] ferramentasDisponiveis; // Lista de ferramentas possíveis
+
     private void Start()
     {
-        
         bauAnimator = GetComponent<Animator>();
+
+        // Carregar o estado do baú no início
+        if (GameManager_b.instance != null)
+        {
+            bauBloqueado = GameManager_b.instance.GetChestState(chestID);
+            if (bauBloqueado)
+            {
+                cartaAberta = true;
+                if (bauAnimator != null) bauAnimator.SetBool("Aberto", true);
+            }
+        }
+
+
+       
+
+        if (carta != null) carta.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
-        if (carta == null)
+
+        if (Input.GetMouseButtonDown(0) && !bauBloqueado && carta!= null)
         {
-            if (bauAnimator != null) bauAnimator.SetBool("Aberto", true);
-            
-        }
-        else
-        {
-        
-        if (Input.GetMouseButtonDown(0) && !bauBloqueado && carta !=null)
-        {
-            // Captura a posição do mouse no mundo
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePosition.x, mousePosition.y);
 
-            // Executa o Raycast filtrando pela camada do baú
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, Mathf.Infinity, chestLayer);
 
-            // Verifica se o clique foi no baú
+
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
                 float distance = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-
+            
                 if (distance <= 2f && !cartaAberta)
                 {
-                    
+                    if (carta != null)
+                    {
+                        carta.SetActive(true);
+                        cartaAberta = true;
+                        Debug.Log("Baú aberto!");
+                        GerarOperacao();
+                    }
+                    else
+                    {
 
-                    carta.SetActive(true);
-                    cartaAberta = true;
-                    Debug.Log("Baú aberto!");
-                    GerarOperacao();
+                        Debug.LogError("Carta não encontrada ou foi destruída!");
+                    }
                 }
                 else if (distance > 2f)
                 {
                     Debug.Log("Você precisa estar mais perto do baú para abri-lo.");
                 }
             }
-            }
-        
-
-        // Fecha a carta se o jogador se afastar
-        float dist = Vector3.Distance(transform.position, PlayerController.Instance.transform.position);
-        if (dist > 2f && carta != null && carta.activeSelf)
-        {
-            carta.SetActive(false);
-            cartaAberta = false;
-            Debug.Log("Você se afastou do baú e a carta foi fechada.");
         }
+
+        // Verifica se a carta ainda existe antes de usá-la
+        if (carta != null)
+        {
+           
+            float dist = Vector3.Distance(transform.position, PlayerController.Instance.transform.position);
+            if (dist > 2f && cartaAberta && carta.activeSelf)
+            {
+                carta.SetActive(false);
+                cartaAberta = false;
+                Debug.Log("Você se afastou do baú e a carta foi fechada.");
+            }
+        }
+        else if(carta==null)
+        {
+           // Debug.Log("Carta criada.");
+          BuscarOuCriarObjetos();
         }
     }
 
+
+    private void BuscarOuCriarObjetos()
+    {
+        carta = GameObject.Find("Carta");
+        Destroy(carta);
+        if (carta == null && cartaPrefab != null)
+        {
+            GameObject canvas = GameObject.Find("UICanvas");
+            if (canvas != null)
+            {
+                carta = Instantiate(cartaPrefab, canvas.transform);
+                carta.name = "Carta";
+
+                // Definir posição da carta no canvas
+                Vector3 posicaoCarta = new Vector3(0, 0, 0); // Posição desejada (ajuste conforme necessário)
+                carta.transform.localPosition = posicaoCarta;
+
+                Debug.Log("Carta criada com sucesso!");
+            }
+            else
+            {
+                Debug.LogError("Canvas 'UICanvas' não encontrado! Certifique-se de que está configurado corretamente.");
+                return;
+            }
+        }
+
+        // Verifica os componentes de texto da carta
+        if (perguntaText == null && carta != null)
+        {
+            perguntaText = carta.GetComponentInChildren<TMP_Text>(); // Componente de pergunta
+            if (perguntaText == null)
+                Debug.LogError("Componente TMP_Text (PerguntaText) não encontrado na carta!");
+        }
+
+        // Buscar o componente de expressão (caso tenha um campo de texto separado para isso)
+        if (expressaoText == null && carta != null)
+        {
+            expressaoText = carta.transform.Find("ExpressaoText")?.GetComponent<TMP_Text>(); // Ajuste o nome conforme o seu prefab
+            if (expressaoText == null)
+                Debug.LogError("Componente TMP_Text (ExpressaoText) não encontrado na carta!");
+        }
+
+        // Criar botões de resposta, se necessário
+        if ((chaveButtons == null || chaveButtons.Length < 3) && chaveButtonPrefab != null)
+        {
+            chaveButtons = new Button[3];
+            if (carta != null) // Certifique-se de que a carta foi criada corretamente
+            {
+                // Posições para as chaves dentro da carta
+                Vector3[] posicoesChaves = new Vector3[]
+                {
+                new Vector3(-100, 50, 0), // Posição da primeira chave
+                new Vector3(0, 50, 0),    // Posição da segunda chave
+                new Vector3(100, 50, 0)   // Posição da terceira chave
+                };
+
+                for (int i = 0; i < 3; i++)
+                {
+                    GameObject button = Instantiate(chaveButtonPrefab, carta.transform); // Definir a carta como pai
+                    chaveButtons[i] = button.GetComponent<Button>();
+                    button.name = $"Chave{i + 1}";
+
+                    // Ajustar a posição do botão dentro da carta
+                    button.transform.localPosition = posicoesChaves[i];
+
+                    Debug.Log($"Botão {i + 1} criado com sucesso e posicionado!");
+                }
+            }
+            else
+            {
+                Debug.LogError("Carta não encontrada para criar botões.");
+            }
+        }
+    }
     void GerarOperacao()
     {
         if (chaveButtons == null || chaveButtons.Length < 3)
@@ -86,13 +188,12 @@ public class ScriptBau : MonoBehaviour
             return;
         }
 
-        if (perguntaText == null)
+        if (perguntaText == null || expressaoText == null)
         {
-            Debug.LogError("perguntaText não foi atribuído no Inspector!");
+            Debug.LogError("perguntaText ou expressaoText não foi atribuído no Inspector!");
             return;
         }
 
-        // Gera números aleatórios e define a operação matemática
         int min = PlayerPrefs.GetInt("NivelMin");
         int max = PlayerPrefs.GetInt("NivelMax");
 
@@ -101,26 +202,29 @@ public class ScriptBau : MonoBehaviour
 
         int resultado;
         string operacao;
+        string expressao;
 
         if (PlayerPrefs.GetString("TopicoEscolhido").ToLower() == "soma")
         {
             resultado = num1 + num2;
             operacao = $"{num1} + {num2}";
+            expressao = operacao; // Aqui você pode definir a expressão matemática
         }
-        else 
+        else
         {
             resultado = num1 * num2;
             operacao = $"{num1} x {num2}";
+            expressao = operacao; // Aqui também a expressão
         }
 
         resultadoUniversal = resultado;
 
-        // Gera respostas falsas e embaralha
         int[] respostas = new int[3];
         respostas[0] = resultado;
         respostas[1] = resultado + Random.Range(1, 5);
         respostas[2] = resultado - Random.Range(1, 5);
 
+        // Embaralhar respostas
         for (int i = 0; i < respostas.Length; i++)
         {
             int randomIndex = Random.Range(0, respostas.Length);
@@ -129,7 +233,7 @@ public class ScriptBau : MonoBehaviour
             respostas[randomIndex] = temp;
         }
 
-        // Atualiza os botões com as respostas
+        // Atualizar os textos dos botões
         for (int i = 0; i < chaveButtons.Length; i++)
         {
             chaveButtons[i].GetComponentInChildren<TMP_Text>().text = respostas[i].ToString();
@@ -138,7 +242,10 @@ public class ScriptBau : MonoBehaviour
             chaveButtons[i].onClick.AddListener(() => OnButtonClicked(resposta));
         }
 
-        perguntaText.text = operacao;
+        // Atualizar o texto da pergunta e da expressão
+        perguntaText.text = "Qual é a operação?";
+        expressaoText.text = expressao;
+
         Debug.Log($"Operação gerada: {operacao} = {resultado}");
     }
 
@@ -149,33 +256,36 @@ public class ScriptBau : MonoBehaviour
 
     public void VerificarResposta(int respostaSelecionada)
     {
-        if (carta == null)
-        {
-
-            Debug.LogError("Objeto 'carta' não foi atribuído no Inspector!");
-            return;
-        }
-
         if (respostaSelecionada == resultadoUniversal)
         {
             DroparItens();
-            carta?.SetActive(false);
+            if (carta != null)
+            {
+                carta.SetActive(false);
+            }
             cartaAberta = false;
             bauBloqueado = true;
-            Debug.Log("Resposta correta! Carta aberta.");
 
-            if (spriteRenderer != null) spriteRenderer.sprite = spriteAberto;
             if (bauAnimator != null) bauAnimator.SetBool("Aberto", true);
-            
+
+            if (GameManager_b.instance != null)
+            {
+                GameManager_b.instance.SetChestState(chestID, bauBloqueado);
+            }
+
+            Debug.Log("Resposta correta! Carta aberta.");
         }
         else
         {
-            carta.SetActive(false);
+            if (carta != null)
+            {
+                carta.SetActive(false);
+            }
             cartaAberta = false;
-            bauBloqueado = false;
             Debug.Log("Resposta incorreta! Carta fechada.");
         }
     }
+
 
     void DroparItens()
     {

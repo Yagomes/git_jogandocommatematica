@@ -46,7 +46,7 @@ public class Stamina : Singleton<Stamina>
         FindStaminaContainer();
 
         // Reseta a estamina se for necessário (como ao voltar para o menu)
-        if (scene.name == "Menu" || scene.name == "Game")
+        if (scene.name == "Tela_Nivel_S" || scene.name == "Scene1_S_F" || scene.name == "Tela_Nivel_M" || scene.name == "Scene1_M_F" || scene.name == "Scene1_M_F" || scene.name == "Scene2_M_F")
         {
             ResetStamina();
         }
@@ -62,7 +62,7 @@ public class Stamina : Singleton<Stamina>
         }
         else
         {
-            Debug.LogError($"'{STAMINA_CONTAINER_TEXT}' não foi encontrado na cena. Certifique-se de que existe um GameObject com esse nome.");
+            Debug.Log($"'{STAMINA_CONTAINER_TEXT}' não foi encontrado na cena. Certifique-se de que existe um GameObject com esse nome.");
         }
     }
 
