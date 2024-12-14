@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 public class GameManager_b : MonoBehaviour
 {
     public static GameManager_b instance;
@@ -10,7 +9,7 @@ public class GameManager_b : MonoBehaviour
 
     private void Awake()
     {
-        // Verifica se já existe uma instância do GameManager
+        // Singleton pattern
         if (instance == null)
         {
             instance = this;
@@ -18,7 +17,7 @@ public class GameManager_b : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject); // Destrói instâncias duplicadas
+            Destroy(this.gameObject); // Destroys duplicate instances
         }
     }
 
@@ -32,5 +31,15 @@ public class GameManager_b : MonoBehaviour
     public bool GetChestState(string chestID)
     {
         return chestStates.ContainsKey(chestID) && chestStates[chestID];
+    }
+
+    // Redefine todos os baús para o estado "fechado"
+    public void ResetChestStates()
+    {
+        var keys = new List<string>(chestStates.Keys);
+        foreach (var key in keys)
+        {
+            chestStates[key] = false;
+        }
     }
 }

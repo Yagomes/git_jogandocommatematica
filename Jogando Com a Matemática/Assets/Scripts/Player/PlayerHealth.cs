@@ -125,10 +125,19 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
         if(topicoEscolhido == "soma")
         {
-           SceneManager.LoadScene("Tela_Nivel_S");
+            if (GameManager_b.instance != null)
+            {
+                GameManager_b.instance.ResetChestStates();
+            }
+
+            SceneManager.LoadScene("Tela_Nivel_S");
         }
         if (topicoEscolhido == "mult")
         {
+            if (GameManager_b.instance != null)
+            {
+                GameManager_b.instance.ResetChestStates();
+            }
             SceneManager.LoadScene("Tela_Nivel_M");
         }
     }

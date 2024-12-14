@@ -109,13 +109,20 @@ public class LevelManager : MonoBehaviour //Controla cada nivel. E pega o Min e 
         
         player.isResetNeeded = true;
 
-        // Procura todos os GameObjects na cena, incluindo DontDestroyOnLoad
-        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+        if (GameManager_b.instance != null)
+        {
+            GameManager_b.instance.ResetChestStates();
+        }
 
     }
 
     private void CarregarCena(string dificuldade)
     {
+        if (GameManager_b.instance != null)
+        {
+            GameManager_b.instance.ResetChestStates();
+        }
+
         // Define a cena com base no tópico escolhido e na dificuldade
         string cena = "";
 

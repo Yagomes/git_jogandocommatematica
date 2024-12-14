@@ -33,7 +33,7 @@ public class ScriptBau : MonoBehaviour
     {
         bauAnimator = GetComponent<Animator>();
 
-        // Carregar o estado do baú no início
+        // Carregar o estado do baú apenas se o jogador mudar de cena
         if (GameManager_b.instance != null)
         {
             bauBloqueado = GameManager_b.instance.GetChestState(chestID);
@@ -44,11 +44,9 @@ public class ScriptBau : MonoBehaviour
             }
         }
 
-
-       
-
         if (carta != null) carta.SetActive(false);
     }
+
 
     private void Update()
     {

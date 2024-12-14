@@ -42,14 +42,21 @@ public class Stamina : Singleton<Stamina>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Reencontra o Stamina Container ao trocar de cena
-        FindStaminaContainer();
+        StartCoroutine(FindStaminaAfterDelay());
 
-        // Reseta a estamina se for necessário (como ao voltar para o menu)
-        if (scene.name == "Tela_Nivel_S" || scene.name == "Scene1_S_F" || scene.name == "Tela_Nivel_M" || scene.name == "Scene1_M_F" || scene.name == "Scene1_M_F" || scene.name == "Scene2_M_F")
+        // Reseta a estamina ao carregar cenas específicas
+        if (scene.name == "Tela_Nivel_S" || scene.name == "Scene1_S_F" ||
+            scene.name == "Tela_Nivel_M" || scene.name == "Scene2_S_F" ||
+            scene.name == "Scene1_M_F" || scene.name == "Scene2_M_F")
         {
             ResetStamina();
         }
+    }
+
+    private IEnumerator FindStaminaAfterDelay()
+    {
+        yield return null; // Aguarda um frame
+        FindStaminaContainer();
     }
 
     private void FindStaminaContainer()
