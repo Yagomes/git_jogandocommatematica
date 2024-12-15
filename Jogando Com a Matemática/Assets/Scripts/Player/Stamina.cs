@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class Stamina : Singleton<Stamina>
 {
@@ -14,6 +15,7 @@ public class Stamina : Singleton<Stamina>
     private int startingStamina = 3;
     private int maxStamina;
     private const string STAMINA_CONTAINER_TEXT = "Stamina Container";
+    private GameObject container;
 
     protected override void Awake()
     {
@@ -27,9 +29,10 @@ public class Stamina : Singleton<Stamina>
     private void Start()
     {
         FindStaminaContainer();
-        UpdateStaminaImages();
+      UpdateStaminaImages();
     }
 
+    
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -61,7 +64,26 @@ public class Stamina : Singleton<Stamina>
 
     private void FindStaminaContainer()
     {
-        GameObject container = GameObject.Find(STAMINA_CONTAINER_TEXT);
+      
+
+
+
+        GameObject pai = GameObject.Find("UICanvas"); // Certifique-se de que o nome do pai está correto
+
+        if (pai != null)
+        {
+            // Tenta encontrar o filho "Carta" dentro do pai
+            Transform staminaTransform = pai.transform.Find("Stamina Container");
+            if (staminaTransform != null)
+            {
+                container = staminaTransform.gameObject; 
+            }         
+        }
+        else
+        {
+            Debug.Log("UICanvas não encontrado.");
+        }
+
 
         if (container != null)
         {

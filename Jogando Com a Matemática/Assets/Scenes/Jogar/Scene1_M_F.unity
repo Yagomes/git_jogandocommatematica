@@ -20657,11 +20657,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2260966115815196725, guid: f18e620635f7e304d8a38f5f9e75749e, type: 3}
   m_PrefabInstance: {fileID: 134286369}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1639491319 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5577881531380281874, guid: f56c27d077f4c1f4ebb7583a9e6c487e, type: 3}
-  m_PrefabInstance: {fileID: 4018593463561526288}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1676947601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6247954445750030020, guid: 39624558629e7ce4980564b31ae9e5ea, type: 3}
@@ -25981,7 +25976,7 @@ PrefabInstance:
     - target: {fileID: 5844914191984475347, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 1639491319}
+      objectReference: {fileID: 4018593463561526289}
     - target: {fileID: 5987744833883823695, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
       propertyPath: m_ChildCameras.Array.size
       value: 0
@@ -26243,6 +26238,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f56c27d077f4c1f4ebb7583a9e6c487e, type: 3}
+--- !u!4 &4018593463561526289 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5577881531380281874, guid: f56c27d077f4c1f4ebb7583a9e6c487e, type: 3}
+  m_PrefabInstance: {fileID: 4018593463561526288}
+  m_PrefabAsset: {fileID: 0}
 --- !u!199 &5696780080338412394
 ParticleSystemRenderer:
   serializedVersion: 6

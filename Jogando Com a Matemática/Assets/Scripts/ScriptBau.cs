@@ -10,6 +10,7 @@ public class ScriptBau : MonoBehaviour
 
     private bool cartaAberta = false;
     private bool bauBloqueado = false;
+    private bool bauInterage = true;
     private int resultadoUniversal;
 
     [SerializeField] private Animator bauAnimator;
@@ -33,26 +34,41 @@ public class ScriptBau : MonoBehaviour
     {
         bauAnimator = GetComponent<Animator>();
 
-        // Carregar o estado do baú apenas se o jogador mudar de cena
+        // Carregar o estado do baú (aberto ou fechado) e de interação ao mudar de cena
         if (GameManager_b.instance != null)
         {
             bauBloqueado = GameManager_b.instance.GetChestState(chestID);
-            if (bauBloqueado)
+            bauInterage = GameManager_b.instance.GetInteractionState(chestID); // Recupera se o baú pode ser interagido
+
+            Debug.Log(bauInterage);
+            Debug.Log(bauBloqueado);
+            
+            if(bauInterage==true && !bauBloqueado)
+            {
+                cartaAberta = false;
+                // Se o baú não foi bloqueado, ele permanece fechado
+                if (bauAnimator != null) bauAnimator.SetBool("Aberto", false);
+            }
+
+            else if (bauBloqueado && bauInterage == true)
             {
                 cartaAberta = true;
+                // Se o baú foi aberto
                 if (bauAnimator != null) bauAnimator.SetBool("Aberto", true);
             }
+
+            
         }
 
-        if (carta != null) carta.SetActive(false);
+
     }
-
-
-    private void Update()
+        private void Update()
     {
 
-        if (Input.GetMouseButtonDown(0) && !bauBloqueado && carta!= null)
+        if (Input.GetMouseButtonDown(0) && carta!= null && bauInterage==false)
         {
+           // BuscarOuCriarObjetos();
+
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePosition.x, mousePosition.y);
 
@@ -69,14 +85,8 @@ public class ScriptBau : MonoBehaviour
                     {
                         carta.SetActive(true);
                         cartaAberta = true;
-                        Debug.Log("Baú aberto!");
                         GerarOperacao();
-                    }
-                    else
-                    {
-
-                        Debug.LogError("Carta não encontrada ou foi destruída!");
-                    }
+                    }                 
                 }
                 else if (distance > 2f)
                 {
@@ -88,7 +98,7 @@ public class ScriptBau : MonoBehaviour
         // Verifica se a carta ainda existe antes de usá-la
         if (carta != null)
         {
-           
+           // BuscarOuCriarObjetos();
             float dist = Vector3.Distance(transform.position, PlayerController.Instance.transform.position);
             if (dist > 2f && cartaAberta && carta.activeSelf)
             {
@@ -97,9 +107,8 @@ public class ScriptBau : MonoBehaviour
                 Debug.Log("Você se afastou do baú e a carta foi fechada.");
             }
         }
-        else if(carta==null)
+        else if(carta==null && !bauBloqueado)
         {
-           // Debug.Log("Carta criada.");
           BuscarOuCriarObjetos();
         }
     }
@@ -107,9 +116,31 @@ public class ScriptBau : MonoBehaviour
 
     private void BuscarOuCriarObjetos()
     {
-        carta = GameObject.Find("Carta");
-        Destroy(carta);
-        if (carta == null && cartaPrefab != null)
+        GameObject pai = GameObject.Find("UICanvas"); // Certifique-se de que o nome do pai está correto
+        if (pai != null)
+        {
+            // Tenta encontrar o filho "Carta" dentro do pai
+            Transform cartaTransform = pai.transform.Find("Carta");
+            if (cartaTransform != null)
+            {
+                carta = cartaTransform.gameObject; // Referência ao GameObject "Carta"
+                Debug.Log("Carta encontrada mesmo estando inativa!");
+            }
+            else
+            {
+                Debug.Log("Carta não encontrada como filha de UICanvas.");
+            }
+        }
+        else
+        {
+            Debug.Log("UICanvas não encontrado.");
+        }
+
+
+
+        //carta = GameObject.Find("Carta");
+       // Destroy(carta);
+        if (carta == null && cartaPrefab != null && !bauBloqueado)
         {
             GameObject canvas = GameObject.Find("UICanvas");
             if (canvas != null)
@@ -128,10 +159,11 @@ public class ScriptBau : MonoBehaviour
                 Debug.LogError("Canvas 'UICanvas' não encontrado! Certifique-se de que está configurado corretamente.");
                 return;
             }
+
         }
 
         // Verifica os componentes de texto da carta
-        if (perguntaText == null && carta != null)
+        if (perguntaText == null && carta != null && !bauBloqueado)
         {
             perguntaText = carta.GetComponentInChildren<TMP_Text>(); // Componente de pergunta
             if (perguntaText == null)
@@ -139,7 +171,7 @@ public class ScriptBau : MonoBehaviour
         }
 
         // Buscar o componente de expressão (caso tenha um campo de texto separado para isso)
-        if (expressaoText == null && carta != null)
+        if (expressaoText == null && carta != null && !bauBloqueado)
         {
             expressaoText = carta.transform.Find("ExpressaoText")?.GetComponent<TMP_Text>(); // Ajuste o nome conforme o seu prefab
             if (expressaoText == null)
@@ -147,37 +179,44 @@ public class ScriptBau : MonoBehaviour
         }
 
         // Criar botões de resposta, se necessário
-        if ((chaveButtons == null || chaveButtons.Length < 3) && chaveButtonPrefab != null)
+        if (chaveButtonPrefab != null && !bauBloqueado && carta != null)
         {
-            chaveButtons = new Button[3];
-            if (carta != null) // Certifique-se de que a carta foi criada corretamente
+            chaveButtons = new Button[3]; // Array para armazenar os botões
+
+            // Posições para as chaves dentro da carta
+            Vector3[] posicoesChaves = new Vector3[]
             {
-                // Posições para as chaves dentro da carta
-                Vector3[] posicoesChaves = new Vector3[]
+               new Vector3(-100, 50, 0), // Posição da primeira chave
+               new Vector3(0, 50, 0),    // Posição da segunda chave
+               new Vector3(100, 50, 0)   // Posição da terceira chave
+            };
+
+            for (int i = 0; i < 3; i++)
+            {
+                // Verificar se a chave já existe dentro da carta
+                string chaveNome = $"Chave{i + 1}";
+                Transform chaveExistente = carta.transform.Find(chaveNome);
+
+                    if (chaveExistente != null)
                 {
-                new Vector3(-100, 50, 0), // Posição da primeira chave
-                new Vector3(0, 50, 0),    // Posição da segunda chave
-                new Vector3(100, 50, 0)   // Posição da terceira chave
-                };
-
-                for (int i = 0; i < 3; i++)
-                {
-                    GameObject button = Instantiate(chaveButtonPrefab, carta.transform); // Definir a carta como pai
-                    chaveButtons[i] = button.GetComponent<Button>();
-                    button.name = $"Chave{i + 1}";
-
-                    // Ajustar a posição do botão dentro da carta
-                    button.transform.localPosition = posicoesChaves[i];
-
-                    Debug.Log($"Botão {i + 1} criado com sucesso e posicionado!");
+                    Debug.Log($"Chave {i + 1} já existe. Não será criada novamente.");
+                    chaveButtons[i] = chaveExistente.GetComponent<Button>();
+                    continue; // Pula para a próxima iteração
                 }
-            }
-            else
-            {
-                Debug.LogError("Carta não encontrada para criar botões.");
+
+                // Criar o botão caso ele não exista
+                GameObject button = Instantiate(chaveButtonPrefab, carta.transform);
+                chaveButtons[i] = button.GetComponent<Button>();
+                button.name = chaveNome;
+
+                // Ajustar a posição do botão dentro da carta
+                button.transform.localPosition = posicoesChaves[i];
+
+                Debug.Log($"Botão {i + 1} criado com sucesso e posicionado!");
             }
         }
     }
+
     void GerarOperacao()
     {
         if (chaveButtons == null || chaveButtons.Length < 3)
@@ -262,16 +301,20 @@ public class ScriptBau : MonoBehaviour
                 carta.SetActive(false);
             }
             cartaAberta = false;
+            bauInterage = true; // Desativa a interação após a resposta correta
             bauBloqueado = true;
+
 
             if (bauAnimator != null) bauAnimator.SetBool("Aberto", true);
 
             if (GameManager_b.instance != null)
             {
                 GameManager_b.instance.SetChestState(chestID, bauBloqueado);
+                GameManager_b.instance.SetInteractionState(chestID, bauInterage); // Atualiza o estado de interação
             }
 
             Debug.Log("Resposta correta! Carta aberta.");
+            Destroy(carta);
         }
         else
         {
@@ -280,7 +323,22 @@ public class ScriptBau : MonoBehaviour
                 carta.SetActive(false);
             }
             cartaAberta = false;
-            Debug.Log("Resposta incorreta! Carta fechada.");
+            bauInterage = true; // Bloqueia a interação após erro
+            bauBloqueado = false; // Bloqueia o baú após erro
+
+            // Atualiza o estado do baú no GameManager
+            if (bauAnimator != null)
+            {
+                bauAnimator.SetBool("Aberto", false); // Não abre o baú se a resposta for errada
+            }
+
+            if (GameManager_b.instance != null)
+            {
+                GameManager_b.instance.SetChestState(chestID, bauBloqueado);
+                GameManager_b.instance.SetInteractionState(chestID, bauInterage); // Atualiza o estado de interação
+            }
+
+            Debug.Log("Resposta incorreta! O baú está agora bloqueado permanentemente");
         }
     }
 
