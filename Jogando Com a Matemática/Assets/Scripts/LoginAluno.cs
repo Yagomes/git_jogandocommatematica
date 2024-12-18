@@ -20,6 +20,7 @@ public class LoginAluno : MonoBehaviour // Verifica o login do aluno atraves de 
 
     public void Login()
     {
+        EconomyManager.Instance.currentGold = 0;
         StartCoroutine(LoginCoroutine());
     }
 

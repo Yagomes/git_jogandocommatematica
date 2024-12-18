@@ -168,28 +168,6 @@
                     "action": "Keyboard",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a332c41f-aacd-4606-963a-97844147f991",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "Scale(factor=4)",
-                    "groups": "",
-                    "action": "Keyboard",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4f63c06d-4b38-4730-81a3-db3d79608bbd",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
-                    "processors": "Scale(factor=5)",
-                    "groups": "",
-                    "action": "Keyboard",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }

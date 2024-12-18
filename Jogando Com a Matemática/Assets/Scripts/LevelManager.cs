@@ -14,6 +14,8 @@ public class LevelManager : MonoBehaviour //Controla cada nivel. E pega o Min e 
 
     private void Start()
     {
+        // recarrega as moedas caso for um novo login
+        EconomyManager.Instance.CurrentGold();
 
         // Carrega o tópico escolhido salvo no PlayerPrefs
         topicoEscolhido = PlayerPrefs.GetString("TopicoEscolhido", "");
