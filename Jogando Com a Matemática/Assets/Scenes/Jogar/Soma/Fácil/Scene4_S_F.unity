@@ -6185,7 +6185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3529b671eb7794f9b75a06566bc2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chestID: chest8
+  chestID: chest0
   bauAnimator: {fileID: 655087726}
   chestLayer:
     serializedVersion: 2
@@ -15599,6 +15599,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1346920287726507380, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.0401087
+      objectReference: {fileID: 0}
     - target: {fileID: 5987744833883823695, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
       propertyPath: m_Follow
       value: 

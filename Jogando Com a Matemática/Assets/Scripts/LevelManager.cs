@@ -88,6 +88,11 @@ public class LevelManager : MonoBehaviour //Controla cada nivel. E pega o Min e 
         // Reseta o nome da transição ao iniciar um novo jogo
         SceneManagement.Instance.SetTransitionName("");
 
+
+        CarregarCena("M");
+        player.isResetNeeded = true;
+
+
     }
 
     public void OnClickDifícil()

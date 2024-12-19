@@ -10227,7 +10227,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1346920287726507380, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.0379152
+      value: 3.1095095
       objectReference: {fileID: 0}
     - target: {fileID: 1346920287726507380, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10292,6 +10292,22 @@ PrefabInstance:
     - target: {fileID: 7537805962888394830, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929602840319588729, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -13.035786
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929602840319588729, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 8.926197
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929602840319588729, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
+      value: 17.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929602840319588729, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
+      value: 9.34035
       objectReference: {fileID: 0}
     - target: {fileID: 8054609042523890350, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
       propertyPath: m_LocalPosition.x

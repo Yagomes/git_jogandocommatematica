@@ -22,17 +22,71 @@ EditorBuildSettings:
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: "Assets/Scenes/Jogar/Mult/F\xE1cil/Scene1_M_F.unity"
-    guid: fe13a5d8d94dbad4e9c8e720dba0764a
+    guid: fa755f279d6d91445a08747c5effb020
   - enabled: 1
     path: "Assets/Scenes/Jogar/Soma/F\xE1cil/Scene2_S_F.unity"
     guid: 1b84d5b8edba32741bae14537e847004
   - enabled: 1
     path: "Assets/Scenes/Jogar/Mult/F\xE1cil/Scene2_M_F.unity"
-    guid: 70f75ed60bd60264dbf4640d33cc37b7
+    guid: ffda9b3d72db27e49ba4bf352b574376
   - enabled: 1
     path: "Assets/Scenes/Jogar/Soma/F\xE1cil/Scene3_S_F.unity"
     guid: c34cb0f6fe267e544b3ba28eb07feda9
   - enabled: 1
+    path: "Assets/Scenes/Jogar/Mult/F\xE1cil/Scene3_M_F.unity"
+    guid: 2859f48d705036f43aac3a8a4931b893
+  - enabled: 1
     path: "Assets/Scenes/Jogar/Soma/F\xE1cil/Scene4_S_F.unity"
     guid: 5f3152a9c272cd64aa60e8e2b93588a8
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Mult/F\xE1cil/Scene4_M_F.unity"
+    guid: 240cc1814eba11343a555ba6d654216f
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Soma/M\xE9dio/Scene1_S_M.unity"
+    guid: 4af984a3080cc2444800948e3ae7950a
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Soma/M\xE9dio/Scene2_S_M.unity"
+    guid: bf50701fba44d5846b460e034513d9be
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Soma/M\xE9dio/Scene3_S_M.unity"
+    guid: 796aa2861331f024492095a2720179de
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Soma/M\xE9dio/Scene4_S_M.unity"
+    guid: fd3c26b8ebf853d4b9a57f1d1c402d8c
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Soma/Dif\xEDcil/Scene1_S_D.unity"
+    guid: 207f187e28f3d0743b9251e7d716139b
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Soma/Dif\xEDcil/Scene2_S_D.unity"
+    guid: 720d673979dbaa741990d3615d5dfcad
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Soma/Dif\xEDcil/Scene3_S_D.unity"
+    guid: 61efee22a25ef0747b6624c7bf7ee407
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Soma/Dif\xEDcil/Scene4_S_D.unity"
+    guid: 62c252b95a43f054cbefe3e166f8795e
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Mult/M\xE9dio/Scene1_M_M.unity"
+    guid: 0099679275919b94b95328d577f5853e
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Mult/M\xE9dio/Scene2_M_M.unity"
+    guid: b64d2c7086ebe9648abf04c9e0c86c57
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Mult/M\xE9dio/Scene3_M_M.unity"
+    guid: 5833339f1c0630944ba77a9e9a943e2b
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Mult/M\xE9dio/Scene4_M_M.unity"
+    guid: 40e05cd8f5dbf5d4483010c058e37a58
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Mult/Dif\xEDcil/Scene1_M_D.unity"
+    guid: 3b99913d0c9ab534e8c45c659dd0b756
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Mult/Dif\xEDcil/Scene2_M_D.unity"
+    guid: 66b93c69e3ef94a459b71cdd80544e8f
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Mult/Dif\xEDcil/Scene3_M_D.unity"
+    guid: 6504ec90a0fe6204bba0752ef585ab31
+  - enabled: 1
+    path: "Assets/Scenes/Jogar/Mult/Dif\xEDcil/Scene4_M_D.unity"
+    guid: 433a5969219574b40bccf2f8c58c6f61
   m_configObjects: {}
