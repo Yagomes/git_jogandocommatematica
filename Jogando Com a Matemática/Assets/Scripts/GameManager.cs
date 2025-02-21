@@ -5,20 +5,30 @@ public class GameManager : Singleton<GameManager> // Gerencia a troca da tela do
 {
     public bool atu;
 
+    public void DestroyPlayer()
+    {
+        if (PlayerHealth.Instance != null)
+        {
+            Destroy(PlayerHealth.Instance.gameObject);
+        }
+    }
+
 
     // Método chamado quando o jogador pressiona o botão "Voltar" para retornar ao Menu
     public void BackToMenu_M()
-    { atu = true;
-            SceneManager.LoadScene("Tela_Nivel_M");  // Troque "Menu" pelo nome da sua cena de menu
-       
+    {
+        atu = true;
+        DestroyPlayer(); // Destroi o jogador antes de carregar a cena
+        SceneManager.LoadScene("Tela_Nivel_M");
     }
 
     public void BackToMenu_S()
     {
         atu = true;
-        SceneManager.LoadScene("Tela_Nivel_S");  // Troque "Menu" pelo nome da sua cena de menu
-
+        DestroyPlayer(); // Destroi o jogador antes de carregar a cena
+        SceneManager.LoadScene("Tela_Nivel_S");
     }
+
 
     // Método chamado quando o jogador inicia o jogo novamente (após o Menu)
     public void StartNewGame()

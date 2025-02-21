@@ -57,7 +57,7 @@ public class ActiveInventory : Singleton<ActiveInventory>
     {
         if (ActiveWeapon.Instance == null)
         {
-            Debug.LogError("ActiveWeapon.Instance está nulo!");
+            Debug.Log("ActiveWeapon.Instance está nulo!");
             return;
         }
 

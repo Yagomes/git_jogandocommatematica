@@ -114,7 +114,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         }
     }
 
-    private IEnumerator DeathLoadSceneRoutine()
+    public IEnumerator DeathLoadSceneRoutine()
     {
        
         yield return new WaitForSeconds(2f);  // Espera um tempo para animação de morte

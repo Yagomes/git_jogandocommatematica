@@ -111,7 +111,7 @@ public class LevelManager : MonoBehaviour //Controla cada nivel. E pega o Min e 
       
     }
 
-    public void Voltar()
+    public void Voltar() // serve para o baú
     {
         
         player.isResetNeeded = true;
