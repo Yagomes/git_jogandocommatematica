@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 027b7182431b60c43a2a7c6ad26a56be, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1631,7 +1631,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 027b7182431b60c43a2a7c6ad26a56be, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1652,7 +1652,7 @@ GameObject:
   - component: {fileID: 714138132023477106}
   - component: {fileID: 5261306698789624613}
   - component: {fileID: 7138786407268763369}
-  - component: {fileID: 5342800288158465756}
+  - component: {fileID: 8116978095532158113}
   m_Layer: 5
   m_Name: Inventory (3)
   m_TagString: Untagged
@@ -1719,7 +1719,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5342800288158465756
+--- !u!114 &8116978095532158113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2070,7 +2070,7 @@ GameObject:
   - component: {fileID: 6998464177543626966}
   - component: {fileID: 3674835911356063227}
   - component: {fileID: 966148399641124306}
-  - component: {fileID: 1100523139010450976}
+  - component: {fileID: 3233632869619009180}
   m_Layer: 5
   m_Name: Inventory (4)
   m_TagString: Untagged
@@ -2137,7 +2137,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1100523139010450976
+--- !u!114 &3233632869619009180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

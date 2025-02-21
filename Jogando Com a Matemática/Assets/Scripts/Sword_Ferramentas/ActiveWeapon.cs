@@ -5,29 +5,25 @@ using UnityEngine;
 public class ActiveWeapon : MonoBehaviour
 {
     public static ActiveWeapon Instance { get; private set; }
+    public MonoBehaviour CurrentActiveWeapon { get; private set; }
+
+    private PlayerControls playerControls;
+    private float timeBetweenAttacks;
+    private bool attackButtonDown, isAttacking = false;
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);  // Garante que apenas uma instância do ActiveWeapon exista
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Instance = this;  // Atribui a instância única
-            DontDestroyOnLoad(gameObject);  // Se necessário, preserve entre as cenas
-        }
-        
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         playerControls = new PlayerControls();
     }
-
-
-    //[SerializeField] private MonoBehaviour currentActiveWeapon;
-    public MonoBehaviour CurrentActiveWeapon { get; private set; }
-    private PlayerControls playerControls;
-    private float timeBetweenAttacks;
-    private bool attackButtonDown, isAttacking = false;
-
 
     private void OnEnable()
     {
@@ -38,7 +34,7 @@ public class ActiveWeapon : MonoBehaviour
     {
         playerControls.Combat.Attack.started += _ => StartAttacking();
         playerControls.Combat.Attack.canceled += _ => StopAttacking();
-       
+
         AttackCoolDown();
     }
 
@@ -49,11 +45,23 @@ public class ActiveWeapon : MonoBehaviour
 
     public void NewWeapon(MonoBehaviour newWeapon)
     {
+        if (newWeapon == null)
+        {
+            Debug.LogError("NewWeapon recebeu um objeto nulo!");
+            return;
+        }
+
         CurrentActiveWeapon = newWeapon;
-      
+        IWeapon weapon = CurrentActiveWeapon as IWeapon;
+
+        if (weapon == null)
+        {
+            Debug.LogError("CurrentActiveWeapon não implementa IWeapon!");
+            return;
+        }
+
         AttackCoolDown();
-        
-        timeBetweenAttacks = (CurrentActiveWeapon as IWeapon).GetWeaponInfo().weaponCooldown;
+        timeBetweenAttacks = weapon.GetWeaponInfo().weaponCooldown;
     }
 
     public void WeaponNull()
@@ -74,11 +82,11 @@ public class ActiveWeapon : MonoBehaviour
         isAttacking = false;
     }
 
-   
     private void StartAttacking()
     {
         attackButtonDown = true;
     }
+
     private void StopAttacking()
     {
         attackButtonDown = false;
@@ -88,8 +96,15 @@ public class ActiveWeapon : MonoBehaviour
     {
         if (attackButtonDown && !isAttacking && CurrentActiveWeapon)
         {
+            IWeapon weapon = CurrentActiveWeapon as IWeapon;
+            if (weapon == null)
+            {
+                Debug.LogError("CurrentActiveWeapon não é um IWeapon!");
+                return;
+            }
+
             AttackCoolDown();
-            (CurrentActiveWeapon as IWeapon).Attack();
+            weapon.Attack();
         }
     }
 }

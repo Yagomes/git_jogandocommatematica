@@ -5,7 +5,6 @@ using UnityEngine;
 public class ActiveInventory : Singleton<ActiveInventory>
 {
     private int activeSlotIndexNum = 0;
-
     private PlayerControls playerControls;
 
     protected override void Awake()
@@ -43,6 +42,12 @@ public class ActiveInventory : Singleton<ActiveInventory>
             inventorySlot.GetChild(0).gameObject.SetActive(false);
         }
 
+        if (indexNum < 0 || indexNum >= this.transform.childCount)
+        {
+            Debug.LogError("Índice de inventário inválido: " + indexNum);
+            return;
+        }
+
         this.transform.GetChild(indexNum).GetChild(0).gameObject.SetActive(true);
 
         ChangeActiveWeapon();
@@ -50,28 +55,53 @@ public class ActiveInventory : Singleton<ActiveInventory>
 
     private void ChangeActiveWeapon()
     {
+        if (ActiveWeapon.Instance == null)
+        {
+            Debug.LogError("ActiveWeapon.Instance está nulo!");
+            return;
+        }
 
         if (ActiveWeapon.Instance.CurrentActiveWeapon != null)
         {
             Destroy(ActiveWeapon.Instance.CurrentActiveWeapon.gameObject);
         }
 
-        Transform childTransform = transform.GetChild(activeSlotIndexNum);
-        InventorySlot inventorySlot = childTransform.GetComponentInChildren<InventorySlot>();
-        WeaponInfo weaponInfo = inventorySlot.GetWeaponInfo();
-        GameObject weaponToSpawn = weaponInfo.weaponPrefab;
+        if (activeSlotIndexNum < 0 || activeSlotIndexNum >= transform.childCount)
+        {
+            Debug.LogError("activeSlotIndexNum está fora do intervalo válido!");
+            return;
+        }
 
+        Transform childTransform = transform.GetChild(activeSlotIndexNum);
+        if (childTransform == null)
+        {
+            Debug.LogError("childTransform é nulo!");
+            return;
+        }
+
+        InventorySlot inventorySlot = childTransform.GetComponentInChildren<InventorySlot>();
+        if (inventorySlot == null)
+        {
+            Debug.LogError("InventorySlot não encontrado!");
+            return;
+        }
+
+        WeaponInfo weaponInfo = inventorySlot.GetWeaponInfo();
         if (weaponInfo == null)
         {
+            Debug.Log("WeaponInfo está nulo!");
             ActiveWeapon.Instance.WeaponNull();
             return;
         }
 
+        GameObject weaponToSpawn = weaponInfo.weaponPrefab;
+        if (weaponToSpawn == null)
+        {
+            Debug.LogError("weaponPrefab está nulo!");
+            return;
+        }
 
         GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform);
-
-      //  ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
-      //  newWeapon.transform.parent = ActiveWeapon.Instance.transform;
 
         ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
     }
