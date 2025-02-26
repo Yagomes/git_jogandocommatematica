@@ -304,17 +304,45 @@ public class ScriptBau : MonoBehaviour
             bauInterage = true; // Desativa a interação após a resposta correta
             bauBloqueado = true;
 
-
-            if (bauAnimator != null) bauAnimator.SetBool("Aberto", true);
+            if (bauAnimator != null)
+                bauAnimator.SetBool("Aberto", true);
 
             if (GameManager_b.instance != null)
             {
                 GameManager_b.instance.SetChestState(chestID, bauBloqueado);
-                GameManager_b.instance.SetInteractionState(chestID, bauInterage); // Atualiza o estado de interação
+                GameManager_b.instance.SetInteractionState(chestID, bauInterage);
             }
 
             Debug.Log("Resposta correta! Carta aberta.");
             Destroy(carta);
+
+            if (ChestLevelManager_b.Instance != null)
+            {
+                // Carrega o tópico escolhido salvo no PlayerPrefs
+               string topicoEscolhido = PlayerPrefs.GetString("TopicoEscolhido", "");
+
+                if (string.IsNullOrEmpty(topicoEscolhido))
+                {
+                    Debug.LogError("Tópico não foi configurado em PlayerPrefs!");
+                    return;
+                }
+
+
+                if (topicoEscolhido.ToLower() == "soma")
+                {
+                   ChestLevelManager_b.Instance.ChestOpened("Soma"); // Ou "Multiplicação", dependendo do tópico
+                }
+                else if (topicoEscolhido.ToLower() == "multiplicacao" || topicoEscolhido.ToLower() == "mult")
+                {
+                    ChestLevelManager_b.Instance.ChestOpened("Multiplicacao"); // Ou "Multiplicação", dependendo do tópico
+                }
+            
+
+
+
+            
+            }
+
         }
         else
         {
@@ -324,23 +352,23 @@ public class ScriptBau : MonoBehaviour
             }
             cartaAberta = false;
             bauInterage = true; // Bloqueia a interação após erro
-            bauBloqueado = false; // Bloqueia o baú após erro
+            bauBloqueado = false; // Mantém o baú fechado
 
-            // Atualiza o estado do baú no GameManager
             if (bauAnimator != null)
             {
-                bauAnimator.SetBool("Aberto", false); // Não abre o baú se a resposta for errada
+                bauAnimator.SetBool("Aberto", false);
             }
 
             if (GameManager_b.instance != null)
             {
                 GameManager_b.instance.SetChestState(chestID, bauBloqueado);
-                GameManager_b.instance.SetInteractionState(chestID, bauInterage); // Atualiza o estado de interação
+                GameManager_b.instance.SetInteractionState(chestID, bauInterage);
             }
 
             Debug.Log("Resposta incorreta! O baú está agora bloqueado permanentemente");
         }
     }
+
 
 
     void DroparItens()

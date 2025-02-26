@@ -44,6 +44,8 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
 
     public void OnClickFácil()
     {
+        ChestLevelManager_b.Instance.SetTotalChests(1); // numero de baus do nivel facil
+
         int intervalo = (maxValor - minValor) / 3;
         PlayerPrefs.SetInt("NivelMin", minValor);
         PlayerPrefs.SetInt("NivelMax", minValor + intervalo);
@@ -85,6 +87,8 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
 
     public void OnClickMédio()
     {
+        ChestLevelManager_b.Instance.SetTotalChests(2); // numero de baus do nivel medio
+
         int intervalo = (maxValor - minValor) / 3;
         PlayerPrefs.SetInt("NivelMin", minValor + intervalo + 1);
         PlayerPrefs.SetInt("NivelMax", minValor + 2 * intervalo);
@@ -101,6 +105,8 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
 
     public void OnClickDifícil()
     {
+        ChestLevelManager_b.Instance.SetTotalChests(3); // numero de baus do nivel dificil
+
         int intervalo = (maxValor - minValor) / 3;
         PlayerPrefs.SetInt("NivelMin", minValor + 2 * intervalo + 1);
         PlayerPrefs.SetInt("NivelMax", maxValor);
@@ -117,7 +123,7 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
 
     public void Voltar() // serve para o baú
     {
-        
+
         player.isResetNeeded = true;
 
         if (GameManager_b.instance != null)

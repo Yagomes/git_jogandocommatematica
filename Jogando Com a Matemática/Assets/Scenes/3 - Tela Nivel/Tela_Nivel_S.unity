@@ -1535,8 +1535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77abe4c5efbad3240af7843aec63b765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alunoId: 1
-  topico: soma
   levelButtons:
   - {fileID: 661941486}
   - {fileID: 1335529158}
@@ -1982,6 +1980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1929632562}
   - component: {fileID: 1929632561}
+  - component: {fileID: 1929632563}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -2016,6 +2015,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1929632563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929632560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5e3e0d463243649aa98545c819a108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalChests: 3
 --- !u!1 &2105070719
 GameObject:
   m_ObjectHideFlags: 0
