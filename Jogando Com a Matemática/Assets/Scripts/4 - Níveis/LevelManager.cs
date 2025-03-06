@@ -179,6 +179,44 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
             cena = $"Scene1_M_{dificuldade}";
 
         }
+        else if (topicoEscolhido.ToLower() == "subtracao" || topicoEscolhido.ToLower() == "sub")
+        {
+
+
+            GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+            foreach (GameObject obj in allObjects)
+            {
+                // Verifica se o nome é "Active Inventory"
+                if (obj.name == "tela_su")
+                {
+                    obj.SetActive(true);
+                }
+            }
+
+            //  playerSpriteRenderer.enabled = true;
+            cena = $"Scene1_Su_{dificuldade}";
+
+        }
+        else if (topicoEscolhido.ToLower() == "divisao" || topicoEscolhido.ToLower() == "div")
+        {
+
+
+            GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+            foreach (GameObject obj in allObjects)
+            {
+                // Verifica se o nome é "Active Inventory"
+                if (obj.name == "tela_d")
+                {
+                    obj.SetActive(true);
+                }
+            }
+
+            //  playerSpriteRenderer.enabled = true;
+            cena = $"Scene1_D_{dificuldade}";
+
+        }
         else
         {
             Debug.LogError("Tópico desconhecido: " + topicoEscolhido);

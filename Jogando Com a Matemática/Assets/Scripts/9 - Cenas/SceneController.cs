@@ -33,7 +33,7 @@ public class SceneController : MonoBehaviour // controla a visibilidade do canva
         string currentScene = SceneManager.GetActiveScene().name;
 
         // Lista de cenas onde Player e Canvas devem ser desativados
-        if (currentScene == "Tela_Nivel_S" || currentScene == "Tela_Nivel_M" || currentScene == "Operacao" || currentScene == "Login") // Substitua "MenuScene" pelo nome real da sua cena de menu
+        if (currentScene == "Tela_Nivel_S" || currentScene == "Tela_Nivel_M" || currentScene == "Tela_Nivel_D" || currentScene == "Tela_Nivel_Su" || currentScene == "Operacao" || currentScene == "Login") // Substitua "MenuScene" pelo nome real da sua cena de menu
         {
             canvas.SetActive(false);
         }

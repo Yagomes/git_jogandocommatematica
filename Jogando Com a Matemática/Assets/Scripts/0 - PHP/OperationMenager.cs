@@ -23,6 +23,8 @@ public class OperationMenager : MonoBehaviour // Controla o botao de cada operac
 {
     public Button btnSoma;
     public Button btnMultiplicacao;
+    public Button btnSubtracao;
+    public Button btnDivisao;
 
     private void Start()
     {
@@ -72,6 +74,12 @@ public class OperationMenager : MonoBehaviour // Controla o botao de cada operac
 
                 if (topico.Nome_topico.ToLower() == "mult")
                     btnMultiplicacao.interactable = true;
+
+                if (topico.Nome_topico.ToLower() == "sub")
+                    btnSubtracao.interactable = true;
+
+                if (topico.Nome_topico.ToLower() == "div")
+                    btnDivisao.interactable = true;
             }
         }
         else
@@ -90,5 +98,17 @@ public class OperationMenager : MonoBehaviour // Controla o botao de cada operac
     {
         PlayerPrefs.SetString("TopicoEscolhido", "mult");
         UnityEngine.SceneManagement.SceneManager.LoadScene("Tela_Nivel_M"); // Vai para a tela de multiplicação
+    }
+
+    public void OnClickSubtracao()
+    {
+        PlayerPrefs.SetString("TopicoEscolhido", "sub");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Tela_Nivel_Su"); // Vai para a tela de subtração
+    }
+
+    public void OnClickDivisao()
+    {
+        PlayerPrefs.SetString("TopicoEscolhido", "div");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Tela_Nivel_D"); // Vai para a tela de divisão
     }
 }

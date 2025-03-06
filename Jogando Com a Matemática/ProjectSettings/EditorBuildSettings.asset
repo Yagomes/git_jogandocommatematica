@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/3 - Tela Nivel/Tela_Nivel_M.unity
     guid: ddd4ea99dd84f814e8541f8a0622b4db
   - enabled: 1
+    path: Assets/Scenes/3 - Tela Nivel/Tela_Nivel_D.unity
+    guid: 0322d365903ab7a43a87e222fcf432da
+  - enabled: 1
+    path: Assets/Scenes/3 - Tela Nivel/Tela_Nivel_Su.unity
+    guid: 788b1fee4f6631d4abf3f34a14d383ba
+  - enabled: 1
     path: "Assets/Scenes/4 - Jogar/1 - Soma/1 - F\xE1cil/Scene1_S_F.unity"
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
@@ -89,4 +95,76 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/4 - Jogar/2 - Multiplica\xE7\xE3o/3 - Dif\xEDcil/Scene4_M_D.unity"
     guid: 433a5969219574b40bccf2f8c58c6f61
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/3 - Subtra\xE7\xE3o/1 - F\xE1cil/Scene1_Su_F.unity"
+    guid: c1a6c74369bdb624aad713bf9cb09537
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/3 - Subtra\xE7\xE3o/1 - F\xE1cil/Scene2_Su_F.unity"
+    guid: f17a5fd27d3eddc4dbcbc35dab9b852b
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/3 - Subtra\xE7\xE3o/1 - F\xE1cil/Scene3_Su_F.unity"
+    guid: 7497dc9a99c75664796682b3b0e5163a
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/3 - Subtra\xE7\xE3o/1 - F\xE1cil/Scene4_Su_F.unity"
+    guid: 9304d88e99063c740bba4390abf63bbd
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/3 - Subtra\xE7\xE3o/2 - M\xE9dio/Scene1_Su_M.unity"
+    guid: d6264bf11b280c147a75619b8c68d41e
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/3 - Subtra\xE7\xE3o/2 - M\xE9dio/Scene2_Su_M.unity"
+    guid: 4d03cadb889b5cc41bdf662afe65b3a6
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/3 - Subtra\xE7\xE3o/2 - M\xE9dio/Scene3_Su_M.unity"
+    guid: 36c2e5614d43c7345bc694eebbe5a996
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/3 - Subtra\xE7\xE3o/2 - M\xE9dio/Scene4_Su_M.unity"
+    guid: d907f007c5152c741b6aea40e428963a
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/3 - Subtra\xE7\xE3o/3 - Dif\xEDcil/Scene1_Su_D.unity"
+    guid: b01578ca2493ae4499e6a357b47964cb
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/3 - Subtra\xE7\xE3o/3 - Dif\xEDcil/Scene2_Su_D.unity"
+    guid: 173aee7b4845c2544910745c03a52fbe
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/3 - Subtra\xE7\xE3o/3 - Dif\xEDcil/Scene3_Su_D.unity"
+    guid: 2b30a28c09dc95a4eb3c510b290533e8
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/3 - Subtra\xE7\xE3o/3 - Dif\xEDcil/Scene4_Su_D.unity"
+    guid: 8c2ab15dccc808645a93e9003eb25066
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/4 - Divis\xE3o/1 - F\xE1cil/Scene1_D_F.unity"
+    guid: 42b94fb8f23cf7645b9aa3683b89f1ce
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/4 - Divis\xE3o/1 - F\xE1cil/Scene2_D_F.unity"
+    guid: 9b8958d50222c77459ab3031ce17724a
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/4 - Divis\xE3o/1 - F\xE1cil/Scene3_D_F.unity"
+    guid: 48cb008e1c3588b49b9bc746f4ff6973
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/4 - Divis\xE3o/1 - F\xE1cil/Scene4_D_F.unity"
+    guid: a0514268f2b0b23428086c8d728368b5
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/4 - Divis\xE3o/2 - M\xE9dio/Scene1_D_M.unity"
+    guid: 0728e22a9e17dda42ba036b2c46f1659
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/4 - Divis\xE3o/2 - M\xE9dio/Scene2_D_M.unity"
+    guid: 87a9175ce48ac8848a1a69a03a12d066
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/4 - Divis\xE3o/2 - M\xE9dio/Scene3_D_M.unity"
+    guid: 3856443ea69afc542a429c2209c53169
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/4 - Divis\xE3o/2 - M\xE9dio/Scene4_D_M.unity"
+    guid: 3a087bd2bb9267344bdc3de52871667b
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/4 - Divis\xE3o/3 - Dif\xEDcil/Scene1_D_D.unity"
+    guid: fa5db1c256e2c954c9951c08657b7242
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/4 - Divis\xE3o/3 - Dif\xEDcil/Scene2_D_D.unity"
+    guid: 51f37c1927849a5458ba71afa17de7e3
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/4 - Divis\xE3o/3 - Dif\xEDcil/Scene3_D_D.unity"
+    guid: bce48323dfee08347b35d855dda1c9f6
+  - enabled: 1
+    path: "Assets/Scenes/4 - Jogar/4 - Divis\xE3o/3 - Dif\xEDcil/Scene4_D_D.unity"
+    guid: e73237e25ceda6242a24c8dc87fae66d
   m_configObjects: {}

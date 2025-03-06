@@ -44,6 +44,16 @@ public class LevelSelectionManager : MonoBehaviour
             topico = "multiplicacao";
 
         }
+        else if (topicoEscolhido.ToLower() == "divisao" || topicoEscolhido.ToLower() == "div")
+        {
+            topico = "divisao";
+
+        }
+        else if (topicoEscolhido.ToLower() == "subtracao" || topicoEscolhido.ToLower() == "sub")
+        {
+            topico = "subtracao";
+
+        }
 
         // Ao iniciar, busca o progresso do aluno para o tópico específico
         StartCoroutine(ServerManager.GetProgresso(alunoId, topico, OnProgressoReceived));

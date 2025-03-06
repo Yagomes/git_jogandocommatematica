@@ -247,6 +247,18 @@ public class ScriptBau : MonoBehaviour
             operacao = $"{num1} + {num2}";
             expressao = operacao; // Aqui você pode definir a expressão matemática
         }
+        else if(PlayerPrefs.GetString("TopicoEscolhido").ToLower() == "sub")
+        {
+            resultado = num1 - num2;
+            operacao = $"{num1} - {num2}";
+            expressao = operacao; // Aqui também a expressão
+        }
+        else if(PlayerPrefs.GetString("TopicoEscolhido").ToLower() == "div")
+        {
+            resultado = num1 / num2;
+            operacao = $"{num1} ÷ {num2}";
+            expressao = operacao; // Aqui também a expressão
+        }
         else
         {
             resultado = num1 * num2;
