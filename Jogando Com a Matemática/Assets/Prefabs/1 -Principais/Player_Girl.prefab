@@ -433,13 +433,14 @@ GameObject:
   - component: {fileID: 6627739404938103899}
   - component: {fileID: 8616372886556853922}
   - component: {fileID: 156711145273307426}
+  - component: {fileID: 5788562170650118520}
   m_Layer: 0
   m_Name: Player_Girl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1172048651634824753
 Transform:
   m_ObjectHideFlags: 0
@@ -640,6 +641,8 @@ MonoBehaviour:
   maxHealth: 3
   knockBackThrustAmount: 10
   damageRecoveryTime: 1
+  currentHealth: 0
+  atu: 0
 --- !u!114 &6627739404938103899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,3 +685,17 @@ MonoBehaviour:
   fullStaminaImage: {fileID: 21300000, guid: 28557cb89290e084fa58668f20a6ea4c, type: 3}
   emptyStaminaImage: {fileID: 21300000, guid: 2c1b20f61e8544749bdec29c7be9d3de, type: 3}
   timeBetweenStaminaRefresh: 3
+--- !u!114 &5788562170650118520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5634706151698708760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0707ac41ce767a948a5553af8da9af0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialPosition: {x: 1.737593, y: 0.5684536, z: 0}
+  isResetNeeded: 1

@@ -8,9 +8,11 @@ public class LoginResponse
 {
     public int id_Aluno;
     public int id_turma;
+    public string genero;
     public string status;
     public string erro;
 }
+
 
 public class LoginAluno : MonoBehaviour // Verifica o login do aluno atraves de PHP.
 {
@@ -49,15 +51,15 @@ public class LoginAluno : MonoBehaviour // Verifica o login do aluno atraves de 
 
                     if (response.status == "success")
                     {
-                        Debug.Log($"Login bem-sucedido! ID Aluno: {response.id_Aluno}, ID Turma: {response.id_turma}");
+                        Debug.Log($"Login bem-sucedido! ID Aluno: {response.id_Aluno}, ID Turma: {response.id_turma}, Gênero: {response.genero}");
 
-                        // Salvando informações no PlayerPrefs
                         PlayerPrefs.SetInt("id_turma", response.id_turma);
                         PlayerPrefs.SetInt("id_Aluno", response.id_Aluno);
+                        PlayerPrefs.SetString("genero", response.genero); // Salvando o gênero também!
 
-                        // Indo para a próxima cena
                         UnityEngine.SceneManagement.SceneManager.LoadScene("Operacao");
                     }
+
                     else
                     {
                         mensagemErro.text = response.erro;

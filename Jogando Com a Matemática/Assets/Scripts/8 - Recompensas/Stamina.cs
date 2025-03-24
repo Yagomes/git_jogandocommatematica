@@ -29,7 +29,7 @@ public class Stamina : Singleton<Stamina>
     private void Start()
     {
         FindStaminaContainer();
-      UpdateStaminaImages();
+        StartCoroutine(UpdateStaminaImagesDelay());
     }
 
     
@@ -64,27 +64,54 @@ public class Stamina : Singleton<Stamina>
         FindStaminaContainer();
     }
 
+    private IEnumerator UpdateStaminaImagesDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        UpdateStaminaImages();
+    }
+
+    
     private void FindStaminaContainer()
     {
-      
 
 
 
-        GameObject pai = GameObject.Find("UICanvas"); // Certifique-se de que o nome do pai está correto
+
+        // Primeiro tenta achar no contexto normal da cena
+        GameObject pai = GameObject.Find("UICanvas");
+
+        if (pai == null)
+        {
+            // Se não encontrar na cena atual, procura em todos os objetos da hierarquia incluindo os que estão no DontDestroyOnLoad
+            GameObject[] rootObjects = FindObjectsOfType<GameObject>(true);
+            foreach (GameObject obj in rootObjects)
+            {
+                if (obj.name == "UICanvas")
+                {
+                    pai = obj;
+                    break;
+                }
+            }
+        }
 
         if (pai != null)
         {
-            // Tenta encontrar o filho "Carta" dentro do pai
+            // Agora procura o "Stamina Container" dentro do UICanvas
             Transform staminaTransform = pai.transform.Find("Stamina Container");
             if (staminaTransform != null)
             {
-                container = staminaTransform.gameObject; 
-            }         
+                container = staminaTransform.gameObject;
+            }
+            else
+            {
+                Debug.LogWarning("Stamina Container não encontrado dentro do UICanvas.");
+            }
         }
         else
         {
-            Debug.Log("UICanvas não encontrado.");
+            Debug.LogWarning("UICanvas não encontrado nem na cena nem no DontDestroyOnLoad.");
         }
+
 
 
         if (container != null)

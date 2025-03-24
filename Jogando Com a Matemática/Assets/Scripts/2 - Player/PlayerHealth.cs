@@ -171,9 +171,33 @@ public class PlayerHealth : Singleton<PlayerHealth> // Gerencia a vida do jogado
     {
         if (healthSlider == null)
         {
-            healthSlider = GameObject.Find(HEALTH_SLIDER_TEXT).GetComponent<Slider>();
-            
+            // Primeiro tenta achar diretamente na cena
+            GameObject sliderObj = GameObject.Find(HEALTH_SLIDER_TEXT);
+
+            if (sliderObj == null)
+            {
+                // Se não encontrar, busca em todos os objetos incluindo os do DontDestroyOnLoad
+                GameObject[] rootObjects = FindObjectsOfType<GameObject>(true);
+                foreach (GameObject obj in rootObjects)
+                {
+                    if (obj.name == HEALTH_SLIDER_TEXT)
+                    {
+                        sliderObj = obj;
+                        break;
+                    }
+                }
+            }
+
+            if (sliderObj != null)
+            {
+                healthSlider = sliderObj.GetComponent<Slider>();
+            }
+            else
+            {
+                Debug.LogWarning("Health Slider não encontrado nem na cena nem no DontDestroyOnLoad.");
+            }
         }
+
 
         healthSlider.maxValue = maxHealth;
         healthSlider.value = currentHealth;  // Atualiza a barra de saúde com o valor atual de vida

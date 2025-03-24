@@ -1,12 +1,33 @@
 using UnityEngine;
 using Cinemachine;
 
-public class FollowPlayer : MonoBehaviour // Faz a câmera seguir o jogador "Player_Boy" na cena usando Cinemachine.
+public class FollowPlayer : MonoBehaviour // Faz a câmera seguir o jogador certo na cena usando Cinemachine.
 {
     private void Start()
     {
-        // Encontra o objeto Player_Boy na cena
-        GameObject player = GameObject.Find("Player_Boy");
+        // Pegando o gênero salvo no PlayerPrefs
+        string generoSalvo = PlayerPrefs.GetString("genero");
+
+        // Busca por todos objetos mesmo desativados (incluindo DontDestroy)
+        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+        GameObject player = null;
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (generoSalvo == "Masculino" && obj.name == "Player_Boy")
+            {
+                obj.SetActive(true);
+                player = obj;
+                break;
+            }
+            else if (generoSalvo == "Feminino" && obj.name == "Player_Girl")
+            {
+                obj.SetActive(true);
+                player = obj;
+                break;
+            }
+        }
 
         if (player != null)
         {
@@ -15,7 +36,7 @@ public class FollowPlayer : MonoBehaviour // Faz a câmera seguir o jogador "Play
 
             if (virtualCamera != null)
             {
-                // Define o Player_Boy como alvo de Follow
+                // Define o player certo como alvo de Follow
                 virtualCamera.Follow = player.transform;
             }
             else
@@ -25,7 +46,7 @@ public class FollowPlayer : MonoBehaviour // Faz a câmera seguir o jogador "Play
         }
         else
         {
-            Debug.LogError("Player_Boy não foi encontrado na cena!");
+            Debug.LogError("Nenhum player encontrado com base no gênero salvo.");
         }
     }
 }

@@ -44,6 +44,7 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
 
     public void OnClickFácil()
     {
+        CameraController.Instance.SetPlayerCameraFollow();
         ChestLevelManager_b.Instance.SetTotalChests(1); // numero de baus do nivel facil
 
         int intervalo = (maxValor - minValor) / 3;
@@ -87,6 +88,8 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
 
     public void OnClickMédio()
     {
+        CameraController.Instance.SetPlayerCameraFollow();
+
         ChestLevelManager_b.Instance.SetTotalChests(2); // numero de baus do nivel medio
 
         int intervalo = (maxValor - minValor) / 3;
@@ -105,6 +108,8 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
 
     public void OnClickDifícil()
     {
+        CameraController.Instance.SetPlayerCameraFollow();
+
         ChestLevelManager_b.Instance.SetTotalChests(3); // numero de baus do nivel dificil
 
         int intervalo = (maxValor - minValor) / 3;
