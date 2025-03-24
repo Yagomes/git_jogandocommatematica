@@ -141,6 +141,22 @@ public class PlayerHealth : Singleton<PlayerHealth> // Gerencia a vida do jogado
             }
             SceneManager.LoadScene("Tela_Nivel_M");
         }
+        if (topicoEscolhido == "sub")
+        {
+            if (GameManager_b.instance != null)
+            {
+                GameManager_b.instance.ResetChestStates();
+            }
+            SceneManager.LoadScene("Tela_Nivel_Su");
+        }
+        if (topicoEscolhido == "div")
+        {
+            if (GameManager_b.instance != null)
+            {
+                GameManager_b.instance.ResetChestStates();
+            }
+            SceneManager.LoadScene("Tela_Nivel_D");
+        }
     }
 
     private IEnumerator DamageRecoveryRoutine()

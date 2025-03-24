@@ -3880,6 +3880,7 @@ GameObject:
   - component: {fileID: 155830735}
   - component: {fileID: 155830734}
   - component: {fileID: 155830733}
+  - component: {fileID: 155830738}
   m_Layer: 0
   m_Name: Bau (1)
   m_TagString: Untagged
@@ -4041,6 +4042,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &155830738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155830732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eb2e0b622f7c9c4dabbc8930256cf3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nivelAtual: 1
 --- !u!4 &157105626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3114509450364021270, guid: 22ef02f8b10edcf42aec44b208fb0b1e, type: 3}
@@ -6100,6 +6114,7 @@ GameObject:
   - component: {fileID: 655087728}
   - component: {fileID: 655087727}
   - component: {fileID: 655087726}
+  - component: {fileID: 655087731}
   m_Layer: 0
   m_Name: Bau (2)
   m_TagString: Untagged
@@ -6261,6 +6276,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &655087731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655087725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eb2e0b622f7c9c4dabbc8930256cf3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nivelAtual: 1
 --- !u!4 &655702293 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 203790696087382473, guid: 7d531f9d9bf6f7b4b9fcfaae3c858dbe, type: 3}
@@ -15601,7 +15629,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1346920287726507380, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.0401087
+      value: 3.0689123
       objectReference: {fileID: 0}
     - target: {fileID: 5987744833883823695, guid: f796e3fd5dabf2d4ea6862cb317c5d64, type: 3}
       propertyPath: m_Follow
@@ -17814,6 +17842,7 @@ GameObject:
   - component: {fileID: 1154486848}
   - component: {fileID: 1154486847}
   - component: {fileID: 1154486846}
+  - component: {fileID: 1154486851}
   m_Layer: 0
   m_Name: Bau
   m_TagString: Untagged
@@ -17975,6 +18004,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1154486851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154486845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eb2e0b622f7c9c4dabbc8930256cf3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nivelAtual: 1
 --- !u!4 &1155288675 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3114509450364021270, guid: 22ef02f8b10edcf42aec44b208fb0b1e, type: 3}

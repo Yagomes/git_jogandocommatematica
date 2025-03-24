@@ -9,7 +9,7 @@ public class EnableTrue : MonoBehaviour // Ativa ou desativa Buttons com base em
     private void Update()
     {
 
-    // Procura todos os GameObjects na cena, incluindo DontDestroyOnLoad
+        // Procura todos os GameObjects na cena, incluindo DontDestroyOnLoad
         GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
 
         foreach (GameObject obj in allObjects)
@@ -21,34 +21,34 @@ public class EnableTrue : MonoBehaviour // Ativa ou desativa Buttons com base em
                 foreach (GameObject obj_of in allObjects)
                 {
                     // Verifica se o nome é "Active Inventory"
-                    if (obj_of.name == "tela_m")
+                    if (obj_of.name == "tela_m" || obj_of.name == "tela_d" || obj_of.name == "tela_su")
                     {
 
                         obj_of.SetActive(false);
 
                         foreach (GameObject obj_ot in allObjects)
                         {
-                            if (obj_ot.name == "tela_s") 
+                            if (obj_ot.name == "tela_s")
                             {
                                 obj_ot.SetActive(true);
                                 break; // Interrompe o loop após encontrar o objeto
-                             
+
                             }
                         }
 
 
-                            
+
                     }
                 }
 
             }
-             if (obj.name == "IsMult")
+            if (obj.name == "IsMult")
             {
 
                 foreach (GameObject obj_of in allObjects)
                 {
                     // Verifica se o nome é "Active Inventory"
-                    if (obj_of.name == "tela_s")
+                    if (obj_of.name == "tela_s" || obj_of.name == "tela_d" || obj_of.name == "tela_su")
                     {
 
                         obj_of.SetActive(false);
@@ -67,12 +67,65 @@ public class EnableTrue : MonoBehaviour // Ativa ou desativa Buttons com base em
 
                     }
                 }
-
             }
+                if (obj.name == "IsDiv")
+                {
 
+                    foreach (GameObject obj_of in allObjects)
+                    {
+                        // Verifica se o nome é "Active Inventory"
+                        if (obj_of.name == "tela_s" || obj_of.name == "tela_m" || obj_of.name == "tela_su")
+                        {
+
+                            obj_of.SetActive(false);
+
+                            foreach (GameObject obj_ot in allObjects)
+                            {
+                                if (obj_ot.name == "tela_d")
+                                {
+                                    obj_ot.SetActive(true);
+                                    break; // Interrompe o loop após encontrar o objeto
+
+                                }
+                            }
+
+
+
+                        }
+                    }
+
+                }
+
+                if (obj.name == "IsSu")
+                {
+
+                    foreach (GameObject obj_of in allObjects)
+                    {
+                        // Verifica se o nome é "Active Inventory"
+                        if (obj_of.name == "tela_s" || obj_of.name == "tela_d" || obj_of.name == "tela_m")
+                        {
+
+                            obj_of.SetActive(false);
+
+                            foreach (GameObject obj_ot in allObjects)
+                            {
+                                if (obj_ot.name == "tela_su")
+                                {
+                                    obj_ot.SetActive(true);
+                                    break; // Interrompe o loop após encontrar o objeto
+
+                                }
+                            }
+
+
+
+                        }
+                    }
+                }
+
+                
         }
     }
 }
-
 
 

@@ -50,7 +50,9 @@ public class Stamina : Singleton<Stamina>
         // Reseta a estamina ao carregar cenas específicas
         if (scene.name == "Tela_Nivel_S" || scene.name == "Scene1_S_F" ||
             scene.name == "Tela_Nivel_M" || scene.name == "Scene2_S_F" ||
-            scene.name == "Scene1_M_F" || scene.name == "Scene2_M_F")
+            scene.name == "Scene1_M_F" || scene.name == "Scene2_M_F" || scene.name == "Tela_Nivel_Su" || scene.name == "Scene1_Su_F" ||
+            scene.name == "Tela_Nivel_D" || scene.name == "Scene2_Su_F" ||
+            scene.name == "Scene1_D_F" || scene.name == "Scene2_D_F" )
         {
             ResetStamina();
         }

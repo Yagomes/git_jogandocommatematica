@@ -241,31 +241,43 @@ public class ScriptBau : MonoBehaviour
         string operacao;
         string expressao;
 
-        if (PlayerPrefs.GetString("TopicoEscolhido").ToLower() == "soma")
+        string topico = PlayerPrefs.GetString("TopicoEscolhido").ToLower();
+
+        if (topico == "soma")
         {
             resultado = num1 + num2;
             operacao = $"{num1} + {num2}";
-            expressao = operacao; // Aqui você pode definir a expressão matemática
         }
-        else if(PlayerPrefs.GetString("TopicoEscolhido").ToLower() == "sub")
+        else if (topico == "sub")
         {
+            // Garantir que num1 >= num2 para não gerar número negativo
+            if (num1 < num2)
+            {
+                int temp = num1;
+                num1 = num2;
+                num2 = temp;
+            }
             resultado = num1 - num2;
             operacao = $"{num1} - {num2}";
-            expressao = operacao; // Aqui também a expressão
         }
-        else if(PlayerPrefs.GetString("TopicoEscolhido").ToLower() == "div")
+        else if (topico == "div")
         {
-            resultado = num1 / num2;
+            // Evitar divisão com restos (resultado inteiro)
+            num2 = Random.Range(min, max + 1);
+            if (num2 == 0) num2 = 1; // evitar divisão por zero
+
+            resultado = Random.Range(min, max + 1);
+            num1 = num2 * resultado; // garante que num1 seja múltiplo de num2
+
             operacao = $"{num1} ÷ {num2}";
-            expressao = operacao; // Aqui também a expressão
         }
-        else
+        else // Multiplicação
         {
             resultado = num1 * num2;
             operacao = $"{num1} x {num2}";
-            expressao = operacao; // Aqui também a expressão
         }
 
+        expressao = operacao;
         resultadoUniversal = resultado;
 
         int[] respostas = new int[3];
@@ -297,6 +309,7 @@ public class ScriptBau : MonoBehaviour
 
         Debug.Log($"Operação gerada: {operacao} = {resultado}");
     }
+
 
     public void OnButtonClicked(int resposta)
     {
@@ -344,15 +357,23 @@ public class ScriptBau : MonoBehaviour
                 {
                    ChestLevelManager_b.Instance.ChestOpened("Soma"); // Ou "Multiplicação", dependendo do tópico
                 }
-                else if (topicoEscolhido.ToLower() == "multiplicacao" || topicoEscolhido.ToLower() == "mult")
+                if (topicoEscolhido.ToLower() == "multiplicacao" || topicoEscolhido.ToLower() == "mult")
                 {
                     ChestLevelManager_b.Instance.ChestOpened("Multiplicacao"); // Ou "Multiplicação", dependendo do tópico
                 }
-            
+                if (topicoEscolhido.ToLower() == "div" || topicoEscolhido.ToLower() == "divisao")
+                {
+                    ChestLevelManager_b.Instance.ChestOpened("Divisao"); // Ou "Multiplicação", dependendo do tópico
+                }
+                else if (topicoEscolhido.ToLower() == "sub" || topicoEscolhido.ToLower() == "subtracao")
+                {
+                    ChestLevelManager_b.Instance.ChestOpened("subtracao"); // Ou "Multiplicação", dependendo do tópico
+                }
 
 
 
-            
+
+
             }
 
         }

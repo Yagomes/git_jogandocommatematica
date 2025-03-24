@@ -48,7 +48,7 @@ public class ChestLevelManager_b : MonoBehaviour
 
         Debug.Log("Baú aberto! Total de baús abertos: " + chestsOpened + " de " + totalChests);
 
-        if (chestsOpened >= totalChests)
+        if (chestsOpened == totalChests)
         {
             LevelCompleted(topic);
         }

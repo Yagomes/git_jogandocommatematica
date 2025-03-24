@@ -29,6 +29,20 @@ public class GameManager : Singleton<GameManager> // Gerencia a troca de cenas e
         SceneManager.LoadScene("Tela_Nivel_S");
     }
 
+    public void BackToMenu_D()
+    {
+        atu = true;
+        DestroyPlayer(); // Destroi o jogador antes de carregar a cena
+        SceneManager.LoadScene("Tela_Nivel_D");
+    }
+
+    public void BackToMenu_Su()
+    {
+        atu = true;
+        DestroyPlayer(); // Destroi o jogador antes de carregar a cena
+        SceneManager.LoadScene("Tela_Nivel_Su");
+    }
+
 
     // Método chamado quando o jogador inicia o jogo novamente (após o Menu)
     public void StartNewGame()
