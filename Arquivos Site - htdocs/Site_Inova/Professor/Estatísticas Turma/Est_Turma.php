@@ -41,7 +41,7 @@ $stmt->close();
 $dados_turmas = [];
 foreach ($turmas as $turma) {
     $stmt = $conn->prepare("
-        SELECT a.matricula, a.Nome AS aluno_nome, e.acertos, e.erros, e.total_jogado
+        SELECT a.matricula, a.Nome AS aluno_nome, e.acertos, e.erros, e.total_jogado, e.niveis_desbloqueados
         FROM aluno a
         INNER JOIN estatisticas e ON a.id_Aluno = e.id_jogador
         WHERE a.id_turma = ?
@@ -92,6 +92,7 @@ $conn->close();
                         <th>Acertos</th>
                         <th>Erros</th>
                         <th>Total Jogado</th>
+                        <th>Niveis Desbloqueados</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -102,6 +103,7 @@ $conn->close();
                             <td><?php echo htmlspecialchars($aluno['acertos']); ?></td>
                             <td><?php echo htmlspecialchars($aluno['erros']); ?></td>
                             <td><?php echo htmlspecialchars($aluno['total_jogado']); ?></td>
+                            <td><?php echo htmlspecialchars($aluno['niveis_desbloqueados']); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
