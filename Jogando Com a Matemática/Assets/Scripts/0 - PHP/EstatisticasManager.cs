@@ -7,6 +7,7 @@ using UnityEngine.Networking;
      EstatisticasManager.instance.AdicionarErro(); // errou questão
      EstatisticasManager.instance.AdicionarInimigoDerrotado(); // matou um inimigo
      EstatisticasManager.instance.AdicionarJogo(); // jogou uma partida
+     EstatisticasManager.instance.AdicionarNiveisDesbloqueados(); // desbloqueou um nível
 
 
 
@@ -23,6 +24,8 @@ public class EstatisticasManager : MonoBehaviour
     public int erros;
     public int inimigosDerrotados;
     public int moedasAcumuladas;
+    public int niveis_desbloqueados;
+
 
     private void Awake()
     {
@@ -68,6 +71,8 @@ public class EstatisticasManager : MonoBehaviour
                     erros = data.erros;
                     inimigosDerrotados = data.inimigos_derrotados;
                     moedasAcumuladas = data.moedas_acumuladas;
+                    niveis_desbloqueados = data.niveis_desbloqueados;
+
                     Debug.Log("Estatísticas carregadas com sucesso");
                 }
                 else
@@ -78,6 +83,14 @@ public class EstatisticasManager : MonoBehaviour
                     erros = 0;
                     inimigosDerrotados = 0;
                     moedasAcumuladas = 0;
+
+                    yield return new WaitForSeconds(3f);
+
+                    int totalTopicos = PlayerPrefs.GetInt("TotalTopicos", 0);
+
+                    Debug.Log("Número total de tópicos: " + totalTopicos);
+
+                    niveis_desbloqueados = totalTopicos;
                 }
             }
             else
@@ -96,6 +109,8 @@ public class EstatisticasManager : MonoBehaviour
         form.AddField("erros", erros);
         form.AddField("inimigos_derrotados", inimigosDerrotados);
         form.AddField("moedas_acumuladas", moedasAcumuladas);
+        form.AddField("niveis_desbloqueados", niveis_desbloqueados);
+
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/projeto/atualizar_estatisticas.php", form))
         {
@@ -144,6 +159,11 @@ public class EstatisticasManager : MonoBehaviour
         totalJogado++;
     }
 
+    public void AdicionarNiveisDesbloqueados()
+    {
+        niveis_desbloqueados++;
+    }
+
 }
 
 [System.Serializable]
@@ -155,6 +175,7 @@ public class EstatisticasResponse
     public int erros;
     public int inimigos_derrotados;
     public int moedas_acumuladas;
+    public int niveis_desbloqueados;
     public string erro;
 }
 

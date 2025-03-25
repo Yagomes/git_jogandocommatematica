@@ -1,0 +1,9 @@
+{
+    "id_Aluno": "2",
+    "total_jogado": "0",
+    "acertos": "0",
+    "erros": "0",
+    "inimigos_derrotados": "0",
+    "moedas_acumuladas": "0",
+    "niveis_desbloqueados": "1"
+}

@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
+using System.Collections.Generic; // Adicione esta linha
+
 
 // Classe que representa cada tópico recebido do PHP
 [System.Serializable]
@@ -55,6 +57,18 @@ public class OperationMenager : MonoBehaviour // Controla o botao de cada operac
             // Processa a resposta JSON
             TopicoWrapper topicoWrapper = JsonUtility.FromJson<TopicoWrapper>(jsonResponse);
 
+            HashSet<string> topicosUnicos = new HashSet<string>();
+
+            foreach (Topico topico in topicoWrapper.topicos)
+            {
+                topicosUnicos.Add(topico.Nome_topico.ToLower()); // Adiciona ao HashSet para garantir unicidade
+            }
+
+            // Salva a quantidade de tópicos únicos
+            PlayerPrefs.SetInt("TotalTopicos", topicosUnicos.Count);
+            Debug.Log("Total de tópicos únicos recebidos: " + topicosUnicos.Count);
+
+
             // Desabilita os botões inicialmente
             btnSoma.interactable = false;
             btnMultiplicacao.interactable = false;
@@ -62,6 +76,7 @@ public class OperationMenager : MonoBehaviour // Controla o botao de cada operac
             // Habilita os botões com base nos tópicos recebidos
             foreach (Topico topico in topicoWrapper.topicos)
             {
+
                 Debug.Log($"Tópico encontrado: {topico.Nome_topico}");
 
                 // Salva os valores no PlayerPrefs

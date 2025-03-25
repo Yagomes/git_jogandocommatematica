@@ -74,13 +74,44 @@ public class ProgressManager : MonoBehaviour
         if (!string.IsNullOrEmpty(response))
         {
             Debug.Log("Resposta do servidor: " + response);
-            // Aqui você pode realizar ações adicionais, como atualizar a interface ou desbloquear o próximo nível.
+
+            // Converte a resposta JSON para um objeto
+            var jsonResponse = JsonUtility.FromJson<ProgressoResponse>(response);
+
+            if (jsonResponse.status == "sucesso")
+            {
+                Debug.Log("Progresso salvo com sucesso! Desbloqueando o próximo nível...");
+                EstatisticasManager.instance.AdicionarNiveisDesbloqueados(); // desbloqueou um nível
+
+                // Aqui você pode executar ações adicionais, como desbloquear o próximo nível
+
+            }
+            else if (jsonResponse.status == "ja_registrado")
+            {
+                Debug.Log("Esse nível já foi concluído anteriormente.");
+                // Aqui você pode dar um feedback ao jogador, como mostrar uma mensagem na UI
+                ;
+            }
+            else
+            {
+                Debug.LogError("Falha ao salvar o progresso!");
+                
+            }
         }
         else
         {
-            Debug.LogError("Falha ao salvar o progresso!");
+            Debug.LogError("Falha ao se comunicar com o servidor!");
         }
     }
+
+    // Classe auxiliar para mapear a resposta do servidor
+    [System.Serializable]
+    public class ProgressoResponse
+    {
+        public string status;
+    }
+
+  
 
     // Exemplo de método para simular a conclusão de um nível (pode ser chamado, por exemplo, ao abrir o último baú)
     public void NivelConcluido()

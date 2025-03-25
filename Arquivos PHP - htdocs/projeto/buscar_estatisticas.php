@@ -21,6 +21,7 @@ if ($row = $result->fetch_assoc()) {
     $response->erros = $row['erros'];
     $response->inimigos_derrotados = $row['inimigos_derrotados'];
     $response->moedas_acumuladas = $row['moedas_acumuladas'];
+    $response->niveis_desbloqueados = $row['niveis_desbloqueados'];
     $response->status = "success";
 } else {
     $response->erro = "Estatísticas não encontradas";

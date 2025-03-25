@@ -17,6 +17,8 @@ public class GameManager : Singleton<GameManager> // Gerencia a troca de cenas e
     // Método chamado quando o jogador pressiona o botão "Voltar" para retornar ao Menu
     public void BackToMenu_M()
     {
+        EstatisticasManager.instance.SalvarEstatisticas();
+
         atu = true;
         DestroyPlayer(); // Destroi o jogador antes de carregar a cena
         SceneManager.LoadScene("Tela_Nivel_M");
@@ -24,6 +26,8 @@ public class GameManager : Singleton<GameManager> // Gerencia a troca de cenas e
 
     public void BackToMenu_S()
     {
+        EstatisticasManager.instance.SalvarEstatisticas();
+
         atu = true;
         DestroyPlayer(); // Destroi o jogador antes de carregar a cena
         SceneManager.LoadScene("Tela_Nivel_S");
@@ -31,6 +35,8 @@ public class GameManager : Singleton<GameManager> // Gerencia a troca de cenas e
 
     public void BackToMenu_D()
     {
+        EstatisticasManager.instance.SalvarEstatisticas();
+
         atu = true;
         DestroyPlayer(); // Destroi o jogador antes de carregar a cena
         SceneManager.LoadScene("Tela_Nivel_D");
@@ -38,6 +44,8 @@ public class GameManager : Singleton<GameManager> // Gerencia a troca de cenas e
 
     public void BackToMenu_Su()
     {
+        EstatisticasManager.instance.SalvarEstatisticas();
+
         atu = true;
         DestroyPlayer(); // Destroi o jogador antes de carregar a cena
         SceneManager.LoadScene("Tela_Nivel_Su");

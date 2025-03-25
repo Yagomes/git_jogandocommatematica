@@ -91,6 +91,7 @@ public class LoginAluno : MonoBehaviour // Verifica o login do aluno atraves de 
          yield return new WaitForSeconds(delay);
         EconomyManager.Instance.currentGold = EstatisticasManager.instance.moedasAcumuladas;
 
+
         SceneManager.LoadScene("Operacao");
     }
 }

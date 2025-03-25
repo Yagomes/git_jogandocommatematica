@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/03/2025 às 15:43
+-- Tempo de geração: 25/03/2025 às 20:59
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -60,16 +60,9 @@ CREATE TABLE `estatisticas` (
   `acertos` int(11) DEFAULT NULL,
   `erros` int(11) DEFAULT NULL,
   `inimigos_derrotados` int(11) DEFAULT NULL,
-  `moedas_acumuladas` int(11) DEFAULT 0
+  `moedas_acumuladas` int(11) DEFAULT 0,
+  `niveis_desbloqueados` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `estatisticas`
---
-
-INSERT INTO `estatisticas` (`id_estati`, `id_jogador`, `total_jogado`, `acertos`, `erros`, `inimigos_derrotados`, `moedas_acumuladas`) VALUES
-(1, 1, 25, 4, 4, 8, 71),
-(5, 2, 3, 0, 0, 5, 13);
 
 -- --------------------------------------------------------
 
@@ -83,43 +76,6 @@ CREATE TABLE `progresso` (
   `topico` varchar(20) NOT NULL,
   `nivel` int(11) NOT NULL,
   `concluido` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `progresso`
---
-
-INSERT INTO `progresso` (`id`, `aluno_id`, `topico`, `nivel`, `concluido`) VALUES
-(1, 1, 'soma', 1, 1),
-(5, 2, 'soma', 1, 1),
-(6, 2, 'multiplicacao', 1, 1),
-(7, 3, 'soma', 1, 1),
-(9, 3, 'multiplicacao', 1, 1),
-(11, 4, 'soma', 1, 1),
-(12, 4, 'multiplicacao', 1, 1),
-(13, 5, 'soma', 1, 1),
-(14, 5, 'multiplicacao', 1, 1),
-(15, 1, 'multiplicacao', 1, 1),
-(16, 1, 'soma', 2, 1),
-(20, 1, 'divisao', 2, 1),
-(21, 1, 'divisao', 3, 1),
-(22, 1, 'divisao', 4, 1),
-(23, 2, 'soma', 2, 1),
-(24, 3, 'soma', 2, 1),
-(25, 1, 'soma', 3, 1),
-(26, 3, 'multiplicacao', 2, 1),
-(27, 1, 'multiplicacao', 2, 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `ranking`
---
-
-CREATE TABLE `ranking` (
-  `id_ranking` int(11) NOT NULL,
-  `id_jogador` int(11) DEFAULT NULL,
-  `total_jogado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -240,6 +196,7 @@ ALTER TABLE `aluno`
 ALTER TABLE `estatisticas`
   ADD PRIMARY KEY (`id_estati`),
   ADD UNIQUE KEY `id_jogador_2` (`id_jogador`),
+  ADD UNIQUE KEY `unique_jogador` (`id_jogador`),
   ADD KEY `id_jogador` (`id_jogador`);
 
 --
@@ -248,13 +205,6 @@ ALTER TABLE `estatisticas`
 ALTER TABLE `progresso`
   ADD PRIMARY KEY (`id`),
   ADD KEY `aluno_id` (`aluno_id`);
-
---
--- Índices de tabela `ranking`
---
-ALTER TABLE `ranking`
-  ADD PRIMARY KEY (`id_ranking`),
-  ADD KEY `id_jogador` (`id_jogador`);
 
 --
 -- Índices de tabela `topico`
@@ -297,19 +247,13 @@ ALTER TABLE `aluno`
 -- AUTO_INCREMENT de tabela `estatisticas`
 --
 ALTER TABLE `estatisticas`
-  MODIFY `id_estati` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_estati` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `progresso`
 --
 ALTER TABLE `progresso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT de tabela `ranking`
---
-ALTER TABLE `ranking`
-  MODIFY `id_ranking` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de tabela `topico`
@@ -356,12 +300,6 @@ ALTER TABLE `estatisticas`
 --
 ALTER TABLE `progresso`
   ADD CONSTRAINT `progresso_ibfk_1` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`id_Aluno`);
-
---
--- Restrições para tabelas `ranking`
---
-ALTER TABLE `ranking`
-  ADD CONSTRAINT `ranking_ibfk_1` FOREIGN KEY (`id_jogador`) REFERENCES `aluno` (`id_Aluno`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `turma`

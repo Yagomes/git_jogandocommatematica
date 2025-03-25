@@ -117,7 +117,8 @@ public class PlayerHealth : Singleton<PlayerHealth> // Gerencia a vida do jogado
 
     public IEnumerator DeathLoadSceneRoutine()
     {
-       
+        EstatisticasManager.instance.SalvarEstatisticas();
+
         yield return new WaitForSeconds(2f);  // Espera um tempo para animação de morte
 
         string topicoEscolhido = PlayerPrefs.GetString("TopicoEscolhido", "");
