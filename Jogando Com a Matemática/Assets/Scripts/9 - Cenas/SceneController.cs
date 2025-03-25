@@ -47,6 +47,12 @@ public class SceneController : MonoBehaviour // controla a visibilidade do canva
     public void LoadScene(string sceneName)
     {
 
-        SceneManager.LoadScene(sceneName);
+        if (sceneName == "Login")
+        {
+            EstatisticasManager.instance.SalvarEstatisticas();
+
+            SceneManager.LoadScene(sceneName);
+        }
+        else { SceneManager.LoadScene(sceneName);  }
     }
 }

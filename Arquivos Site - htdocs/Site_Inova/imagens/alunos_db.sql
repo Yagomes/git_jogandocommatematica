@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/03/2025 às 15:43
+-- Tempo de geração: 25/03/2025 às 09:19
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -68,8 +68,7 @@ CREATE TABLE `estatisticas` (
 --
 
 INSERT INTO `estatisticas` (`id_estati`, `id_jogador`, `total_jogado`, `acertos`, `erros`, `inimigos_derrotados`, `moedas_acumuladas`) VALUES
-(1, 1, 25, 4, 4, 8, 71),
-(5, 2, 3, 0, 0, 5, 13);
+(1, 1, 1, 1, 1, 1, 16);
 
 -- --------------------------------------------------------
 
@@ -107,8 +106,7 @@ INSERT INTO `progresso` (`id`, `aluno_id`, `topico`, `nivel`, `concluido`) VALUE
 (23, 2, 'soma', 2, 1),
 (24, 3, 'soma', 2, 1),
 (25, 1, 'soma', 3, 1),
-(26, 3, 'multiplicacao', 2, 1),
-(27, 1, 'multiplicacao', 2, 1);
+(26, 3, 'multiplicacao', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -239,7 +237,6 @@ ALTER TABLE `aluno`
 --
 ALTER TABLE `estatisticas`
   ADD PRIMARY KEY (`id_estati`),
-  ADD UNIQUE KEY `id_jogador_2` (`id_jogador`),
   ADD KEY `id_jogador` (`id_jogador`);
 
 --
@@ -297,13 +294,13 @@ ALTER TABLE `aluno`
 -- AUTO_INCREMENT de tabela `estatisticas`
 --
 ALTER TABLE `estatisticas`
-  MODIFY `id_estati` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_estati` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `progresso`
 --
 ALTER TABLE `progresso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de tabela `ranking`

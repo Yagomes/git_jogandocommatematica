@@ -1,0 +1,127 @@
+body {
+    background: url("../../../imagens/fundo2.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+
+button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.voltar {
+    padding: 10px 15px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.voltar:hover {
+    background-color: darkred;
+    /* Mantém a cor vermelha escura quando o mouse passa por cima */
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+form label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+form .checkbox-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+form .checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.alert {
+    color: rgb(47, 180, 21);
+    font-weight: bold;
+}
+
+.alert2 {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+}
+
+.alert3 {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    form label,
+    form input[type="text"],
+    form input[type="number"],
+    form select {
+        width: calc(100% - 20px);
+        font-size: 14px;
+    }
+}

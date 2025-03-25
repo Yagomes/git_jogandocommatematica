@@ -1,0 +1,123 @@
+body {
+    background: url("../../../imagens/fundo3.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #4CAF50;
+}
+
+label {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button.voltar {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    display: inline-block;
+}
+
+button.voltar:hover {
+    background-color: darkred;
+}
+
+a.back-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+a.back-button:hover {
+    background-color: darkred;
+}
+
+.alert-success {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #d6ffcc;
+    /* Verde claro */
+    color: rgb(47, 180, 21);
+    /* Verde para mensagens de sucesso */
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid rgb(47, 180, 21);
+    border-radius: 5px;
+    display: block;
+}
+
+.alert-error {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #ffd6d6;
+    /* Vermelho claro */
+    color: rgb(180, 21, 21);
+    /* Vermelho para mensagens de erro */
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid rgb(180, 21, 21);
+    border-radius: 5px;
+    display: block;
+}

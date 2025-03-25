@@ -43,6 +43,8 @@ public class EnemyHealth : MonoBehaviour // Controla a vida do inimigo, incluind
         if (currentHealth <= 0)
         {
             Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
+            EstatisticasManager.instance.AdicionarInimigoDerrotado(); // matou um inimigo
+
             GetComponent<PickUpSpawner>().DropItems();
             Destroy(gameObject);
         }

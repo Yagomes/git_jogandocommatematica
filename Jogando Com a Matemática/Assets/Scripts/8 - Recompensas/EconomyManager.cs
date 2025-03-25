@@ -7,11 +7,12 @@ public class EconomyManager : Singleton<EconomyManager>
 {
     private TMP_Text goldText;
     public int currentGold = 0;
-
     const string COIN_AMOUNT_TEXT = "Gold Amount Text";
 
     public void UpdateCurrentGold()
     {
+        EstatisticasManager.instance.AdicionarMoedas(1); // adicionando moedas nas estatisticas
+
         currentGold += 1;
 
         if (goldText == null)

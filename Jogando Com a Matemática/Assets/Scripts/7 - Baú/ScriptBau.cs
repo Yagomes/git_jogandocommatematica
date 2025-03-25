@@ -320,6 +320,8 @@ public class ScriptBau : MonoBehaviour
     {
         if (respostaSelecionada == resultadoUniversal)
         {
+            EstatisticasManager.instance.AdicionarAcerto(); // acertou questao
+
             DroparItens();
             if (carta != null)
             {
@@ -379,6 +381,8 @@ public class ScriptBau : MonoBehaviour
         }
         else
         {
+            EstatisticasManager.instance.AdicionarErro(); // errou questão
+
             if (carta != null)
             {
                 carta.SetActive(false);

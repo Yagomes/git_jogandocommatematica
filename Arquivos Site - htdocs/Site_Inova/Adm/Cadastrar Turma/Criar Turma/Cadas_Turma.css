@@ -1,0 +1,96 @@
+body {
+    background: url("../../../imagens/fundo3.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+label {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+input,
+select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button.voltar {
+    background-color: red;
+}
+
+button.voltar:hover {
+    background-color: darkred;
+}
+
+a.back-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a.back-button:hover {
+    background-color: darkred;
+}
+
+.alert {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #d6ffcc;
+    color: rgb(47, 180, 21);
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid rgb(47, 180, 21);
+    border-radius: 5px;
+    display: block;
+}

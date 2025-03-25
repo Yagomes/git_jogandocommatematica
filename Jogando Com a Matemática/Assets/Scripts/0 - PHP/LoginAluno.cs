@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class LoginResponse
@@ -55,10 +56,14 @@ public class LoginAluno : MonoBehaviour // Verifica o login do aluno atraves de 
 
                         PlayerPrefs.SetInt("id_turma", response.id_turma);
                         PlayerPrefs.SetInt("id_Aluno", response.id_Aluno);
-                        PlayerPrefs.SetString("genero", response.genero); // Salvando o gênero também!
+                        PlayerPrefs.SetString("genero", response.genero);
 
-                        UnityEngine.SceneManagement.SceneManager.LoadScene("Operacao");
+                        EstatisticasManager.instance.idAluno = PlayerPrefs.GetInt("id_Aluno", 0);
+                        EstatisticasManager.instance.BuscarEstatisticas();
+
+                        StartCoroutine(CarregarCenaComDelay(2f)); // Aguarda 2 segundos antes de trocar de cena
                     }
+                
 
                     else
                     {
@@ -78,5 +83,14 @@ public class LoginAluno : MonoBehaviour // Verifica o login do aluno atraves de 
                 mensagemErro.text = "Erro ao conectar ao servidor. Verifique sua conexão.";
             }
         }
+    }
+
+    private IEnumerator CarregarCenaComDelay(float delay)
+    {
+       
+         yield return new WaitForSeconds(delay);
+        EconomyManager.Instance.currentGold = EstatisticasManager.instance.moedasAcumuladas;
+
+        SceneManager.LoadScene("Operacao");
     }
 }

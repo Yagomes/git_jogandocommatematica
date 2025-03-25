@@ -1,0 +1,145 @@
+body {
+    background: url("../../../imagens/fundo2.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+.container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    width: 450px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+form label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.topic-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.topic-table th,
+.topic-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Linha com cabeçalhos da tabela - fundo verde */
+.topic-table th {
+    background-color: #4CAF50;
+    font-weight: bold;
+    color: rgb(255, 255, 255); /* Texto branco para contraste */
+}
+
+.topic-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.topic-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #4CAF50;
+}
+
+.excluir {
+    background-color: #ff0000;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.excluir:hover {
+    background-color: rgb(138, 0, 0); /* Cor ao passar o mouse */
+}
+
+.voltar {
+    padding: 10px 15px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.voltar:hover {
+    background-color: darkred;
+}
+
+.alert {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.alert2 {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    form label,
+    form input[type="text"],
+    form input[type="number"],
+    form select {
+        width: calc(100% - 20px);
+        font-size: 14px;
+    }
+
+    .topic-table th,
+    .topic-table td {
+        padding: 8px; /* Ajusta o espaçamento para telas menores */
+    }
+}
