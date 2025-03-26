@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/2 - Tela Operacao/Operacao.unity
     guid: 72ea9a03298b98646803932a3fe6b392
   - enabled: 1
+    path: Assets/Scenes/5 - Ranking/Ranking.unity
+    guid: f8543254ed5f79a4d81181dbe26bf298
+  - enabled: 1
     path: Assets/Scenes/3 - Tela Nivel/Tela_Nivel_S.unity
     guid: f78c00e0ca511044bba1772580dd329c
   - enabled: 1
