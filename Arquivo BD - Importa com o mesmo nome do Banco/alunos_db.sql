@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26/03/2025 às 01:34
+-- Tempo de geração: 03/04/2025 às 20:18
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -247,7 +247,7 @@ ALTER TABLE `aluno`
 -- AUTO_INCREMENT de tabela `estatisticas`
 --
 ALTER TABLE `estatisticas`
-  MODIFY `id_estati` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_estati` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `progresso`
