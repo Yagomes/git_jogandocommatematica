@@ -13,29 +13,29 @@ if ($conn->connect_error) {
 $dadosRecebidos = json_encode($_POST, JSON_PRETTY_PRINT);
 file_put_contents("log.txt", $dadosRecebidos); // Cria um log para depuração
 
-if (!isset($_POST['id_Aluno'], $_POST['total_jogado'], $_POST['acertos'], $_POST['erros'], 
-          $_POST['inimigos_derrotados'], $_POST['moedas_acumuladas'], $_POST['niveis_desbloqueados'])) {
+if (!isset($_POST['aluno_id'], $_POST['estatistica_total_jogado'], $_POST['estatistica_acertos'], $_POST['estatistica_erros'], 
+          $_POST['estatistica_inimigos_derrotados'], $_POST['estatistica_moedas_acumuladas'], $_POST['estatistica_niveis_desbloqueados'])) {
     echo json_encode(["status" => "fail", "erro" => "Parâmetros ausentes"]);
     exit();
 }
 
-$aluno_id = intval($_POST['id_Aluno']);
-$total_jogado = intval($_POST['total_jogado']);
-$acertos = intval($_POST['acertos']);
-$erros = intval($_POST['erros']);
-$inimigos_derrotados = intval($_POST['inimigos_derrotados']);
-$moedas_acumuladas = intval($_POST['moedas_acumuladas']);
-$niveis_desbloqueados = intval($_POST['niveis_desbloqueados']);
+$aluno_id = intval($_POST['aluno_id']);
+$estatistica_total_jogado = intval($_POST['estatistica_total_jogado']);
+$estatistica_acertos = intval($_POST['estatistica_acertos']);
+$estatistica_erros = intval($_POST['estatistica_erros']);
+$estatistica_inimigos_derrotados = intval($_POST['estatistica_inimigos_derrotados']);
+$estatistica_moedas_acumuladas = intval($_POST['estatistica_moedas_acumuladas']);
+$estatistica_niveis_desbloqueados = intval($_POST['estatistica_niveis_desbloqueados']);
 
-$sql = "INSERT INTO estatisticas (id_jogador, total_jogado, acertos, erros, inimigos_derrotados, moedas_acumuladas, niveis_desbloqueados)
+$sql = "INSERT INTO estatisticas (aluno_id, estatistica_total_jogado, estatistica_acertos, estatistica_erros, estatistica_inimigos_derrotados, estatistica_moedas_acumuladas, estatistica_niveis_desbloqueados)
 VALUES (?, ?, ?, ?, ?, ?, ?)
 ON DUPLICATE KEY UPDATE
-total_jogado = VALUES(total_jogado),
-acertos = VALUES(acertos),
-erros = VALUES(erros),
-inimigos_derrotados = VALUES(inimigos_derrotados),
-moedas_acumuladas = VALUES(moedas_acumuladas),
-niveis_desbloqueados = VALUES(niveis_desbloqueados);
+estatistica_total_jogado = VALUES(estatistica_total_jogado),
+estatistica_acertos = VALUES(estatistica_acertos),
+estatistica_erros = VALUES(estatistica_erros),
+estatistica_inimigos_derrotados = VALUES(estatistica_inimigos_derrotados),
+estatistica_moedas_acumuladas = VALUES(estatistica_moedas_acumuladas),
+estatistica_niveis_desbloqueados = VALUES(estatistica_niveis_desbloqueados);
 ";
 
 $stmt = $conn->prepare($sql);
@@ -45,7 +45,7 @@ if (!$stmt) {
     exit();
 }
 
-$stmt->bind_param("iiiiiii", $aluno_id, $total_jogado, $acertos, $erros, $inimigos_derrotados, $moedas_acumuladas, $niveis_desbloqueados);
+$stmt->bind_param("iiiiiii", $aluno_id, $estatistica_total_jogado, $estatistica_acertos, $estatistica_erros, $estatistica_inimigos_derrotados, $estatistica_moedas_acumuladas, $estatistica_niveis_desbloqueados);
 
 if ($stmt->execute()) {
     echo json_encode(["status" => "success"]);

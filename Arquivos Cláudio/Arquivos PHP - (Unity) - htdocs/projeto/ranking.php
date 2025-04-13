@@ -10,16 +10,16 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-$id_turma = $_GET['id_turma']; // ID da turma do aluno logado
+$turma_id = $_GET['turma_id']; // ID da turma do aluno logado
 
-$sql = "SELECT aluno.Nome, estatisticas.moedas_acumuladas, estatisticas.acertos, estatisticas.inimigos_derrotados, estatisticas.niveis_desbloqueados 
+$sql = "SELECT aluno.aluno_nome, estatisticas.estatistica_moedas_acumuladas, estatisticas.estatistica_acertos, estatisticas.estatistica_inimigos_derrotados, estatisticas.estatistica_niveis_desbloqueados 
         FROM estatisticas
-        JOIN aluno ON estatisticas.id_jogador = aluno.id_Aluno
-        WHERE aluno.id_turma = ?
-        ORDER BY estatisticas.moedas_acumuladas DESC";
+        JOIN aluno ON estatisticas.aluno_id = aluno.aluno_id
+        WHERE aluno.turma_id = ?
+        ORDER BY estatisticas.estatistica_moedas_acumuladas DESC";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id_turma);
+$stmt->bind_param("i", $turma_id);
 $stmt->execute();
 $result = $stmt->get_result();
 

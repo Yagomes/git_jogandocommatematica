@@ -1,9 +1,9 @@
 {
-    "id_Aluno": "1",
-    "total_jogado": "2",
-    "acertos": "2",
-    "erros": "2",
-    "inimigos_derrotados": "2",
-    "moedas_acumuladas": "2",
-    "niveis_desbloqueados": "2"
+    "aluno_id": "1",
+    "estatistica_total_jogado": "2",
+    "estatistica_acertos": "2",
+    "estatistica_erros": "2",
+    "estatistica_inimigos_derrotados": "2",
+    "estatistica_moedas_acumuladas": "2",
+    "estatistica_niveis_desbloqueados": "2"
 }

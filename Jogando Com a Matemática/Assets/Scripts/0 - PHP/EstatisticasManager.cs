@@ -18,13 +18,13 @@ public class EstatisticasManager : MonoBehaviour
 {
     public static EstatisticasManager instance;
 
-    public int idAluno;
-    public int totalJogado;
-    public int acertos;
-    public int erros;
-    public int inimigosDerrotados;
-    public int moedasAcumuladas;
-    public int niveis_desbloqueados;
+    public int aluno_id;
+    public int estatistica_total_jogado;
+    public int estatistica_acertos;
+    public int estatistica_erros;
+    public int estatistica_inimigos_derrotados;
+    public int estatistica_moedas_acumuladas;
+    public int estatistica_niveis_desbloqueados;
 
 
     private void Awake()
@@ -55,7 +55,7 @@ public class EstatisticasManager : MonoBehaviour
     IEnumerator BuscarEstatisticasRoutine()
     {
         WWWForm form = new WWWForm();
-        form.AddField("id_Aluno", idAluno);
+        form.AddField("aluno_id", aluno_id);
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/projeto/buscar_estatisticas.php", form))
         {
@@ -66,23 +66,23 @@ public class EstatisticasManager : MonoBehaviour
                 var data = JsonUtility.FromJson<EstatisticasResponse>(www.downloadHandler.text);
                 if (data.status == "success")
                 {
-                    totalJogado = data.total_jogado;
-                    acertos = data.acertos;
-                    erros = data.erros;
-                    inimigosDerrotados = data.inimigos_derrotados;
-                    moedasAcumuladas = data.moedas_acumuladas;
-                    niveis_desbloqueados = data.niveis_desbloqueados;
+                    estatistica_total_jogado = data.estatistica_total_jogado;
+                    estatistica_acertos = data.estatistica_acertos;
+                    estatistica_erros = data.estatistica_erros;
+                    estatistica_inimigos_derrotados = data.estatistica_inimigos_derrotados;
+                    estatistica_moedas_acumuladas = data.estatistica_moedas_acumuladas;
+                    estatistica_niveis_desbloqueados = data.estatistica_niveis_desbloqueados;
 
                     Debug.Log("Estatísticas carregadas com sucesso");
                 }
                 else
                 {
                     Debug.Log("Erro: " + data.erro);
-                    totalJogado = 0;
-                    acertos = 0;
-                    erros = 0;
-                    inimigosDerrotados = 0;
-                    moedasAcumuladas = 0;
+                    estatistica_total_jogado = 0;
+                    estatistica_acertos = 0;
+                    estatistica_erros = 0;
+                    estatistica_inimigos_derrotados = 0;
+                    estatistica_moedas_acumuladas = 0;
 
                     yield return new WaitForSeconds(3f);
 
@@ -90,7 +90,7 @@ public class EstatisticasManager : MonoBehaviour
 
                     Debug.Log("Número total de tópicos: " + totalTopicos);
 
-                    niveis_desbloqueados = totalTopicos;
+                    estatistica_niveis_desbloqueados = totalTopicos;
                 }
             }
             else
@@ -103,13 +103,13 @@ public class EstatisticasManager : MonoBehaviour
     IEnumerator SalvarEstatisticasRoutine()
     {
         WWWForm form = new WWWForm();
-        form.AddField("id_Aluno", idAluno);
-        form.AddField("total_jogado", totalJogado);
-        form.AddField("acertos", acertos);
-        form.AddField("erros", erros);
-        form.AddField("inimigos_derrotados", inimigosDerrotados);
-        form.AddField("moedas_acumuladas", moedasAcumuladas);
-        form.AddField("niveis_desbloqueados", niveis_desbloqueados);
+        form.AddField("aluno_id", aluno_id);
+        form.AddField("estatistica_total_jogado", estatistica_total_jogado);
+        form.AddField("estatistica_acertos", estatistica_acertos);
+        form.AddField("estatistica_erros", estatistica_erros);
+        form.AddField("estatistica_inimigos_derrotados", estatistica_inimigos_derrotados);
+        form.AddField("estatistica_moedas_acumuladas", estatistica_moedas_acumuladas);
+        form.AddField("estatistica_niveis_desbloqueados", niveis_desbloqueados);
 
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/projeto/atualizar_estatisticas.php", form))

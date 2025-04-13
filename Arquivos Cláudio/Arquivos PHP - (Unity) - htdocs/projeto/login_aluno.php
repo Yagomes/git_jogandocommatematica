@@ -5,21 +5,21 @@ if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);
 }
 
-$matricula = isset($_POST['matricula']) ? $_POST['matricula'] : '';
-$senha = isset($_POST['senha']) ? $_POST['senha'] : '';
+$aluno_matricula = isset($_POST['aluno_matricula']) ? $_POST['aluno_matricula'] : '';
+$aluno_senha = isset($_POST['aluno_senha']) ? $_POST['aluno_senha'] : '';
 
-$sql = "SELECT id_Aluno, id_turma, genero FROM aluno WHERE matricula = ? AND senha = ?";
+$sql = "SELECT aluno_id, turma_id, aluno_genero FROM aluno WHERE aluno_matricula = ? AND aluno_senha = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ss", $matricula, $senha);
+$stmt->bind_param("ss", $aluno_matricula, $aluno_senha);
 $stmt->execute();
 $result = $stmt->get_result();
 
 $response = new stdClass();
 
 if ($row = $result->fetch_assoc()) {
-    $response->id_Aluno = $row['id_Aluno'];
-    $response->id_turma = $row['id_turma'];
-    $response->genero = $row['genero'];
+    $response->aluno_id = $row['aluno_id'];
+    $response->turma_id = $row['turma_id'];
+    $response->aluno_genero = $row['aluno_genero'];
     $response->status = "success";
 } else {
     $response->erro = "Login inválido";

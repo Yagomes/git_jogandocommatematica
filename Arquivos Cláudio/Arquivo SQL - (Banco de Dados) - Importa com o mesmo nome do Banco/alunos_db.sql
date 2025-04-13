@@ -28,40 +28,40 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `aluno` (
-  `id_Aluno` int(11) NOT NULL,
-  `matricula` varchar(20) NOT NULL,
-  `Nome` varchar(50) NOT NULL,
-  `senha` varchar(11) NOT NULL,
-  `genero` varchar(50) DEFAULT NULL,
-  `id_turma` int(11) DEFAULT NULL
+  `aluno_id` int(11) NOT NULL,
+  `aluno_matricula` varchar(20) NOT NULL,
+  `aluno_nome` varchar(50) NOT NULL,
+  `aluno_senha` varchar(11) NOT NULL,
+  `aluno_genero` varchar(50) DEFAULT NULL,
+  `turma_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `aluno`
 --
 
-INSERT INTO `aluno` (`id_Aluno`, `matricula`, `Nome`, `senha`, `genero`, `id_turma`) VALUES
+INSERT INTO `aluno` (`aluno_id`, `aluno_matricula`, `aluno_nome`, `aluno_senha`, `aluno_genero`, `turma_id`) VALUES
 (1, '11111', 'Lucas', '111', 'Masculino', 1),
 (2, '22222', 'Kauã', '222', 'Masculino', 3),
-(3, '33333', 'Adrielle', '333', 'Feminino', 4),
-(4, '66669', 'Alexandre dos reis gomes correa ', '11122233344', 'Feminino', 1),
-(5, '111111', 'pedrinho', 'p123', 'Masculino', 1);
+(3, '33333', 'Vitor', '333', 'Masculino', 4),
+(4, '44444', 'Ana', '444', 'Feminino', 1),
+(5, '55555', 'Pedro', '555', 'Masculino', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `estatisticas`
+-- Estrutura para tabela `estatistica`
 --
 
-CREATE TABLE `estatisticas` (
-  `id_estati` int(11) NOT NULL,
-  `id_jogador` int(11) DEFAULT NULL,
-  `total_jogado` int(11) DEFAULT NULL,
-  `acertos` int(11) DEFAULT NULL,
-  `erros` int(11) DEFAULT NULL,
-  `inimigos_derrotados` int(11) DEFAULT NULL,
-  `moedas_acumuladas` int(11) DEFAULT 0,
-  `niveis_desbloqueados` int(11) DEFAULT 0
+CREATE TABLE `estatistica` (
+  `estatistica_id` int(11) NOT NULL,
+  `aluno_id` int(11) DEFAULT NULL,
+  `estatistica_total_jogado` int(11) DEFAULT 0,
+  `estatistica_acertos` int(11) DEFAULT 0,
+  `estatistica_erros` int(11) DEFAULT 0,
+  `estatistica_inimigos_derrotados` int(11) DEFAULT 0,
+  `estatistica_moedas_acumuladas` int(11) DEFAULT 0,
+  `estatistica_niveis_desbloqueados` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -71,11 +71,11 @@ CREATE TABLE `estatisticas` (
 --
 
 CREATE TABLE `progresso` (
-  `id` int(11) NOT NULL,
+  `progresso_id` int(11) NOT NULL,
   `aluno_id` int(11) NOT NULL,
-  `topico` varchar(20) NOT NULL,
-  `nivel` int(11) NOT NULL,
-  `concluido` tinyint(1) DEFAULT 0
+  `progresso_topico` varchar(20) NOT NULL,
+  `progresso_nivel` int(11) NOT NULL,
+  `progresso_concluido` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -85,17 +85,17 @@ CREATE TABLE `progresso` (
 --
 
 CREATE TABLE `topico` (
-  `Id_topico` int(11) NOT NULL,
-  `Nome_topico` varchar(15) NOT NULL,
-  `Num_Min_topico` int(1) NOT NULL,
-  `Num_Max_topico` int(11) NOT NULL
+  `topico_id` int(11) NOT NULL,
+  `topico_nome` varchar(15) NOT NULL,
+  `topico_num_min` int(11) NOT NULL,
+  `topico_num_max` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `topico`
 --
 
-INSERT INTO `topico` (`Id_topico`, `Nome_topico`, `Num_Min_topico`, `Num_Max_topico`) VALUES
+INSERT INTO `topico` (`topico_id`, `topico_nome`, `topico_num_min`, `topico_num_max`) VALUES
 (1, 'soma', 1, 50),
 (2, 'mult', 1, 5),
 (3, 'soma', 5, 7),
@@ -110,17 +110,17 @@ INSERT INTO `topico` (`Id_topico`, `Nome_topico`, `Num_Min_topico`, `Num_Max_top
 --
 
 CREATE TABLE `turma` (
-  `id_turma` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `id_prof` int(11) DEFAULT NULL,
-  `serie` varchar(15) DEFAULT NULL
+  `turma_id` int(11) NOT NULL,
+  `turma_nome` varchar(50) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
+  `turma_serie` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `turma`
 --
 
-INSERT INTO `turma` (`id_turma`, `nome`, `id_prof`, `serie`) VALUES
+INSERT INTO `turma` (`turma_id`, `turma_nome`, `usuario_id`, `turma_serie`) VALUES
 (1, 'Turma_A', 3, '1 serie'),
 (3, 'Turma_B', 3, '2 serie'),
 (4, 'Turma_C', 4, '3 serie');
@@ -132,16 +132,16 @@ INSERT INTO `turma` (`id_turma`, `nome`, `id_prof`, `serie`) VALUES
 --
 
 CREATE TABLE `turma_topico` (
-  `Id_tur_topi` int(11) NOT NULL,
-  `Id_turma` int(11) DEFAULT NULL,
-  `Id_topico` int(11) DEFAULT NULL
+  `tur_topi_id` int(11) NOT NULL,
+  `turma_id` int(11) DEFAULT NULL,
+  `topico_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `turma_topico`
 --
 
-INSERT INTO `turma_topico` (`Id_tur_topi`, `Id_turma`, `Id_topico`) VALUES
+INSERT INTO `turma_topico` (`tur_topi_id`, `turma_id`, `topico_id`) VALUES
 (2, 1, 2),
 (3, 3, 1),
 (4, 4, 2),
@@ -160,78 +160,76 @@ INSERT INTO `turma_topico` (`Id_tur_topi`, `Id_turma`, `Id_topico`) VALUES
 --
 
 CREATE TABLE `usuario` (
-  `id_usuario` int(11) NOT NULL,
-  `matricula` varchar(20) NOT NULL,
-  `Nome` varchar(50) NOT NULL,
-  `senha` varchar(11) NOT NULL,
-  `cargo_usuario` varchar(20) NOT NULL
+  `usuario_id` int(11) NOT NULL,
+  `usuario_matricula` varchar(20) NOT NULL,
+  `usuario_nome` varchar(50) NOT NULL,
+  `usuario_senha` varchar(11) NOT NULL,
+  `usuario_cargo` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `usuario`
---
+-- jogador_id
 
-INSERT INTO `usuario` (`id_usuario`, `matricula`, `Nome`, `senha`, `cargo_usuario`) VALUES
-(1, '123', 'ADM', '123', 'adm'),
-(3, '54321', 'Pedro Villa', '321', 'Professor'),
-(4, '44444', 'Yago gomes', '580', 'Professor'),
-(5, '6969', 'Yago Lindo', 'pedro', 'Professor'),
-(6, '123', 'João Lagôas', '123', 'Professor'),
-(7, '2368819', 'Cláudio Passos', '2368819', 'Professor');
+INSERT INTO `usuario` (`usuario_id`, `usuario_matricula`, `usuario_nome`, `usuario_senha`, `usuario_cargo`) VALUES
+(1, '111', 'ADM', '777', 'adm'),
+(3, '222', 'Pedro Vila', '888', 'Professor'),
+(4, '333', 'Yago Gomes', '999', 'Professor'),
+(5, '444', 'Lucas', 'pedro', 'Professor'),
+(6, '555', 'João', '999', 'Professor'),
+(7, '666', 'Cláudio Passos', '100', 'Professor');
 
---
--- Índices para tabelas despejadas
---
+ 
 
 --
 -- Índices de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  ADD PRIMARY KEY (`id_Aluno`),
-  ADD KEY `id_turma` (`id_turma`);
+  ADD PRIMARY KEY (`aluno_id`),
+  ADD KEY `turma_id` (`turma_id`);
 
 --
--- Índices de tabela `estatisticas`
+-- Índices de tabela `estatistica`
 --
-ALTER TABLE `estatisticas`
-  ADD PRIMARY KEY (`id_estati`),
-  ADD UNIQUE KEY `id_jogador_2` (`id_jogador`),
-  ADD UNIQUE KEY `unique_jogador` (`id_jogador`),
-  ADD KEY `id_jogador` (`id_jogador`);
+ALTER TABLE `estatistica`
+  ADD PRIMARY KEY (`estatistica_id`),
+  ADD UNIQUE KEY `aluno_id_2` (`aluno_id`),
+  ADD UNIQUE KEY `unique_aluno` (`aluno_id`),
+  ADD KEY `aluno_id` (`aluno_id`);
 
 --
 -- Índices de tabela `progresso`
 --
 ALTER TABLE `progresso`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`progresso_id`),
   ADD KEY `aluno_id` (`aluno_id`);
 
 --
 -- Índices de tabela `topico`
 --
 ALTER TABLE `topico`
-  ADD PRIMARY KEY (`Id_topico`);
+  ADD PRIMARY KEY (`topico_id`);
 
 --
 -- Índices de tabela `turma`
 --
 ALTER TABLE `turma`
-  ADD PRIMARY KEY (`id_turma`),
-  ADD KEY `id_prof` (`id_prof`);
+  ADD PRIMARY KEY (`turma_id`),
+  ADD KEY `usuario_id` (`usuario_id`);
 
 --
 -- Índices de tabela `turma_topico`
 --
 ALTER TABLE `turma_topico`
-  ADD PRIMARY KEY (`Id_tur_topi`),
-  ADD KEY `Id_turma` (`Id_turma`),
-  ADD KEY `Id_topico` (`Id_topico`);
+  ADD PRIMARY KEY (`tur_topi_id`),
+  ADD KEY `turma_id` (`turma_id`),
+  ADD KEY `topico_id` (`topico_id`);
 
 --
 -- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id_usuario`);
+  ADD PRIMARY KEY (`usuario_id`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
@@ -241,43 +239,43 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `id_Aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `aluno_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de tabela `estatisticas`
+-- AUTO_INCREMENT de tabela `estatistica`
 --
-ALTER TABLE `estatisticas`
-  MODIFY `id_estati` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `estatistica`
+  MODIFY `estatistica_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `progresso`
 --
 ALTER TABLE `progresso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `progresso_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `topico`
 --
 ALTER TABLE `topico`
-  MODIFY `Id_topico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `turma`
 --
 ALTER TABLE `turma`
-  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `turma_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `turma_topico`
 --
 ALTER TABLE `turma_topico`
-  MODIFY `Id_tur_topi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `tur_topi_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para tabelas despejadas
@@ -287,32 +285,32 @@ ALTER TABLE `usuario`
 -- Restrições para tabelas `aluno`
 --
 ALTER TABLE `aluno`
-  ADD CONSTRAINT `aluno_ibfk_1` FOREIGN KEY (`id_turma`) REFERENCES `turma` (`id_turma`) ON DELETE SET NULL;
+  ADD CONSTRAINT `aluno_ibfk_1` FOREIGN KEY (`turma_id`) REFERENCES `turma` (`turma_id`) ON DELETE SET NULL;
 
 --
--- Restrições para tabelas `estatisticas`
+-- Restrições para tabelas `estatistica`
 --
-ALTER TABLE `estatisticas`
-  ADD CONSTRAINT `estatisticas_ibfk_1` FOREIGN KEY (`id_jogador`) REFERENCES `aluno` (`id_Aluno`) ON DELETE CASCADE;
+ALTER TABLE `estatistica`
+  ADD CONSTRAINT `estatistica_ibfk_1` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`aluno_id`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `progresso`
 --
 ALTER TABLE `progresso`
-  ADD CONSTRAINT `progresso_ibfk_1` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`id_Aluno`);
+  ADD CONSTRAINT `progresso_ibfk_1` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`aluno_id`);
 
 --
 -- Restrições para tabelas `turma`
 --
 ALTER TABLE `turma`
-  ADD CONSTRAINT `turma_ibfk_1` FOREIGN KEY (`id_prof`) REFERENCES `usuario` (`id_usuario`) ON DELETE SET NULL;
+  ADD CONSTRAINT `turma_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`usuario_id`) ON DELETE SET NULL;
 
 --
 -- Restrições para tabelas `turma_topico`
 --
 ALTER TABLE `turma_topico`
-  ADD CONSTRAINT `turma_topico_ibfk_1` FOREIGN KEY (`Id_turma`) REFERENCES `turma` (`id_turma`) ON DELETE CASCADE,
-  ADD CONSTRAINT `turma_topico_ibfk_2` FOREIGN KEY (`Id_topico`) REFERENCES `topico` (`Id_topico`) ON DELETE CASCADE;
+  ADD CONSTRAINT `turma_topico_ibfk_1` FOREIGN KEY (`turma_id`) REFERENCES `turma` (`turma_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `turma_topico_ibfk_2` FOREIGN KEY (`topico_id`) REFERENCES `topico` (`topico_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
