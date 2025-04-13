@@ -31,8 +31,8 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
         }
 
         // Carrega os valores mínimo e máximo do PlayerPrefs
-        minValor = PlayerPrefs.GetInt(topicoEscolhido + "_Min", 0);
-        maxValor = PlayerPrefs.GetInt(topicoEscolhido + "_Max", 0);
+        minValor = PlayerPrefs.GetInt(topicoEscolhido + "_min", 0);
+        maxValor = PlayerPrefs.GetInt(topicoEscolhido + "_max", 0);
 
         if (minValor == 0 && maxValor == 0)
         {

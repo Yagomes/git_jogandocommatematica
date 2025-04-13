@@ -9,9 +9,9 @@ using System.Collections.Generic; // Adicione esta linha
 [System.Serializable]
 public class Topico
 {
-    public string Nome_topico;
-    public int Num_Min_topico;
-    public int Num_Max_topico;
+    public string topico_nome;
+    public int topico_num_min;
+    public int topico_num_max;
 }
 
 // Classe wrapper para suportar arrays no JsonUtility
@@ -39,10 +39,10 @@ public class OperationMenager : MonoBehaviour // Controla o botao de cada operac
 
         // Cria o formulário e adiciona o ID da turma salvo em PlayerPrefs
         WWWForm form = new WWWForm();
-        int idTurma = PlayerPrefs.GetInt("id_turma", 0);
-        form.AddField("id_turma", idTurma);
+        int turma_id = PlayerPrefs.GetInt("turma_id", 0);
+        form.AddField("turma_id", turma_id);
 
-        Debug.Log("Enviando ID da turma: " + idTurma); // Log para depuração
+        Debug.Log("Enviando ID da turma: " + turma_id); // Log para depuração
 
         // Faz a requisição ao servidor
         UnityWebRequest www = UnityWebRequest.Post(url, form);
@@ -61,7 +61,7 @@ public class OperationMenager : MonoBehaviour // Controla o botao de cada operac
 
             foreach (Topico topico in topicoWrapper.topicos)
             {
-                topicosUnicos.Add(topico.Nome_topico.ToLower()); // Adiciona ao HashSet para garantir unicidade
+                topicosUnicos.Add(topico.topico_nome.ToLower()); // Adiciona ao HashSet para garantir unicidade
             }
 
             // Salva a quantidade de tópicos únicos
@@ -72,28 +72,30 @@ public class OperationMenager : MonoBehaviour // Controla o botao de cada operac
             // Desabilita os botões inicialmente
             btnSoma.interactable = false;
             btnMultiplicacao.interactable = false;
+            btnSubtracao.interactable = false;
+            btnDivisao.interactable = false;
 
             // Habilita os botões com base nos tópicos recebidos
             foreach (Topico topico in topicoWrapper.topicos)
             {
 
-                Debug.Log($"Tópico encontrado: {topico.Nome_topico}");
+                Debug.Log($"Tópico encontrado: {topico.topico_nome}");
 
                 // Salva os valores no PlayerPrefs
-                PlayerPrefs.SetInt(topico.Nome_topico + "_Min", topico.Num_Min_topico);
-                PlayerPrefs.SetInt(topico.Nome_topico + "_Max", topico.Num_Max_topico);
+                PlayerPrefs.SetInt(topico.topico_nome + "_min", topico.topico_num_min);
+                PlayerPrefs.SetInt(topico.topico_nome + "_max", topico.topico_num_max);
 
                 // Habilita os botões correspondentes
-                if (topico.Nome_topico.ToLower() == "soma")
+                if (topico.topico_nome.ToLower() == "soma")
                     btnSoma.interactable = true;
 
-                if (topico.Nome_topico.ToLower() == "mult")
+                if (topico.topico_nome.ToLower() == "mult" || topico.topico_nome.ToLower() == "multiplicacao")
                     btnMultiplicacao.interactable = true;
 
-                if (topico.Nome_topico.ToLower() == "sub")
+                if (topico.topico_nome.ToLower() == "sub" || topico.topico_nome.ToLower() == "subtracao")
                     btnSubtracao.interactable = true;
 
-                if (topico.Nome_topico.ToLower() == "div")
+                if (topico.topico_nome.ToLower() == "div" || topico.topico_nome.ToLower() == "divisao")
                     btnDivisao.interactable = true;
             }
         }
@@ -111,19 +113,19 @@ public class OperationMenager : MonoBehaviour // Controla o botao de cada operac
 
     public void OnClickMultiplicacao()
     {
-        PlayerPrefs.SetString("TopicoEscolhido", "mult");
+        PlayerPrefs.SetString("TopicoEscolhido", "multiplicacao");
         UnityEngine.SceneManagement.SceneManager.LoadScene("Tela_Nivel_M"); // Vai para a tela de multiplicação
     }
 
     public void OnClickSubtracao()
     {
-        PlayerPrefs.SetString("TopicoEscolhido", "sub");
+        PlayerPrefs.SetString("TopicoEscolhido", "subtracao");
         UnityEngine.SceneManagement.SceneManager.LoadScene("Tela_Nivel_Su"); // Vai para a tela de subtração
     }
 
     public void OnClickDivisao()
     {
-        PlayerPrefs.SetString("TopicoEscolhido", "div");
+        PlayerPrefs.SetString("TopicoEscolhido", "divisao");
         UnityEngine.SceneManagement.SceneManager.LoadScene("Tela_Nivel_D"); // Vai para a tela de divisão
     }
 }

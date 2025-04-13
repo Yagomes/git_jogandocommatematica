@@ -109,7 +109,7 @@ public class EstatisticasManager : MonoBehaviour
         form.AddField("estatistica_erros", estatistica_erros);
         form.AddField("estatistica_inimigos_derrotados", estatistica_inimigos_derrotados);
         form.AddField("estatistica_moedas_acumuladas", estatistica_moedas_acumuladas);
-        form.AddField("estatistica_niveis_desbloqueados", niveis_desbloqueados);
+        form.AddField("estatistica_niveis_desbloqueados", estatistica_niveis_desbloqueados);
 
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/projeto/atualizar_estatisticas.php", form))
@@ -136,32 +136,32 @@ public class EstatisticasManager : MonoBehaviour
     }
     public void AdicionarMoedas(int quantidade)
     {
-        moedasAcumuladas += quantidade;
+        estatistica_moedas_acumuladas += quantidade;
     }
 
     public void AdicionarAcerto()
     {
-        acertos++;
+        estatistica_acertos++;
     }
 
     public void AdicionarErro()
     {
-        erros++;
+        estatistica_erros++;
     }
 
     public void AdicionarInimigoDerrotado()
     {
-        inimigosDerrotados++;
+        estatistica_inimigos_derrotados++;
     }
 
     public void AdicionarJogo()
     {
-        totalJogado++;
+        estatistica_total_jogado++;
     }
 
     public void AdicionarNiveisDesbloqueados()
     {
-        niveis_desbloqueados++;
+        estatistica_niveis_desbloqueados++;
     }
 
 }
@@ -170,12 +170,12 @@ public class EstatisticasManager : MonoBehaviour
 public class EstatisticasResponse
 {
     public string status;
-    public int total_jogado;
-    public int acertos;
-    public int erros;
-    public int inimigos_derrotados;
-    public int moedas_acumuladas;
-    public int niveis_desbloqueados;
+    public int estatistica_total_jogado;
+    public int estatistica_acertos;
+    public int estatistica_erros;
+    public int estatistica_inimigos_derrotados;
+    public int estatistica_moedas_acumuladas;
+    public int estatistica_niveis_desbloqueados;
     public string erro;
 }
 

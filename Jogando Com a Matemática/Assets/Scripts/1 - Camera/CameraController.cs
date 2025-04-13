@@ -16,7 +16,7 @@ public class CameraController : Singleton<CameraController> // Controla a câmera
     public void SetPlayerCameraFollow()
     {
         // Valor salvo no PlayerPrefs
-        string generoSalvo = PlayerPrefs.GetString("genero");
+        string aluno_genero = PlayerPrefs.GetString("aluno_genero");
 
         GameObject player = null;
 
@@ -25,12 +25,12 @@ public class CameraController : Singleton<CameraController> // Controla a câmera
 
         foreach (GameObject go in allPlayers)
         {
-            if (go.name == "Player_Boy" && generoSalvo == "Masculino")
+            if (go.name == "Player_Boy" && aluno_genero == "Masculino")
             {
                 go.SetActive(true);
                 player = go;
             }
-            else if (go.name == "Player_Girl" && generoSalvo == "Feminino")
+            else if (go.name == "Player_Girl" && aluno_genero == "Feminino")
             {
                 go.SetActive(true);
                 player = go;

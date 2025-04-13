@@ -6,7 +6,7 @@ public class FollowPlayer : MonoBehaviour // Faz a câmera seguir o jogador certo
     private void Start()
     {
         // Pegando o gênero salvo no PlayerPrefs
-        string generoSalvo = PlayerPrefs.GetString("genero");
+        string aluno_genero = PlayerPrefs.GetString("aluno_genero");
 
         // Busca por todos objetos mesmo desativados (incluindo DontDestroy)
         GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
@@ -15,13 +15,13 @@ public class FollowPlayer : MonoBehaviour // Faz a câmera seguir o jogador certo
 
         foreach (GameObject obj in allObjects)
         {
-            if (generoSalvo == "Masculino" && obj.name == "Player_Boy")
+            if (aluno_genero == "Masculino" && obj.name == "Player_Boy")
             {
                 obj.SetActive(true);
                 player = obj;
                 break;
             }
-            else if (generoSalvo == "Feminino" && obj.name == "Player_Girl")
+            else if (aluno_genero == "Feminino" && obj.name == "Player_Girl")
             {
                 obj.SetActive(true);
                 player = obj;

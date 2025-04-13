@@ -18,12 +18,12 @@ public class LevelSelectionManager : MonoBehaviour
 
     private string topicoEscolhido;
  
-    int alunoId;  // Defina conforme o aluno logado
+    int aluno_id;  // Defina conforme o aluno logado
     string topico; // Pode ser "soma" ou "multiplicacao"
     void Start()
     {
 
-        alunoId = PlayerPrefs.GetInt("id_Aluno", 0); 
+        aluno_id = PlayerPrefs.GetInt("aluno_id", 0); 
 
         // Carrega o tópico escolhido salvo no PlayerPrefs
         topicoEscolhido = PlayerPrefs.GetString("TopicoEscolhido", "");
@@ -56,7 +56,7 @@ public class LevelSelectionManager : MonoBehaviour
         }
 
         // Ao iniciar, busca o progresso do aluno para o tópico específico
-        StartCoroutine(ServerManager.GetProgresso(alunoId, topico, OnProgressoReceived));
+        StartCoroutine(ServerManager.GetProgresso(aluno_id, topico, OnProgressoReceived));
     }
 
     private void OnProgressoReceived(string response)

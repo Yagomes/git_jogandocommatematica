@@ -134,7 +134,7 @@ public class PlayerHealth : Singleton<PlayerHealth> // Gerencia a vida do jogado
 
             SceneManager.LoadScene("Tela_Nivel_S");
         }
-        if (topicoEscolhido == "mult")
+        if (topicoEscolhido == "mult" || topicoEscolhido == "multiplicacao")
         {
             if (GameManager_b.instance != null)
             {
@@ -142,7 +142,7 @@ public class PlayerHealth : Singleton<PlayerHealth> // Gerencia a vida do jogado
             }
             SceneManager.LoadScene("Tela_Nivel_M");
         }
-        if (topicoEscolhido == "sub")
+        if (topicoEscolhido == "sub" || topicoEscolhido == "subtracao")
         {
             if (GameManager_b.instance != null)
             {
@@ -150,7 +150,7 @@ public class PlayerHealth : Singleton<PlayerHealth> // Gerencia a vida do jogado
             }
             SceneManager.LoadScene("Tela_Nivel_Su");
         }
-        if (topicoEscolhido == "div")
+        if (topicoEscolhido == "div" || topicoEscolhido == "divisao")
         {
             if (GameManager_b.instance != null)
             {

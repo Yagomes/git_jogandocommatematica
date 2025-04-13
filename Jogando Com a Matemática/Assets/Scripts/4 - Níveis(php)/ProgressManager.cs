@@ -22,14 +22,14 @@ public class ProgressManager : MonoBehaviour
     public int nivelAtual = 1; // Nível atual concluído
 
     
-    int alunoId; // Substitua pelo ID real do aluno
+    int aluno_id; // Substitua pelo ID real do aluno
     string topico; // Pode ser "soma" ou "multiplicacao", conforme o contexto
     
     private string topicoEscolhido;
 
     void Start()
     {
-        alunoId = PlayerPrefs.GetInt("id_Aluno", 0);
+        aluno_id = PlayerPrefs.GetInt("aluno_id", 0);
 
         // Carrega o tópico escolhido salvo no PlayerPrefs
         topicoEscolhido = PlayerPrefs.GetString("TopicoEscolhido", "");
@@ -64,8 +64,8 @@ public class ProgressManager : MonoBehaviour
         // Chama este método quando o jogador concluir um nível.
         public void SalvarProgresso()
     {
-        Debug.Log("Salvando progresso: Aluno " + alunoId + " - Tópico: " + topico + " - Nível " + nivelAtual);
-        StartCoroutine(ServerManager.PostProgresso(alunoId, nivelAtual, topico, OnProgressoSalvo));
+        Debug.Log("Salvando progresso: Aluno " + aluno_id + " - Tópico: " + topico + " - Nível " + nivelAtual);
+        StartCoroutine(ServerManager.PostProgresso(aluno_id, nivelAtual, topico, OnProgressoSalvo));
     }
 
     // Callback para tratar a resposta do servidor

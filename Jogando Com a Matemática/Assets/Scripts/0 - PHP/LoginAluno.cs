@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class LoginResponse
 {
-    public int id_Aluno;
-    public int id_turma;
-    public string genero;
+    public int aluno_id;
+    public int turma_id;
+    public string aluno_genero;
     public string status;
     public string erro;
 }
@@ -33,8 +33,8 @@ public class LoginAluno : MonoBehaviour // Verifica o login do aluno atraves de 
 
         // Criando o formulário com as credenciais
         WWWForm form = new WWWForm();
-        form.AddField("matricula", inputMatricula.text);
-        form.AddField("senha", inputSenha.text);
+        form.AddField("aluno_matricula", inputMatricula.text);
+        form.AddField("aluno_senha", inputSenha.text);
 
         using (UnityWebRequest request = UnityWebRequest.Post(url, form))
         {
@@ -52,13 +52,13 @@ public class LoginAluno : MonoBehaviour // Verifica o login do aluno atraves de 
 
                     if (response.status == "success")
                     {
-                        Debug.Log($"Login bem-sucedido! ID Aluno: {response.id_Aluno}, ID Turma: {response.id_turma}, Gênero: {response.genero}");
+                        Debug.Log($"Login bem-sucedido! ID Aluno: {response.aluno_id}, ID Turma: {response.turma_id}, Gênero: {response.aluno_genero}");
 
-                        PlayerPrefs.SetInt("id_turma", response.id_turma);
-                        PlayerPrefs.SetInt("id_Aluno", response.id_Aluno);
-                        PlayerPrefs.SetString("genero", response.genero);
+                        PlayerPrefs.SetInt("turma_id", response.turma_id);
+                        PlayerPrefs.SetInt("aluno_id", response.aluno_id);
+                        PlayerPrefs.SetString("aluno_genero", response.aluno_genero);
 
-                        EstatisticasManager.instance.idAluno = PlayerPrefs.GetInt("id_Aluno", 0);
+                        EstatisticasManager.instance.aluno_id = PlayerPrefs.GetInt("aluno_id", 0);
                         EstatisticasManager.instance.BuscarEstatisticas();
 
                         StartCoroutine(CarregarCenaComDelay(2f)); // Aguarda 2 segundos antes de trocar de cena
@@ -89,7 +89,7 @@ public class LoginAluno : MonoBehaviour // Verifica o login do aluno atraves de 
     {
        
          yield return new WaitForSeconds(delay);
-        EconomyManager.Instance.currentGold = EstatisticasManager.instance.moedasAcumuladas;
+        EconomyManager.Instance.currentGold = EstatisticasManager.instance.estatistica_moedas_acumuladas;
 
 
         SceneManager.LoadScene("Operacao");

@@ -13,13 +13,13 @@ public class RankingManager : MonoBehaviour
 
     void Start()
     {
-        int idTurma = PlayerPrefs.GetInt("id_turma", 0); // ID da turma salvo no PlayerPrefs
-        StartCoroutine(GetRanking(idTurma));
+        int turma_id = PlayerPrefs.GetInt("turma_id", 0); // ID da turma salvo no PlayerPrefs
+        StartCoroutine(GetRanking(turma_id));
     }
 
-    IEnumerator GetRanking(int idTurma)
+    IEnumerator GetRanking(int turma_id)
     {
-        using (UnityWebRequest www = UnityWebRequest.Get(url + "?id_turma=" + idTurma))
+        using (UnityWebRequest www = UnityWebRequest.Get(url + "?id_turma=" + turma_id))
         {
             Debug.Log("Resposta do servidor: " + www.downloadHandler.text);
 
@@ -50,11 +50,11 @@ public class RankingManager : MonoBehaviour
         {
             GameObject row = Instantiate(rowPrefab, content);
             Text[] columns = row.GetComponentsInChildren<Text>();
-            columns[0].text = entry.Nome;
-            columns[1].text = entry.moedas_acumuladas.ToString();
-            columns[2].text = entry.acertos.ToString();
-            columns[3].text = entry.inimigos_derrotados.ToString();
-            columns[4].text = entry.niveis_desbloqueados.ToString();
+            columns[0].text = entry.aluno_nome;
+            columns[1].text = entry.estatistica_moedas_acumuladas.ToString();
+            columns[2].text = entry.estatistica_acertos.ToString();
+            columns[3].text = entry.estatistica_inimigos_derrotados.ToString();
+            columns[4].text = entry.estatistica_niveis_desbloqueados.ToString();
         }
     }
 }
@@ -62,10 +62,10 @@ public class RankingManager : MonoBehaviour
 [System.Serializable]
 public class RankingEntry
 {
-    public string Nome;
-    public int moedas_acumuladas;
-    public int acertos;
-    public int inimigos_derrotados;
-    public int niveis_desbloqueados;
+    public string aluno_nome;
+    public int estatistica_moedas_acumuladas;
+    public int estatistica_acertos;
+    public int estatistica_inimigos_derrotados;
+    public int estatistica_niveis_desbloqueados;
 }
 

@@ -14,8 +14,8 @@ public class ServerManager : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("aluno_id", alunoId);
-        form.AddField("nivel", nivel);
-        form.AddField("topico", topico);
+        form.AddField("progresso_nivel", nivel);
+        form.AddField("progresso_topico", topico);
 
         using (UnityWebRequest www = UnityWebRequest.Post(baseURL + "salvar_progresso.php", form))
         {
@@ -43,7 +43,7 @@ public class ServerManager : MonoBehaviour
     /// </summary>
     public static IEnumerator GetProgresso(int alunoId, string topico, System.Action<string> callback)
     {
-        string url = baseURL + "buscar_progresso.php?aluno_id=" + alunoId + "&topico=" + UnityWebRequest.EscapeURL(topico);
+        string url = baseURL + "buscar_progresso.php?aluno_id=" + aluno_id + "&topico=" + UnityWebRequest.EscapeURL(topico);
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
             yield return www.SendWebRequest();

@@ -248,7 +248,7 @@ public class ScriptBau : MonoBehaviour
             resultado = num1 + num2;
             operacao = $"{num1} + {num2}";
         }
-        else if (topico == "sub")
+        else if (topico == "sub" || topico == "subtracao")
         {
             // Garantir que num1 >= num2 para não gerar número negativo
             if (num1 < num2)
@@ -260,7 +260,7 @@ public class ScriptBau : MonoBehaviour
             resultado = num1 - num2;
             operacao = $"{num1} - {num2}";
         }
-        else if (topico == "div")
+        else if (topico == "div" || topico == "divisao")
         {
             // Evitar divisão com restos (resultado inteiro)
             num2 = Random.Range(min, max + 1);
@@ -357,15 +357,15 @@ public class ScriptBau : MonoBehaviour
 
                 if (topicoEscolhido.ToLower() == "soma")
                 {
-                   ChestLevelManager_b.Instance.ChestOpened("Soma"); // Ou "Multiplicação", dependendo do tópico
+                   ChestLevelManager_b.Instance.ChestOpened("soma"); // Ou "Multiplicação", dependendo do tópico
                 }
                 if (topicoEscolhido.ToLower() == "multiplicacao" || topicoEscolhido.ToLower() == "mult")
                 {
-                    ChestLevelManager_b.Instance.ChestOpened("Multiplicacao"); // Ou "Multiplicação", dependendo do tópico
+                    ChestLevelManager_b.Instance.ChestOpened("multiplicacao"); // Ou "Multiplicação", dependendo do tópico
                 }
                 if (topicoEscolhido.ToLower() == "div" || topicoEscolhido.ToLower() == "divisao")
                 {
-                    ChestLevelManager_b.Instance.ChestOpened("Divisao"); // Ou "Multiplicação", dependendo do tópico
+                    ChestLevelManager_b.Instance.ChestOpened("divisao"); // Ou "Multiplicação", dependendo do tópico
                 }
                 else if (topicoEscolhido.ToLower() == "sub" || topicoEscolhido.ToLower() == "subtracao")
                 {
