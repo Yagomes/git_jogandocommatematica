@@ -12,11 +12,11 @@ if ($conn->connect_error) {
 
 $turma_id = $_GET['turma_id']; // ID da turma do aluno logado
 
-$sql = "SELECT aluno.aluno_nome, estatisticas.estatistica_moedas_acumuladas, estatisticas.estatistica_acertos, estatisticas.estatistica_inimigos_derrotados, estatisticas.estatistica_niveis_desbloqueados 
-        FROM estatisticas
-        JOIN aluno ON estatisticas.aluno_id = aluno.aluno_id
+$sql = "SELECT aluno.aluno_nome, estatistica.estatistica_moedas_acumuladas, estatistica.estatistica_acertos, estatistica.estatistica_inimigos_derrotados, estatistica.estatistica_niveis_desbloqueados 
+        FROM estatistica
+        JOIN aluno ON estatistica.aluno_id = aluno.aluno_id
         WHERE aluno.turma_id = ?
-        ORDER BY estatisticas.estatistica_moedas_acumuladas DESC";
+        ORDER BY estatistica.estatistica_moedas_acumuladas DESC";
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $turma_id);

@@ -118,6 +118,10 @@ public class EstatisticasManager : MonoBehaviour
 
             if (www.result == UnityWebRequest.Result.Success)
             {
+
+                    Debug.Log("Resposta bruta do servidor: " + www.downloadHandler.text); // <-- aqui
+
+                   
                 var data = JsonUtility.FromJson<StatusResponse>(www.downloadHandler.text);
                 if (data.status == "success")
                 {

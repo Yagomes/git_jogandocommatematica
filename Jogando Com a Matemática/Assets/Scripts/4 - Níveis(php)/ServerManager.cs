@@ -41,9 +41,9 @@ public class ServerManager : MonoBehaviour
     /// <summary>
     /// Busca via GET o progresso do aluno para um determinado tópico.
     /// </summary>
-    public static IEnumerator GetProgresso(int alunoId, string topico, System.Action<string> callback)
+    public static IEnumerator GetProgresso(int aluno_id, string topico, System.Action<string> callback)
     {
-        string url = baseURL + "buscar_progresso.php?aluno_id=" + aluno_id + "&topico=" + UnityWebRequest.EscapeURL(topico);
+        string url = baseURL + "buscar_progresso.php?aluno_id=" + aluno_id + "&progresso_topico=" + UnityWebRequest.EscapeURL(topico);
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
             yield return www.SendWebRequest();

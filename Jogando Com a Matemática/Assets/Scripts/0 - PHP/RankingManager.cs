@@ -19,7 +19,7 @@ public class RankingManager : MonoBehaviour
 
     IEnumerator GetRanking(int turma_id)
     {
-        using (UnityWebRequest www = UnityWebRequest.Get(url + "?id_turma=" + turma_id))
+        using (UnityWebRequest www = UnityWebRequest.Get(url + "?turma_id=" + turma_id))
         {
             Debug.Log("Resposta do servidor: " + www.downloadHandler.text);
 

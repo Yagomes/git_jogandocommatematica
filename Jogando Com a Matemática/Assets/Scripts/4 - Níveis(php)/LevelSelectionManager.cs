@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class ProgressoResponse
 {
-    public int nivel_max; // Conforme o JSON retornado pelo buscar_progresso.php
+    public int progresso_nivel_max; // Conforme o JSON retornado pelo buscar_progresso.php
 }
 
 public class LevelSelectionManager : MonoBehaviour
@@ -67,7 +67,7 @@ public class LevelSelectionManager : MonoBehaviour
 
             // Converte a resposta JSON para o objeto ProgressoResponse
             ProgressoResponse progresso = JsonUtility.FromJson<ProgressoResponse>(response);
-            int nivelMax = progresso.nivel_max;
+            int nivelMax = progresso.progresso_nivel_max;
             Debug.Log("Nível máximo desbloqueado para " + topico + ": " + nivelMax);
 
             AtualizarBotoes(nivelMax);

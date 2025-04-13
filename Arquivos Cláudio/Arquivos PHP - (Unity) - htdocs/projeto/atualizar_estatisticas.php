@@ -27,7 +27,7 @@ $estatistica_inimigos_derrotados = intval($_POST['estatistica_inimigos_derrotado
 $estatistica_moedas_acumuladas = intval($_POST['estatistica_moedas_acumuladas']);
 $estatistica_niveis_desbloqueados = intval($_POST['estatistica_niveis_desbloqueados']);
 
-$sql = "INSERT INTO estatisticas (aluno_id, estatistica_total_jogado, estatistica_acertos, estatistica_erros, estatistica_inimigos_derrotados, estatistica_moedas_acumuladas, estatistica_niveis_desbloqueados)
+$sql = "INSERT INTO estatistica (aluno_id, estatistica_total_jogado, estatistica_acertos, estatistica_erros, estatistica_inimigos_derrotados, estatistica_moedas_acumuladas, estatistica_niveis_desbloqueados)
 VALUES (?, ?, ?, ?, ?, ?, ?)
 ON DUPLICATE KEY UPDATE
 estatistica_total_jogado = VALUES(estatistica_total_jogado),
