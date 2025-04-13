@@ -1,0 +1,123 @@
+body {
+    background: url("../../imagens/fundo3.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+.container {
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+}
+
+h1 {
+    margin-bottom: 15px;
+    color: #000000;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Título secundário */
+h2 {
+    margin-bottom: 10px;
+    color: #000000;
+    font-size: 22px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table th,
+table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tbody tr:hover {
+    background-color: #e0ffe0;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    /* Remove a borda */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+#excluir {
+    background-color: #ff0000;
+    /* Cor do botão Excluir */
+}
+
+#excluir:hover {
+    background-color: rgb(138, 0, 0);
+}
+
+.back-button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #ff0000;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: darkred;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    table th,
+    table td {
+        font-size: 14px;
+    }
+
+    .button,
+    .back-button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
