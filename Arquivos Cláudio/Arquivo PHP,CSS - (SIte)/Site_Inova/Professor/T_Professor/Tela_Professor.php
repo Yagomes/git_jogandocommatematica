@@ -22,10 +22,10 @@ if ($conn->connect_error) {
 
 // Busca todas as turmas que o professor leciona
 $stmt = $conn->prepare("
-    SELECT t.Nome AS turma, t.Serie AS serie
+    SELECT t.turma_nome AS turma, t.turma_serie AS serie
     FROM turma t
-    INNER JOIN usuario u ON t.id_prof = u.id_usuario
-    WHERE u.Nome = ?
+    INNER JOIN usuario u ON t.usuario_id = u.usuario_id
+    WHERE u.usuario_nome = ?
 ");
 $stmt->bind_param("s", $professor_nome);
 $stmt->execute();

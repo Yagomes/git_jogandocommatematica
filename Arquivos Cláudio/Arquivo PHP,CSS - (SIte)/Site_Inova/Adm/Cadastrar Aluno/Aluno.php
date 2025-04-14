@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
 
     // Deleta o aluno do banco de dados
-    $sql = "DELETE FROM aluno WHERE id_Aluno = '$delete_id'";
+    $sql = "DELETE FROM aluno WHERE aluno_id = '$delete_id'";
 
     if ($conn->query($sql) === TRUE) {
         echo "Aluno excluído com sucesso!";
@@ -81,17 +81,17 @@ $result = $conn->query($sql);
                     // Exibe os dados de cada aluno
                     while ($row = $result->fetch_assoc()) {
                         // Obtendo o nome da turma
-                        $turma_sql = "SELECT nome FROM turma WHERE id_turma = " . $row['id_turma'];
+                        $turma_sql = "SELECT turma_nome FROM turma WHERE turma_id = " . $row['turma_id'];
                         $turma_result = $conn->query($turma_sql);
-                        $turma_nome = $turma_result->fetch_assoc()['nome'];
+                        $turma_nome = $turma_result->fetch_assoc()['turma_nome'];
                         ?>
                         <tr>
-                            <td><?php echo $row['matricula']; ?></td>
-                            <td><?php echo $row['Nome']; ?></td>
-                            <td><?php echo $row['genero']; ?></td>
+                            <td><?php echo $row['aluno_matricula']; ?></td>
+                            <td><?php echo $row['aluno_nome']; ?></td>
+                            <td><?php echo $row['aluno_genero']; ?></td>
                             <td><?php echo $turma_nome; ?></td>
                             <td><button id="excluir" class="button"
-                                    onclick="confirmarExclusao(<?php echo $row['id_Aluno']; ?>)">Excluir</button></td>
+                                    onclick="confirmarExclusao(<?php echo $row['aluno_id']; ?>)">Excluir</button></td>
                         </tr>
                         <?php
                     }

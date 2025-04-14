@@ -9,12 +9,12 @@ if ($conn->connect_error) {
 
 // Cadastrar um novo professor
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cadastrar'])) {
-    $matricula = $_POST['matricula'];
-    $nome = $_POST['nome'];
-    $senha = $_POST['senha'];
+    $usuario_matricula = $_POST['usuario_matricula'];
+    $usuario_nome = $_POST['usuario_nome'];
+    $usuario_senha = $_POST['usuario_senha'];
 
     // Insere o novo professor no banco de dados
-    $sql = "INSERT INTO usuario (matricula, Nome, senha, cargo_usuario) VALUES ('$matricula', '$nome', '$senha', 'Professor')";
+    $sql = "INSERT INTO usuario (usuario_matricula, usuario_nome, usuario_senha, usuario_cargo) VALUES ('$usuario_matricula', '$usuario_nome', '$usuario_senha', 'Professor')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Professor cadastrado com sucesso!";
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
 
     // Deleta o professor do banco de dados
-    $sql = "DELETE FROM usuario WHERE id_usuario = '$delete_id'";
+    $sql = "DELETE FROM usuario WHERE usuario_id = '$delete_id'";
 
     if ($conn->query($sql) === TRUE) {
         //echo "Professor excluído com sucesso!";
@@ -38,11 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
 }
 
 // Buscar todos os professores cadastrados e as turmas que lecionam
-$professores = $conn->query("SELECT usuario.id_usuario, usuario.matricula, usuario.Nome, GROUP_CONCAT(turma.nome SEPARATOR ', ') AS turmas 
+$professores = $conn->query("SELECT usuario.usuario_id, usuario.usuario_matricula, usuario.usuario_nome, GROUP_CONCAT(turma.turma_nome SEPARATOR ', ') AS turmas 
                              FROM usuario
-                             LEFT JOIN turma ON usuario.id_usuario = turma.id_prof
-                             WHERE usuario.cargo_usuario = 'Professor'
-                             GROUP BY usuario.id_usuario, usuario.matricula, usuario.Nome");
+                             LEFT JOIN turma ON usuario.usuario_id = turma.usuario_id
+                             WHERE usuario.usuario_cargo = 'Professor'
+                             GROUP BY usuario.usuario_id, usuario.usuario_matricula, usuario.usuario_nome");
 
 ?>
 
@@ -86,10 +86,10 @@ $professores = $conn->query("SELECT usuario.id_usuario, usuario.matricula, usuar
                 // Exibe todos os professores cadastrados e as turmas que lecionam
                 while ($professor = $professores->fetch_assoc()) {
                     echo "<tr>
-                        <td>{$professor['matricula']}</td>
-                        <td>{$professor['Nome']}</td>
+                        <td>{$professor['usuario_matricula']}</td>
+                        <td>{$professor['usuario_nome']}</td>
                         <td>{$professor['turmas']}</td>
-                        <td><button id='excluir' class='button' onclick='confirmarExclusao({$professor['id_usuario']})'>Excluir</button></td>
+                        <td><button id='excluir' class='button' onclick='confirmarExclusao({$professor['usuario_id']})'>Excluir</button></td>
                     </tr>";
                 }
                 ?>

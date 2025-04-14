@@ -37,12 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $duplicate_found = false;
 
         foreach ($selected_topics as $id_topico) {
-            $sql = "SELECT Nome_topico FROM topico WHERE Id_topico = '$id_topico'";
+            $sql = "SELECT topico_nome FROM topico WHERE topico_id = '$id_topico'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                $nome_topico = $row['Nome_topico'];
+                $nome_topico = $row['topico_nome'];
 
                 if (in_array($nome_topico, $selected_topic_names)) {
                     $duplicate_found = true;
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Verifica tópicos desmarcados (para deletar)
                 foreach ($existing_topics as $id_topico) {
                     if (!in_array($id_topico, $selected_topics)) {
-                        $sql_delete = "DELETE FROM turma_topico WHERE Id_turma = '$id_turma' AND Id_topico = '$id_topico'";
+                        $sql_delete = "DELETE FROM turma_topico WHERE turma_id = '$id_turma' AND topico_id = '$id_topico'";
                         $conn->query($sql_delete);
                     }
                 }
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Verifica tópicos marcados (para adicionar)
                 foreach ($selected_topics as $id_topico) {
                     if (!in_array($id_topico, $existing_topics)) {
-                        $sql_insert = "INSERT INTO turma_topico (Id_turma, Id_topico) VALUES ('$id_turma', '$id_topico')";
+                        $sql_insert = "INSERT INTO turma_topico (turma_id, topico_id) VALUES ('$id_turma', '$id_topico')";
                         $conn->query($sql_insert);
                     }
                 }
@@ -82,11 +82,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Lógica para excluir um tópico
     if (isset($_POST['action']) && $_POST['action'] == 'delete_topic') {
-        $id_topico = isset($_POST['id_topico']) ? $_POST['id_topico'] : '';
+        $id_topico = isset($_POST['topico_id']) ? $_POST['topico_id'] : '';
 
         if (!empty($id_topico)) {
             // Excluir o tópico da tabela 'topico'
-            $sql_delete = "DELETE FROM topico WHERE Id_topico = '$id_topico'";
+            $sql_delete = "DELETE FROM topico WHERE topico_id = '$id_topico'";
             if ($conn->query($sql_delete) === TRUE) {
                 $alerta = "Tópico excluído com sucesso!";
             } else {
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Busca turmas do professor
-$sql = "SELECT * FROM turma WHERE id_prof = '$id_professor'";
+$sql = "SELECT * FROM turma WHERE usuario_id = '$id_professor'";
 $result = $conn->query($sql);
 $turmas = [];
 
@@ -110,7 +110,7 @@ if ($result->num_rows > 0) {
 }
 
 // Busca tópicos existentes
-$sql = "SELECT * FROM topico ORDER BY Nome_topico ASC";
+$sql = "SELECT * FROM topico ORDER BY topico_nome ASC";
 $result = $conn->query($sql);
 $topicos = [];
 
@@ -128,13 +128,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
 
     if (!empty($id_turma)) {
         $sql = "SELECT topico.* FROM topico 
-                INNER JOIN turma_topico ON topico.Id_topico = turma_topico.Id_topico 
-                WHERE turma_topico.Id_turma = '$id_turma'";
+                INNER JOIN turma_topico ON topico.topico_id = turma_topico.topico_id 
+                WHERE turma_topico.turma_id = '$id_turma'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $turma_topics[] = $row['Id_topico'];
+                $turma_topics[] = $row['topico_id'];
             }
         }
     }
@@ -153,7 +153,7 @@ $conn->close();
         function confirmExclusion(id) {
             if (confirm("Tem certeza que deseja excluir este tópico?")) {
                 document.getElementById('action').value = 'delete_topic';
-                document.getElementById('id_topico').value = id;
+                document.getElementById('topico_id').value = id;
                 document.getElementById('form').submit();
             }
         }
@@ -180,14 +180,14 @@ $conn->close();
         <!-- Formulário para gerenciar tópicos -->
         <form method="post" action="" id="form">
             <input type="hidden" name="action" id="action">
-            <input type="hidden" name="id_topico" id="id_topico">
+            <input type="hidden" name="topico_id" id="topico_id">
 
             <label for="turma">Selecione a Turma:</label>
             <select id="turma" name="turma" onchange="loadTopics()" required>
                 <option value="">Selecione</option>
                 <?php foreach ($turmas as $turma): ?>
-                    <option value="<?php echo $turma['id_turma']; ?>" <?php echo isset($_POST['turma']) && $_POST['turma'] == $turma['id_turma'] ? 'selected' : ''; ?>>
-                        <?php echo $turma['nome']; ?>
+                    <option value="<?php echo $turma['turma_id']; ?>" <?php echo isset($_POST['turma']) && $_POST['turma'] == $turma['turma_id'] ? 'selected' : ''; ?>>
+                        <?php echo $turma['turma_nome']; ?>
                     </option>
                 <?php endforeach; ?>
             </select><br><br>
@@ -207,14 +207,14 @@ $conn->close();
                     <?php foreach ($topicos as $topico): ?>
                     <tr>
                         <td>
-                            <input type="checkbox" name="topicos[]" value="<?php echo $topico['Id_topico']; ?>" 
-                            <?php echo in_array($topico['Id_topico'], $turma_topics) ? 'checked' : ''; ?>>
+                            <input type="checkbox" name="topicos[]" value="<?php echo $topico['topico_id']; ?>" 
+                            <?php echo in_array($topico['topico_id'], $turma_topics) ? 'checked' : ''; ?>>
                         </td>
-                        <td><?php echo $topico['Nome_topico']; ?></td>
-                        <td><?php echo $topico['Num_Min_topico']; ?></td>
-                        <td><?php echo $topico['Num_Max_topico']; ?></td>
+                        <td><?php echo $topico['topico_nome']; ?></td>
+                        <td><?php echo $topico['topico_num_min']; ?></td>
+                        <td><?php echo $topico['topico_num_max']; ?></td>
                         <td>
-                            <button type="button" class="excluir" onclick="confirmExclusion(<?php echo $topico['Id_topico']; ?>)">Excluir</button>
+                            <button type="button" class="excluir" onclick="confirmExclusion(<?php echo $topico['topico_id']; ?>)">Excluir</button>
                         </td>
                     </tr>
                     <?php endforeach; ?>

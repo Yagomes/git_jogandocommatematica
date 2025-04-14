@@ -22,9 +22,9 @@ if ($conn->connect_error) {
 
 // Busca as turmas que o professor leciona
 $stmt = $conn->prepare("
-    SELECT id_turma, nome, serie
+    SELECT turma_id, turma_nome, turma_serie
     FROM turma
-    WHERE id_prof = (SELECT id_usuario FROM usuario WHERE Nome = ?)
+    WHERE usuario_id = (SELECT usuario_id FROM usuario WHERE usuario_nome = ?)
 ");
 $stmt->bind_param("s", $professor_nome);
 $stmt->execute();
@@ -41,12 +41,12 @@ $stmt->close();
 $dados_turmas = [];
 foreach ($turmas as $turma) {
     $stmt = $conn->prepare("
-        SELECT a.matricula, a.Nome AS aluno_nome, e.acertos, e.erros, e.total_jogado, e.niveis_desbloqueados
+        SELECT a.aluno_matricula, a.aluno_nome AS aluno_nome, e.estatistica_acertos, e.estatistica_erros, e.estatistica_total_jogado, e.estatistica_niveis_desbloqueados
         FROM aluno a
-        INNER JOIN estatisticas e ON a.id_Aluno = e.id_jogador
-        WHERE a.id_turma = ?
+        INNER JOIN estatistica e ON a.aluno_id = e.aluno_id
+        WHERE a.turma_id = ?
     ");
-    $stmt->bind_param("i", $turma['id_turma']);
+    $stmt->bind_param("i", $turma['turma_id']);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -56,8 +56,8 @@ foreach ($turmas as $turma) {
     }
 
     $dados_turmas[] = [
-        'turma_nome' => $turma['nome'],
-        'serie' => $turma['serie'],
+        'turma_nome' => $turma['turma_nome'],
+        'turma_serie' => $turma['turma_serie'],
         'alunos' => $dados_alunos
     ];
 
@@ -82,7 +82,7 @@ $conn->close();
         <h2>Estatísticas das Turmas</h2>
 
         <?php foreach ($dados_turmas as $dados_turma): ?>
-            <h3><?php echo htmlspecialchars($dados_turma['turma_nome']) . " - " . htmlspecialchars($dados_turma['serie']); ?>
+            <h3><?php echo htmlspecialchars($dados_turma['turma_nome']) . " - " . htmlspecialchars($dados_turma['turma_serie']); ?>
             </h3>
             <table>
                 <thead>
@@ -98,12 +98,12 @@ $conn->close();
                 <tbody>
                     <?php foreach ($dados_turma['alunos'] as $aluno): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($aluno['matricula']); ?></td>
+                            <td><?php echo htmlspecialchars($aluno['aluno_matricula']); ?></td>
                             <td><?php echo htmlspecialchars($aluno['aluno_nome']); ?></td>
-                            <td><?php echo htmlspecialchars($aluno['acertos']); ?></td>
-                            <td><?php echo htmlspecialchars($aluno['erros']); ?></td>
-                            <td><?php echo htmlspecialchars($aluno['total_jogado']); ?></td>
-                            <td><?php echo htmlspecialchars($aluno['niveis_desbloqueados']); ?></td>
+                            <td><?php echo htmlspecialchars($aluno['estatistica_acertos']); ?></td>
+                            <td><?php echo htmlspecialchars($aluno['estatistica_erros']); ?></td>
+                            <td><?php echo htmlspecialchars($aluno['estatistica_total_jogado']); ?></td>
+                            <td><?php echo htmlspecialchars($aluno['estatistica_niveis_desbloqueados']); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

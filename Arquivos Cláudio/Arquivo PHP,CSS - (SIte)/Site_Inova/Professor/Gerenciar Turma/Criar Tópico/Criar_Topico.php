@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         // Valida se o número mínimo é menor ou igual ao número máximo
         else if ($new_topico_min <= $new_topico_max) {
-            $sql = "INSERT INTO topico (Nome_topico, Num_Min_topico, Num_Max_topico) VALUES ('$new_topico_nome', '$new_topico_min', '$new_topico_max')";
+            $sql = "INSERT INTO topico (topico_nome, topico_num_min, topico_num_max) VALUES ('$new_topico_nome', '$new_topico_min', '$new_topico_max')";
             if ($conn->query($sql) === TRUE) {
                 $alerta = "Novo tópico criado com sucesso!";
             } else {
@@ -84,9 +84,9 @@ $conn->close();
             <select id="new_topico_nome" name="new_topico_nome" required>
                 <option value="">Selecione</option>
                 <option value="soma">soma</option>
-                <option value="mult">multiplicação</option>
-                <option value="div">divisão</option>
-                <option value="sub">subtração</option>
+                <option value="multiplicacao">multiplicacao</option>
+                <option value="divisao">divisao</option>
+                <option value="subtracao">subtracao</option>
             </select><br><br>
 
             <label for="new_topico_min">Número Mínimo:</label>

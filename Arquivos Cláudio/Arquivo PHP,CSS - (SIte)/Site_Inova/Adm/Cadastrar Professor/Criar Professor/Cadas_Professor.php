@@ -20,15 +20,15 @@ if ($conn->connect_error) {
 // Verifica se o formulário foi submetido
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Coleta os dados do formulário
-    $nome = $_POST['nome'];
-    $matricula = $_POST['matricula'];
-    $senha = $_POST['senha'];
-    $cargo_usuario = 'Professor';
+    $usuario_nome = $_POST['usuario_nome'];
+    $usuario_matricula = $_POST['usuario_matricula'];
+    $usuario_senha = $_POST['usuario_senha'];
+    $usuario_cargo = 'Professor';
 
     // Verifica se a matrícula já existe
-    $sql_check = "SELECT * FROM usuario WHERE matricula = ?";
+    $sql_check = "SELECT * FROM usuario WHERE usuario_matricula = ?";
     if ($stmt_check = $conn->prepare($sql_check)) {
-        $stmt_check->bind_param("s", $matricula);
+        $stmt_check->bind_param("s", $usuario_matricula);
         $stmt_check->execute();
         $stmt_check->store_result();
 
@@ -37,9 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['tipo_mensagem'] = "alert-error"; // Classe para erro
         } else {
             // Prepara e executa a consulta de inserção
-            $sql = "INSERT INTO usuario (Nome, matricula, senha, cargo_usuario) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO usuario (usuario_nome, usuario_matricula, usuario_senha, usuario_cargo) VALUES (?, ?, ?, ?)";
             if ($stmt = $conn->prepare($sql)) {
-                $stmt->bind_param("ssss", $nome, $matricula, $senha, $cargo_usuario);
+                $stmt->bind_param("ssss", $usuario_nome, $usuario_matricula, $usuario_senha, $usuario_cargo);
 
                 if ($stmt->execute()) {
                     $_SESSION['mensagem'] = "Professor cadastrado com sucesso!";
@@ -95,13 +95,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ?>
 
         <form action="cadas_professor.php" method="post">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required><br>
-            <label for="matricula">Matrícula:</label>
-            <input type="text" id="matricula" name="matricula" required><br>
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required><br>
-            <input type="hidden" id="cargo_usuario" name="cargo_usuario" value="Professor">
+            <label for="usuario_nome">Nome:</label>
+            <input type="text" id="usuario_nome" name="usuario_nome" required><br>
+            <label for="usuario_matricula">Matrícula:</label>
+            <input type="text" id="usuario_matricula" name="usuario_matricula" required><br>
+            <label for="usuario_senha">Senha:</label>
+            <input type="password" id="usuario_senha" name="usuario_senha" required><br>
+            <input type="hidden" id="usuario_cargo" name="usuario_cargo" value="Professor">
             <button type="submit" class="large-button">Cadastrar</button>
         </form>
         <br>

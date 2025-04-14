@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03/04/2025 às 20:18
+-- Tempo de geração: 14/04/2025 às 20:20
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -35,17 +35,6 @@ CREATE TABLE `aluno` (
   `aluno_genero` varchar(50) DEFAULT NULL,
   `turma_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `aluno`
---
-
-INSERT INTO `aluno` (`aluno_id`, `aluno_matricula`, `aluno_nome`, `aluno_senha`, `aluno_genero`, `turma_id`) VALUES
-(1, '11111', 'Lucas', '111', 'Masculino', 1),
-(2, '22222', 'Kauã', '222', 'Masculino', 3),
-(3, '33333', 'Vitor', '333', 'Masculino', 4),
-(4, '44444', 'Ana', '444', 'Feminino', 1),
-(5, '55555', 'Pedro', '555', 'Masculino', 1);
 
 -- --------------------------------------------------------
 
@@ -91,18 +80,6 @@ CREATE TABLE `topico` (
   `topico_num_max` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `topico`
---
-
-INSERT INTO `topico` (`topico_id`, `topico_nome`, `topico_num_min`, `topico_num_max`) VALUES
-(1, 'soma', 1, 50),
-(2, 'mult', 1, 5),
-(3, 'soma', 5, 7),
-(4, 'sub', 1, 10),
-(5, 'div', 1, 20),
-(6, 'soma', -17, -8);
-
 -- --------------------------------------------------------
 
 --
@@ -116,15 +93,6 @@ CREATE TABLE `turma` (
   `turma_serie` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `turma`
---
-
-INSERT INTO `turma` (`turma_id`, `turma_nome`, `usuario_id`, `turma_serie`) VALUES
-(1, 'Turma_A', 3, '1 serie'),
-(3, 'Turma_B', 3, '2 serie'),
-(4, 'Turma_C', 4, '3 serie');
-
 -- --------------------------------------------------------
 
 --
@@ -136,22 +104,6 @@ CREATE TABLE `turma_topico` (
   `turma_id` int(11) DEFAULT NULL,
   `topico_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `turma_topico`
---
-
-INSERT INTO `turma_topico` (`tur_topi_id`, `turma_id`, `topico_id`) VALUES
-(2, 1, 2),
-(3, 3, 1),
-(4, 4, 2),
-(7, 4, 3),
-(8, 3, 3),
-(9, 3, 3),
-(10, 1, 4),
-(11, 1, 5),
-(12, 1, 5),
-(14, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -169,17 +121,16 @@ CREATE TABLE `usuario` (
 
 --
 -- Despejando dados para a tabela `usuario`
--- jogador_id
+--
 
 INSERT INTO `usuario` (`usuario_id`, `usuario_matricula`, `usuario_nome`, `usuario_senha`, `usuario_cargo`) VALUES
-(1, '111', 'ADM', '777', 'adm'),
-(3, '222', 'Pedro Vila', '888', 'Professor'),
-(4, '333', 'Yago Gomes', '999', 'Professor'),
-(5, '444', 'Lucas', 'pedro', 'Professor'),
-(6, '555', 'João', '999', 'Professor'),
-(7, '666', 'Cláudio Passos', '100', 'Professor');
+(1, '11111', 'Cláudio Passos', '12345', 'adm'),
+(2, '99999', 'Yago Gomes', '12345', 'adm'),
+(3, '555', 'Paulo André', '12345', 'Professor');
 
- 
+--
+-- Índices para tabelas despejadas
+--
 
 --
 -- Índices de tabela `aluno`
@@ -239,43 +190,43 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `aluno_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `aluno_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `estatistica`
 --
 ALTER TABLE `estatistica`
-  MODIFY `estatistica_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `estatistica_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `progresso`
 --
 ALTER TABLE `progresso`
-  MODIFY `progresso_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `progresso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `topico`
 --
 ALTER TABLE `topico`
-  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `turma`
 --
 ALTER TABLE `turma`
-  MODIFY `turma_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `turma_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `turma_topico`
 --
 ALTER TABLE `turma_topico`
-  MODIFY `tur_topi_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tur_topi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restrições para tabelas despejadas

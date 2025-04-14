@@ -12,14 +12,14 @@ if ($conn->connect_error) {
 // Verifica se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Coleta os dados do formulário
-    $nome = $_POST['nome'];
-    $id_prof = isset($_POST['id_prof']) ? $_POST['id_prof'] : NULL;
-    $serie = isset($_POST['serie']) ? $_POST['serie'] : NULL;
+    $turma_nome = $_POST['turma_nome'];
+    $usuario_id = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : NULL;
+    $turma_serie = isset($_POST['turma_serie']) ? $_POST['turma_serie'] : NULL;
 
     // Prepara e executa a consulta de inserção
-    $sql = "INSERT INTO turma (nome, id_prof, serie) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO turma (turma_nome, usuario_id, turma_serie) VALUES (?, ?, ?)";
     if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("sis", $nome, $id_prof, $serie);
+        $stmt->bind_param("sis", $turma_nome, $usuario_id, $turma_serie);
 
         if ($stmt->execute()) {
             $_SESSION['mensagem'] = "Turma cadastrada com sucesso!!!";
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Consulta para obter os professores do banco de dados
-$professores = $conn->query("SELECT id_usuario, Nome FROM usuario WHERE cargo_usuario = 'Professor'");
+$professores = $conn->query("SELECT usuario_id, usuario_nome FROM usuario WHERE usuario_cargo = 'Professor'");
 ?>
 
 <!DOCTYPE html>
@@ -67,21 +67,21 @@ $professores = $conn->query("SELECT id_usuario, Nome FROM usuario WHERE cargo_us
         ?>
 
         <form action="cadas_turma.php" method="post">
-            <label for="nome">Nome:</label>
-            <input type="text" name="nome" required><br>
+            <label for="turma_nome">Nome:</label>
+            <input type="text" name="turma_nome" required><br>
 
-            <label for="id_prof">Professor:</label>
-            <select name="id_prof" required>
+            <label for="usuario_id">Professor:</label>
+            <select name="usuario_id" required>
                 <option value="">Selecione</option>
                 <?php
                 while ($professor = $professores->fetch_assoc()) {
-                    echo "<option value='" . $professor['id_usuario'] . "'>" . $professor['Nome'] . "</option>";
+                    echo "<option value='" . $professor['usuario_id'] . "'>" . $professor['usuario_nome'] . "</option>";
                 }
                 ?>
             </select><br>
 
-            <label for="serie">Série:</label>
-            <select name="serie" required>
+            <label for="turma_serie">Série:</label>
+            <select name="turma_serie" required>
                 <option value="">Selecione</option>
                 <option value="1º Ano do Fundamental">1º Ano do Fundamental</option>
                 <option value="2º Ano do Fundamental">2º Ano do Fundamental</option>
@@ -92,6 +92,9 @@ $professores = $conn->query("SELECT id_usuario, Nome FROM usuario WHERE cargo_us
                 <option value="7º Ano do Fundamental">7º Ano do Fundamental</option>
                 <option value="8º Ano do Fundamental">8º Ano do Fundamental</option>
                 <option value="9º Ano do Fundamental">9º Ano do Fundamental</option>
+                <option value="1º Ano do Ensino Medio">1º Ano do Ensino Medio</option>
+                <option value="2º Ano do Ensino Medio">2º Ano do Ensino Medio</option>
+                <option value="3º Ano do Ensino Medio">3º Ano do Ensino Medio</option>
             </select><br>
 
             <button type="submit" class="large-button">Cadastrar Turma</button>

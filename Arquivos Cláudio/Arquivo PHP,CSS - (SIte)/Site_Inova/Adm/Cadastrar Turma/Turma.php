@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
 
     // Deleta a turma do banco de dados
-    $sql = "DELETE FROM turma WHERE id_turma = '$delete_id'";
+    $sql = "DELETE FROM turma WHERE turma_id = '$delete_id'";
 
     if ($conn->query($sql) === TRUE) {
         //echo "Turma excluída com sucesso!";
@@ -22,9 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
 }
 
 // Busca todas as turmas cadastradas
-$turmas = $conn->query("SELECT t.id_turma, t.nome, u.Nome AS professor, t.serie 
+$turmas = $conn->query("SELECT t.turma_id, t.turma_nome, u.usuario_nome AS professor, t.turma_serie 
                         FROM turma t
-                        LEFT JOIN usuario u ON t.id_prof = u.id_usuario");
+                        LEFT JOIN usuario u ON t.usuario_id = u.usuario_id");
 ?>
 
 <!DOCTYPE html>
@@ -65,10 +65,10 @@ $turmas = $conn->query("SELECT t.id_turma, t.nome, u.Nome AS professor, t.serie
                 // Exibe todas as turmas cadastradas
                 while ($turma = $turmas->fetch_assoc()) {
                     echo "<tr>
-                        <td>{$turma['nome']}</td>
+                        <td>{$turma['turma_nome']}</td>
                         <td>{$turma['professor']}</td>
-                        <td>{$turma['serie']}</td>
-                        <td><button id='excluir' class='button excluir' onclick='confirmarExclusao({$turma['id_turma']})'>Excluir</button></td>
+                        <td>{$turma['turma_serie']}</td>
+                        <td><button id='excluir' class='button excluir' onclick='confirmarExclusao({$turma['turma_id']})'>Excluir</button></td>
                     </tr>";
                 }
                 ?>

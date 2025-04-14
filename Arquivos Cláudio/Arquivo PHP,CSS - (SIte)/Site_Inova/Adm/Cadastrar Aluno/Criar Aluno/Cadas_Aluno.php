@@ -12,16 +12,16 @@ if ($conn->connect_error) {
 // Verifica se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Coleta os dados do formulário
-    $matricula = $_POST['matricula'];
-    $nome = $_POST['nome'];
-    $senha = $_POST['senha'];
-    $genero = $_POST['genero'];
-    $id_turma = $_POST['id_turma'];
+    $aluno_matricula = $_POST['aluno_matricula'];
+    $aluno_nome = $_POST['aluno_nome'];
+    $aluno_senha = $_POST['aluno_senha'];
+    $aluno_genero = $_POST['aluno_genero'];
+    $turma_id = $_POST['turma_id'];
 
     // Verifica se a matrícula já existe
-    $sql_check = "SELECT * FROM aluno WHERE matricula = ?";
+    $sql_check = "SELECT * FROM aluno WHERE aluno_matricula = ?";
     if ($stmt_check = $conn->prepare($sql_check)) {
-        $stmt_check->bind_param("s", $matricula);
+        $stmt_check->bind_param("s", $aluno_matricula);
         $stmt_check->execute();
         $stmt_check->store_result();
 
@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['tipo_mensagem'] = "alert-error"; // Mensagem de erro
         } else {
             // Prepara e executa a consulta de inserção
-            $sql = "INSERT INTO aluno (matricula, Nome, senha, genero, id_turma) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO aluno (aluno_matricula, aluno_nome, aluno_senha, aluno_genero, turma_id) VALUES (?, ?, ?, ?, ?)";
             if ($stmt = $conn->prepare($sql)) {
-                $stmt->bind_param("ssssi", $matricula, $nome, $senha, $genero, $id_turma);
+                $stmt->bind_param("ssssi", $aluno_matricula, $aluno_nome, $aluno_senha, $aluno_genero, $turma_id);
 
                 if ($stmt->execute()) {
                     $_SESSION['mensagem'] = "Aluno cadastrado com sucesso!";
@@ -88,31 +88,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
 
         <form action="cadas_aluno.php" method="post">
-            <label for="matricula">Matrícula:</label>
-            <input type="text" name="matricula" required><br>
-            <label for="nome">Nome:</label>
-            <input type="text" name="nome" required><br>
-            <label for="senha">Senha:</label>
-            <input type="password" name="senha" required><br>
-            <label for="id_turma">Turma:</label>
-            <select name="id_turma" required>
+            <label for="aluno_matricula">Matrícula:</label>
+            <input type="text" name="aluno_matricula" required><br>
+            <label for="aluno_nome">Nome:</label>
+            <input type="text" name="aluno_nome" required><br>
+            <label for="aluno_senha">Senha:</label>
+            <input type="password" name="aluno_senha" required><br>
+            <label for="turma_id">Turma:</label>
+            <select name="turma_id" required>
                 <option value="">Selecione</option>
                 <?php
                 // Consulta para obter as turmas do banco de dados
-                $sql = "SELECT id_turma, nome FROM turma";
+                $sql = "SELECT turma_id, turma_nome FROM turma";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<option value='" . $row['id_turma'] . "'>" . $row['nome'] . "</option>";
+                        echo "<option value='" . $row['turma_id'] . "'>" . $row['turma_nome'] . "</option>";
                     }
                 } else {
                     echo "<option value=''>Nenhuma turma encontrada</option>";
                 }
                 ?>
             </select><br>
-            <label for="genero">Gênero:</label>
-            <select name="genero" required>
+            <label for="aluno_genero">Gênero:</label>
+            <select name="aluno_genero" required>
                 <option value="">Selecione</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Feminino">Feminino</option>
