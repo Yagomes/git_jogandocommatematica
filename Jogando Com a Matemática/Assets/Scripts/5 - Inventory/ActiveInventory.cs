@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ActiveInventory : Singleton<ActiveInventory> // Gerencia a troca de slots no inventário e a troca de armas ativas, com base na entrada do jogador.
 
@@ -16,7 +17,17 @@ public class ActiveInventory : Singleton<ActiveInventory> // Gerencia a troca de
 
     private void Start()
     {
+      
         playerControls.Inventory.Keyboard.performed += ctx => ToggleActiveSlot((int)ctx.ReadValue<float>());
+    }
+
+
+
+
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
     }
 
     private void OnEnable()

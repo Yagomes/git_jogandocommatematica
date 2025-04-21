@@ -16,7 +16,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                 if (instance == null)
                 {
                     // Se não houver nenhuma instância, loga um erro
-                    Debug.LogError($"No instance of {typeof(T)} found in the scene.");
                 }
             }
             return instance;

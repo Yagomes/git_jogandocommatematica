@@ -2078,6 +2078,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 5460532950516088769, guid: a23aa2f94afa6e14a80ae4a2fe7d71ff, type: 3}
+  playboy: {fileID: 280323501841662002, guid: f56c27d077f4c1f4ebb7583a9e6c487e, type: 3}
+  playgirl: {fileID: 5634706151698708760, guid: 30f8ac5b6864702419d5e4596b28f501, type: 3}
 --- !u!114 &1937669829
 MonoBehaviour:
   m_ObjectHideFlags: 0
