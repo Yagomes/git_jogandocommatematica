@@ -9,7 +9,9 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
     private int minValor;
     private int maxValor;
 
-    public PlayerManager player;
+    public GameObject player;
+    public GameObject playerg;
+
 
     private string topicoEscolhido;
 
@@ -18,6 +20,7 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
 
     private void Start()
     {
+
         // recarrega as moedas caso for um novo login
         EconomyManager.Instance.CurrentGold();
 
@@ -58,35 +61,44 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
 
 
         CarregarCena("F");
-        player.isResetNeeded = true;
 
-
-      /*  // Procura todos os GameObjects na cena, incluindo DontDestroyOnLoad
-        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
-
-
-        foreach (GameObject obj in allObjects)
+        // Reseta o estado do player
+        if (player != null && player.GetComponent<PlayerManager>() != null)
         {
-            // Verifica se o nome é "Active Inventory"
-            if (obj.name == "Active Inventory")
-            {
-
-                ActiveInventory script = obj.GetComponent<ActiveInventory>();
-                if (script != null)
-                {
-                    script.enabled = true;
-                    Debug.Log("Script 'Active Inventory' ativado com sucesso!");
-                }
-                else
-                {
-                    Debug.LogError("Script 'Active Inventory' não encontrado.");
-                }
-
-                break; // Interrompe o loop após encontrar o objeto
-            }
-        }*/
-
+            player.GetComponent<PlayerManager>().isResetNeeded = true;
         }
+        // Reseta o estado do player
+        if (playerg != null && playerg.GetComponent<PlayerManager>() != null)
+        {
+            playerg.GetComponent<PlayerManager>().isResetNeeded = true;
+        }
+
+        /*  // Procura todos os GameObjects na cena, incluindo DontDestroyOnLoad
+          GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+
+          foreach (GameObject obj in allObjects)
+          {
+              // Verifica se o nome é "Active Inventory"
+              if (obj.name == "Active Inventory")
+              {
+
+                  ActiveInventory script = obj.GetComponent<ActiveInventory>();
+                  if (script != null)
+                  {
+                      script.enabled = true;
+                      Debug.Log("Script 'Active Inventory' ativado com sucesso!");
+                  }
+                  else
+                  {
+                      Debug.LogError("Script 'Active Inventory' não encontrado.");
+                  }
+
+                  break; // Interrompe o loop após encontrar o objeto
+              }
+          }*/
+
+    }
 
     public void OnClickMédio()
     {
@@ -105,8 +117,16 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
 
 
         CarregarCena("M");
-        player.isResetNeeded = true;
-
+        // Reseta o estado do player
+        if (player != null && player.GetComponent<PlayerManager>() != null)
+        {
+            player.GetComponent<PlayerManager>().isResetNeeded = true;
+        }
+        // Reseta o estado do player
+        if (playerg != null && playerg.GetComponent<PlayerManager>() != null)
+        {
+            playerg.GetComponent<PlayerManager>().isResetNeeded = true;
+        }
 
     }
 
@@ -128,16 +148,32 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
 
 
         CarregarCena("D");
-        player.isResetNeeded = true;
+        // Reseta o estado do player
+        if (player != null && player.GetComponent<PlayerManager>() != null)
+        {
+            player.GetComponent<PlayerManager>().isResetNeeded = true;
+        }
+        // Reseta o estado do player
+        if (playerg != null && playerg.GetComponent<PlayerManager>() != null)
+        {
+            playerg.GetComponent<PlayerManager>().isResetNeeded = true;
+        }
 
-      
     }
 
     public void Voltar() // serve para o baú
     {
 
-        player.isResetNeeded = true;
-
+        // Reseta o estado do player
+        if (player != null && player.GetComponent<PlayerManager>() != null)
+        {
+            player.GetComponent<PlayerManager>().isResetNeeded = true;
+        }
+        // Reseta o estado do player
+        if (playerg != null && playerg.GetComponent<PlayerManager>() != null)
+        {
+            playerg.GetComponent<PlayerManager>().isResetNeeded = true;
+        }
         if (GameManager_b.instance != null)
         {
             GameManager_b.instance.ResetChestStates();
@@ -147,6 +183,8 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
 
     private void CarregarCena(string dificuldade)
     {
+        topicoEscolhido = PlayerPrefs.GetString("TopicoEscolhido", "");
+ 
         if (GameManager_b.instance != null)
         {
             GameManager_b.instance.ResetChestStates();
@@ -155,7 +193,7 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
         // Define a cena com base no tópico escolhido e na dificuldade
         string cena = "";
 
-        if (topicoEscolhido.ToLower() == "soma")
+        if (topicoEscolhido == "soma")
         {
             //playerSpriteRenderer.enabled = true;
             cena = $"Scene1_S_{dificuldade}";
@@ -172,7 +210,7 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
                 }
             }
         }
-        else if (topicoEscolhido.ToLower() == "multiplicacao" || topicoEscolhido.ToLower() == "mult")
+        else if (topicoEscolhido == "multiplicacao" || topicoEscolhido == "mult")
         {
 
 
@@ -191,7 +229,7 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
             cena = $"Scene1_M_{dificuldade}";
 
         }
-        else if (topicoEscolhido.ToLower() == "subtracao" || topicoEscolhido.ToLower() == "sub")
+        else if (topicoEscolhido == "subtracao" || topicoEscolhido == "sub")
         {
 
 
@@ -210,7 +248,7 @@ public class LevelManager : MonoBehaviour // Script que controla os níveis do jo
             cena = $"Scene1_Su_{dificuldade}";
 
         }
-        else if (topicoEscolhido.ToLower() == "divisao" || topicoEscolhido.ToLower() == "div")
+        else if (topicoEscolhido == "divisao" || topicoEscolhido == "div")
         {
 
 

@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour // Gerencia a posição do jogador ao trocar ou reiniciar cenas.
 {
+    public static PlayerManager Instance;
+
     public Vector3 initialPosition; // Posição inicial do nível
     private Vector3 savedPosition;  // Posição salva ao trocar de subcenário
     public bool isResetNeeded = true;

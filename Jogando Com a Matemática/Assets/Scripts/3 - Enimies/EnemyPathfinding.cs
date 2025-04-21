@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class EnemyPathfinding : MonoBehaviour // Controla a movimentação do inimigo, incluindo deslocamento, parada e orientação do sprite.

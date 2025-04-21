@@ -1393,7 +1393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5460532950516088769, guid: a23aa2f94afa6e14a80ae4a2fe7d71ff, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5550709443075285390, guid: a23aa2f94afa6e14a80ae4a2fe7d71ff, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1669,7 +1669,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9278c0e08fb4b41bc12a16c3fc9301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3870695055455817264, guid: f56c27d077f4c1f4ebb7583a9e6c487e, type: 3}
+  player: {fileID: 280323501841662002, guid: f56c27d077f4c1f4ebb7583a9e6c487e, type: 3}
+  playerg: {fileID: 5634706151698708760, guid: 30f8ac5b6864702419d5e4596b28f501, type: 3}
 --- !u!114 &1618395736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2359,8 +2360,8 @@ SceneRoots:
   - {fileID: 617444020}
   - {fileID: 1622565318}
   - {fileID: 154766439}
-  - {fileID: 1430608505}
   - {fileID: 741647662}
   - {fileID: 1032883439}
   - {fileID: 777698707}
   - {fileID: 61472787}
+  - {fileID: 1430608505}

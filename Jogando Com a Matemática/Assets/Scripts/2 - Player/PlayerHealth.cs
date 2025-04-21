@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor.Build.Content;
+
 
 public class PlayerHealth : Singleton<PlayerHealth> // Gerencia a vida do jogador, incluindo dano, cura e morte.
 
